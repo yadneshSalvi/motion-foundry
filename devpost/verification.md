@@ -27,6 +27,8 @@ The development application on port 3101 and the production build on port 3103 w
 
 The review exercised baseline synthesis, three alternatives, Reveal, Space edits, the clearance challenge, contradictory-input failure, Undo, fresh solving, and JSON downloads. A real OpenAI request produced five proposed target edits; acceptance followed by a fresh numerical solve succeeded. The model response was displayed as a proposal requiring verification.
 
+Provider evidence is narrower than configuration: `gpt-6.1-sol` completed a real OpenAI generation. The default Gemini identifier was selected after the live [Vercel AI Gateway model catalog](https://ai-gateway.vercel.sh/v1/models) listed `google/gemini-4-argon`. No successful Gemini generation or forced OpenAI-to-Gemini failover has been observed in this verification record. A catalog listing does not establish access through the configured direct Gemini account.
+
 The final signed-link flow was opened in a fresh tab. The page revalidated signature and geometry, displayed the generated dimensioned assembly drawing, and downloaded the matching JSON. QR generation and the corresponding link were present in the export modal.
 
 The production service is deployed at **https://motion-foundry-nine.vercel.app**. Its unauthenticated health check returned HTTP 200 with AI and signing configured. Connected native sharing is a separate check from the completed local Preview and browser tests below.
