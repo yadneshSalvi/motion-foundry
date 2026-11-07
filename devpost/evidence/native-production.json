@@ -1,0 +1,265 @@
+{
+  "recordedDate": "2026-11-07",
+  "environment": {
+    "lensStudio": "5.23.2",
+    "preview": "SPECS 27 Interactive",
+    "inputMethod": "Actual Preview gestures routed through SIK MouseInteractor",
+    "backendOrigin": "https://motion-foundry-nine.vercel.app"
+  },
+  "editedTargetAngleRad": 1.853037284904241,
+  "cases": {
+    "bundled": {
+      "sharePath": "raw input and candidate, no receipt",
+      "revision": 0,
+      "inputHash": "fnv1a-4799adc5",
+      "selectedCandidateId": "bundled-petal-01",
+      "parameters": {
+        "groundCm": 16,
+        "crankCm": 4,
+        "couplerCm": 14,
+        "rockerCm": 10,
+        "branch": 1
+      },
+      "nativeVerification": {
+        "valid": true,
+        "failures": [],
+        "targetResiduals": [
+          {
+            "id": "pose-1",
+            "errorRad": 0,
+            "toleranceRad": 0.03490658503988659,
+            "passed": true
+          },
+          {
+            "id": "pose-2",
+            "errorRad": 2.220446049250313e-16,
+            "toleranceRad": 0.03490658503988659,
+            "passed": true
+          },
+          {
+            "id": "pose-3",
+            "errorRad": 0,
+            "toleranceRad": 0.03490658503988659,
+            "passed": true
+          },
+          {
+            "id": "pose-4",
+            "errorRad": 2.4492935982947064e-16,
+            "toleranceRad": 0.03490658503988659,
+            "passed": true
+          },
+          {
+            "id": "pose-5",
+            "errorRad": 2.4492935982947064e-16,
+            "toleranceRad": 0.03490658503988659,
+            "passed": true
+          }
+        ],
+        "maxClosureErrorCm": 7.105427357601002e-15,
+        "minClearanceCm": 9.520007364526954,
+        "minTransmissionSin": 0.8398250546685182,
+        "sampleCount": 365,
+        "scope": "sampled",
+        "limitations": [
+          "Clearance checked only at reported phase samples; collisions between samples are not excluded.",
+          "Adjacent pivot neighborhoods (3 link radii plus clearance) are exempt. Capsule endpoints model joint radii; inter-layer axles are not modeled.",
+          "No load, bearing, fabrication or physical manufacturability validation."
+        ],
+        "inputHash": "fnv1a-4799adc5",
+        "verifierVersion": "four-bar-1.0"
+      },
+      "designPageHttpStatus": 200,
+      "downloads": [
+        {
+          "format": "json",
+          "httpStatus": 200,
+          "capturedBytes": 138687,
+          "capturedSha256": "11f2f72b15b586f35fdc59c97c4a6c4c5d9e2265dd2e1fc7789cbdb3c326f3de"
+        },
+        {
+          "format": "svg",
+          "httpStatus": 200,
+          "capturedBytes": 10205,
+          "capturedSha256": "fc36bd87fe966c745ba40f6a9371e1baf2fe03c5110ed8c21e81f89067bddb30"
+        }
+      ],
+      "downloadTrajectorySampleCount": 361,
+      "screenshot": {
+        "path": "../media/native-production-bundled-share.png",
+        "width": 1392,
+        "height": 1910,
+        "sha256": "b7b672b4b49ce7a787e2be7114a3b67f20caf7b51f873168874a3248127b1d1a",
+        "pixelsModified": false
+      },
+      "qr": {
+        "urlLength": 1068,
+        "urlSha256": "02c9f6dbfa8e72440d27b76b26487d046072ef59623154150ccf57ce38494a4e",
+        "zxing": {
+          "decoder": "zxing-cpp",
+          "method": "automatic detection, full unmodified screenshot",
+          "detected": 1,
+          "exactUrlMatch": true,
+          "decodedLength": 1068
+        },
+        "opencv": {
+          "opencv": "4.13.0",
+          "method": "detectAndDecode cropped paper",
+          "crop": [
+            342,
+            261,
+            1050,
+            970
+          ],
+          "decodedLength": 1068,
+          "matchesRuntimeExportUrl": true
+        }
+      }
+    },
+    "solved": {
+      "sharePath": "signed solve receipt and selected candidate ID",
+      "revision": 1,
+      "inputHash": "fnv1a-da84cad4",
+      "selectedCandidateId": "fnv1a-da84cad4-1",
+      "parameters": {
+        "groundCm": 16,
+        "crankCm": 4.161777325290235,
+        "couplerCm": 14.036916059248654,
+        "rockerCm": 11.107932717729126,
+        "branch": 1
+      },
+      "nativeVerification": {
+        "valid": true,
+        "failures": [],
+        "targetResiduals": [
+          {
+            "id": "pose-1",
+            "errorRad": 0.02663166396398786,
+            "toleranceRad": 0.03490658503988659,
+            "passed": true
+          },
+          {
+            "id": "pose-2",
+            "errorRad": 0.025477125638970755,
+            "toleranceRad": 0.03490658503988659,
+            "passed": true
+          },
+          {
+            "id": "pose-3",
+            "errorRad": 0.012821970856094822,
+            "toleranceRad": 0.03490658503988659,
+            "passed": true
+          },
+          {
+            "id": "pose-4",
+            "errorRad": 0.022533984194039933,
+            "toleranceRad": 0.03490658503988659,
+            "passed": true
+          },
+          {
+            "id": "pose-5",
+            "errorRad": 0.025002746298421273,
+            "toleranceRad": 0.03490658503988659,
+            "passed": true
+          }
+        ],
+        "maxClosureErrorCm": 8.881784197001252e-15,
+        "minClearanceCm": 9.395168792215387,
+        "minTransmissionSin": 0.8159621356955302,
+        "sampleCount": 365,
+        "scope": "sampled",
+        "limitations": [
+          "Clearance checked only at reported phase samples; collisions between samples are not excluded.",
+          "Adjacent pivot neighborhoods (3 link radii plus clearance) are exempt. Capsule endpoints model joint radii; inter-layer axles are not modeled.",
+          "No load, bearing, fabrication or physical manufacturability validation."
+        ],
+        "inputHash": "fnv1a-da84cad4",
+        "verifierVersion": "four-bar-1.0"
+      },
+      "designPageHttpStatus": 200,
+      "downloads": [
+        {
+          "format": "json",
+          "httpStatus": 200,
+          "capturedBytes": 138980,
+          "capturedSha256": "9c93e5ba034bf72dc36df4e6fbe0c3f3a7936e8fe4afabfbeddaf8af048a2b7a"
+        },
+        {
+          "format": "svg",
+          "httpStatus": 200,
+          "capturedBytes": 10201,
+          "capturedSha256": "8d2f9581e5683ef36edd76712d62338b7a4e186186c288f7931768d3eade87ef"
+        }
+      ],
+      "downloadTrajectorySampleCount": 361,
+      "screenshot": {
+        "path": "../media/native-production-solved-share.png",
+        "width": 1392,
+        "height": 1910,
+        "sha256": "240d8e8bcd3fb70d9dea76aedc4adf845442286fe2d42443c7c0ec88db47cd22",
+        "pixelsModified": false
+      },
+      "qr": {
+        "urlLength": 1134,
+        "urlSha256": "1249f988fdd46b69ef33dc381ceb45633a8dee9554b6c419c04a9aa4d4f6c851",
+        "zxing": {
+          "decoder": "zxing-cpp",
+          "method": "automatic detection, full unmodified screenshot",
+          "detected": 1,
+          "exactUrlMatch": true,
+          "decodedLength": 1134
+        },
+        "opencv": {
+          "opencv": "4.13.0",
+          "method": "decode with image-derived ink bounds",
+          "crop": [
+            342,
+            261,
+            1050,
+            970
+          ],
+          "decodedLength": 1134,
+          "matchesRuntimeExportUrl": true
+        }
+      }
+    }
+  },
+  "downloadComparedToNative": {
+    "parametersExact": true,
+    "revisionExact": true,
+    "hashExact": true,
+    "candidateExact": true,
+    "bothValid": true,
+    "bothFailuresEmpty": true,
+    "maxTargetResidualDifferenceRad": 4.440892098500626e-16,
+    "minTransmissionDifference": 1.1102230246251565e-16,
+    "maxClosureMatches": true,
+    "verificationSamples": [
+      365,
+      365
+    ],
+    "downloadDrawingSamples": 361
+  },
+  "finalCompile": "succeeded",
+  "finalRuntime": {
+    "status": "success",
+    "errors": [],
+    "firstActivityAtMs": 120,
+    "settleElapsedMs": 4043
+  },
+  "finalSavedState": {
+    "backendOrigin": "https://motion-foundry-nine.vercel.app",
+    "revision": 0,
+    "inputHash": "fnv1a-4799adc5",
+    "page": "browse",
+    "playing": true,
+    "reveal": false,
+    "visibleQr": false
+  },
+  "limits": [
+    "Both full unmodified captures decoded automatically with zxing-cpp.",
+    "OpenCV required screenshot crops and image-derived corners for the dense solved code.",
+    "No physical phone-camera scan, glasses, hand tracking, reach comfort or device performance was tested.",
+    "Geometric clearance is sampled; load and manufacturing validation are excluded.",
+    "Artifact byte hashes refer to the captured downloads; later JSON exports contain a new exportedAt timestamp."
+  ]
+}

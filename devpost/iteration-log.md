@@ -13,12 +13,13 @@ All observations below were made during the November 7, 2026 build. This record 
 | Browser edits retained selectable alternatives from the prior input. | Disabled and dimmed old alternatives and labeled their previous revision. | Desktop browser review confirmed fresh solving and stale-state recovery. |
 | A small obstacle's displayed radius did not match the slider step. | Matched the step to hundredth-centimetre values. | The control now represents the actual 0.12 cm fixture radius. |
 | Undo initially restored a native candidate without restoring its alternatives. | Snapshot and restore the full alternative list. | After editing and solving, Undo followed by Next restores an original valid alternative. |
-| Saving only into device storage was an incomplete cross-device handoff. | Added server-reverified signed links, QR rendering, a shared assembly preview, and JSON/SVG downloads. | Local production browser flow passed; a QR fixture decoded from an actual Preview capture. Production native sharing is recorded separately in verification. |
+| Saving only into device storage was an incomplete cross-device handoff. | Added server-reverified signed links, QR rendering, a shared assembly preview, and JSON/SVG downloads. | Actual Preview pose edit → HTTPS solve → receipt Save passed; fresh bundled Save also passed. Both signed pages and JSON/SVG downloads returned HTTP 200. |
+| OpenCV could not automatically locate the dense solved QR reliably. | Cross-checked the unchanged full Preview screenshots with ZXing. | ZXing automatically decoded both full screenshots to the exact runtime URLs. OpenCV also recovered both with crops and supplied corners for the solved card. No hardware scan was performed. |
 | A shared mutable reference allowed one modified example to contaminate another. | Copy reference parameters when creating a workspace. | Invalid-export testing no longer affects later fixtures. |
 | Long valid Unicode identifiers could create a token larger than the reader accepts. | Enforce byte and token limits before issuing a share; offer JSON export instead. | The boundary case returns HTTP 413 instead of an unusable signed link. |
 
 The final web review covered desktop and a 390 × 844 mobile viewport. It included a real OpenAI proposal, accepting the edit, a fresh numerical solve, contradictory-input recovery, and exact-candidate downloads. The final local production shared page rendered the generated drawing and reopened the signed design without browser console errors.
 
-![Actual Lens Studio Preview showing the local example](media/native-preview.png)
+![Actual Lens Studio Preview after production integration](media/native-preview.png)
 
-This capture shows the actual local Lens state and its explicit local-save message. It is not a hardware capture or a production-share demonstration.
+This capture shows the final bundled browse/play state after the production integration pass. It is a Lens Studio Preview capture. The separate share-card capture and decoding results appear in the verification record.

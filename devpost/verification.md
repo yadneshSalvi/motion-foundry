@@ -31,7 +31,9 @@ Provider evidence: `gpt-6.1-sol` completed a real OpenAI generation. The Gemini 
 
 The final signed-link flow was opened in a fresh tab. The page revalidated signature and geometry, displayed the generated dimensioned assembly drawing, and downloaded the matching JSON. QR generation and the corresponding link were present in the export modal.
 
-The production service is deployed at **https://motion-foundry-nine.vercel.app**. Its unauthenticated health check returned HTTP 200 with AI and signing configured. Connected native sharing is a separate check from the completed local Preview and browser tests below.
+The production service is deployed at **https://motion-foundry-nine.vercel.app**. Its unauthenticated health check returned HTTP 200 with AI and signing configured. The connected native solve and both production sharing paths were subsequently verified as described below.
+
+![The actual deployed web workshop](media/web-workshop.jpg)
 
 ## Actual Lens Studio Preview
 
@@ -55,7 +57,35 @@ A supplemental direct-method regression solved two revisions, restored the earli
 
 The native QR renderer was also tested with a direct-method fixture containing the text “Motion Foundry Preview QA.” OpenCV decoded that exact text from an actual Preview screenshot. A real UI action then dismissed the card. This validates the renderer, not a production link request.
 
-![Actual Preview of the local native study](media/native-preview.png)
+![Actual Lens Studio Preview after the production integration pass](media/native-preview.png)
+
+## Native production solve and sharing
+
+The native project was saved with `https://motion-foundry-nine.vercel.app` as its backend. Actual Preview gestures through SIK moved a pose target, creating revision 1 with input hash `fnv1a-da84cad4`. Pressing Solve sent that revision to the HTTPS service. The result carried a solve receipt and was independently rechecked inside the Lens before the UI reported **HTTPS solve**.
+
+| Solved native result | Observed value |
+| --- | --- |
+| Selected candidate | `fnv1a-da84cad4-1` |
+| Ground / crank / coupler / rocker | 16 / 4.1617773253 / 14.0369160592 / 11.1079327177 cm |
+| Assembly branch | 1 |
+| Local verification | Valid; no failures; all five targets passed |
+| Verification poses | 365 |
+| Maximum target error | 0.026631663964 rad, approximately 1.526°, within the 2° tolerance |
+| Maximum closure residual | 8.881784197001252e-15 cm |
+
+Actual Checks → Save exercised two distinct production paths. A freshly reset bundled example, revision 0 / `fnv1a-4799adc5`, had no receipt and sent its raw input/candidate for server re-verification. The edited HTTPS result, revision 1 / `fnv1a-da84cad4`, sent its receipt and selected candidate ID. Both returned signed URLs and displayed native QR cards. Each exact runtime URL opened an HTTP 200 design page; the JSON and SVG download links from both pages also returned HTTP 200.
+
+The revision-1 JSON exactly matched the native revision, input hash, candidate ID, and mechanism dimensions. Native and downloaded verification both passed 365 poses with no failures and identical maximum closure residuals. Their largest target-residual difference was 4.440892098500626e-16 radians. The JSON additionally contains 361 trajectory samples, which are distinct from the verification sample count.
+
+### Rendered QR evidence
+
+**ZXing automatically decoded both full, unmodified 1392 × 1910 Preview screenshots.** No crop or manual corner input was used. The bundled card yielded a 1,068-character URL and the solved card a 1,134-character URL; both exactly matched their runtime export URL. These were actual rendered production cards, with no regenerated QR or backend module reconstruction.
+
+An independent OpenCV 4.13.0 check also recovered both URLs from unchanged screenshot crops. Its bundled-card detector succeeded after cropping; the dense solved card needed four corners measured from the rendered ink bounds. Automatic detection was unreliable with that OpenCV method, including during a temporary runtime enlargement that was reverted. The stronger ZXing result establishes automatic decoding from these full Preview captures. No physical phone-camera or hardware scanning was tested.
+
+![Actual native Preview with the production revision-1 share card](media/native-production-solved-share.png)
+
+The [sanitized production evidence](evidence/native-production.json) retains parameters, verifier results, download hashes/statuses, screenshot and URL hashes, and both decoding methods without private workspace paths or credentials. Final native compilation succeeded. After debugger cleanup, a fresh runtime reset reported no errors; the project was saved and left in the bundled browse/play state with the production endpoint configured.
 
 ## Scope of the result
 

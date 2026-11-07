@@ -4,6 +4,8 @@
 
 [Open the live workshop](https://motion-foundry-nine.vercel.app)
 
+![The deployed Motion Foundry workshop](devpost/media/web-workshop.jpg)
+
 Motion Foundry is a working SPECS Lens and web companion for exploring a kinetic petal. Set the petal's desired angles at fixed crank phases, change its mount spacing or obstacle, and synthesize a four-bar linkage. Reveal the mechanism, turn the crank, inspect alternatives, and keep the exact selected design with its verification record.
 
 The sculpture is one independently solved cell with a rigid decorative petal on its output rocker. Its motion comes from link geometry, not an animation fitted to the requested poses. AI can propose target edits in the companion; only the deterministic solver and separate geometric verifier decide whether a mechanism passes.
@@ -72,7 +74,7 @@ Links have **no scheduled expiry**. They remain usable while the service and sig
 
 The test suite covers continuous playback closure, an independent verification path, held-out mechanisms, real obstacle-driven resynthesis, singularity rejection, contradictory inputs, deterministic search, stale responses, tampered receipts, key rotation, bounded payloads, and exact-alternative exports. The four committed [examples](examples/) can be recomputed with `npm run verify:examples`.
 
-Actual Preview interactions passed playback, reveal, crank dragging, contextual navigation, pose dragging, mount edits, obstacle edits, local solving, undo, alternative selection, contradiction recovery, and local save. A QR fixture was decoded from an actual Preview capture. See the [verification record](devpost/verification.md) for precisely what was tested.
+Actual Preview interactions passed playback, reveal, crank dragging, contextual navigation, pose dragging, mount edits, obstacle edits, local solving, undo, alternative selection, contradiction recovery, and local save. The production pass also verified pose edit → HTTPS solve, both receipt and raw-candidate Save paths, and matching JSON/SVG downloads. ZXing automatically decoded both full native production screenshots to their exact runtime URLs. No hardware scanning was tested. See the [verification record](devpost/verification.md) for precise evidence and the separate OpenCV decoding limitation.
 
 Clearance is sampled; collisions between samples are not excluded. Adjacent pivot neighborhoods are exempt. Decorative petals, the display base, inter-layer axles, loads, bearings, fabrication, and physical manufacturability are outside the verifier. No hardware hand-tracking or device performance claims are made.
 
