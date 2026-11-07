@@ -1,0 +1,31 @@
+{
+  "recordedDate": "2026-11-07",
+  "test": "Direct Google SDK structured generation with the application's intentSchema",
+  "environment": "Local Node.js 22.22.3; real configured Gemini credential",
+  "sdk": "@ai-sdk/google@4.0.113 with ai@7.0.164",
+  "model": "gemini-4-argon",
+  "status": "succeeded",
+  "elapsedMs": 5370,
+  "finishReason": "stop",
+  "inputTokens": 659,
+  "outputTokens": 108,
+  "limits": {
+    "timeoutMs": 23000,
+    "maxOutputTokens": 2200,
+    "maxRetries": 0
+  },
+  "request": "Make the petal opening slightly gentler; keep the mounts unchanged.",
+  "baseInput": "examples/baseline.json",
+  "proposal": {
+    "summary": "Proposed a slightly gentler motion profile by modestly reducing the total angular excursion around the center of the current swing while preserving the five input phases.",
+    "targetAnglesDeg": [103, 99.5, 119.5, 138, 132],
+    "mountDistanceCm": null,
+    "uncertainty": "A numerical solve is required to verify if a planar crank-rocker mechanism can achieve these target angles."
+  },
+  "validation": {
+    "intentSchemaPassed": true,
+    "targetCountMatched": true,
+    "mechanismSolvedAsPartOfThisProviderTest": false,
+    "forcedProductionFailoverTested": false
+  }
+}
