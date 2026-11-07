@@ -1,2 +1,2 @@
-import { Workshop } from "@/components/workshop";
-export default function Home() { return <Workshop />; }
+import { Studio } from "@/components/studio";
+export default function Home() { return <Studio />; }
