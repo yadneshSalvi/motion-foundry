@@ -1,0 +1,11 @@
+.git/
+plans/
+.env
+.env.*
+lens/
+lens-src/
+artifacts/raw/
+.local-setup/
+node_modules/
+coverage/
+*.log

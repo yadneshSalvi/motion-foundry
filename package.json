@@ -1,0 +1,44 @@
+{
+  "name": "motion-foundry",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "next dev --port 3101",
+    "build": "next build",
+    "start": "next start --port 3101",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "fixtures": "tsx scripts/generate-examples.ts",
+    "verify:examples": "tsx scripts/verify-examples.ts",
+    "lens:sync": "node scripts/sync-lens.mjs",
+    "lens:check": "node scripts/sync-lens.mjs --check",
+    "verify": "npm run typecheck && npm test && npm run verify:examples && npm run build"
+  },
+  "engines": {
+    "node": "22.x"
+  },
+  "dependencies": {
+    "@ai-sdk/google": "^4.0.113",
+    "@ai-sdk/openai": "^4.0.110",
+    "ai": "^7.0.164",
+    "lucide-react": "^1.70.0",
+    "next": "^16.4.5",
+    "qrcode": "^1.5.4",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "three": "^0.187.0",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.6",
+    "@types/qrcode": "^1.5.6",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@types/three": "^0.187.0",
+    "tsx": "^4.23.15",
+    "typescript": "^7.0.2",
+    "vitest": "^5.1.0"
+  }
+}

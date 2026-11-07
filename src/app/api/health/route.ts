@@ -1,0 +1,2 @@
+export const dynamic = "force-dynamic";
+export async function GET() { return Response.json({ service: "Motion Foundry", version: "1.0.0", solver: "four-bar-1.0", mode: "bounded-stateless", units: "centimetres/radians", aiAvailable: Boolean(process.env.OPENAI_API_KEY || process.env.GEMINI_API_KEY), signingConfigured: Boolean(process.env.MOTION_SIGNING_SECRET), validation: "sampled clearance; analytic full-rotation reachability" }); }
