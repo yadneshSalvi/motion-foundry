@@ -1,0 +1,391 @@
+{
+  "format": "motion-foundry/loop-web-evidence@1",
+  "recordedDate": "2026-11-07",
+  "environment": "Production HTTP checks and actual browser review",
+  "release": "b74b35e",
+  "production": "https://motion-foundry-nine.vercel.app",
+  "http": {
+    "solveHttp": 200,
+    "exportHttp": 200,
+    "shareHttp": 200,
+    "pageHttp": 200
+  },
+  "solve": {
+    "status": "succeeded",
+    "candidateCount": 3,
+    "revision": 2,
+    "elapsedMs": 2213.391177999999
+  },
+  "exactInputRoundtrip": true,
+  "input": {
+    "schemaVersion": "loop-1.0",
+    "kind": "coupler-loop",
+    "designId": "known-coupler-starter",
+    "revision": 2,
+    "searchSeed": 42,
+    "stroke": [
+      {
+        "x": 3.629,
+        "y": 4.736
+      },
+      {
+        "x": 3.668,
+        "y": 4.889
+      },
+      {
+        "x": 3.662,
+        "y": 5.046
+      },
+      {
+        "x": 3.598,
+        "y": 5.189
+      },
+      {
+        "x": 3.485,
+        "y": 5.298
+      },
+      {
+        "x": 3.346,
+        "y": 5.371
+      },
+      {
+        "x": 3.194,
+        "y": 5.416
+      },
+      {
+        "x": 3.038,
+        "y": 5.438
+      },
+      {
+        "x": 2.88,
+        "y": 5.442
+      },
+      {
+        "x": 2.722,
+        "y": 5.43
+      },
+      {
+        "x": 2.566,
+        "y": 5.406
+      },
+      {
+        "x": 2.412,
+        "y": 5.371
+      },
+      {
+        "x": 2.261,
+        "y": 5.325
+      },
+      {
+        "x": 2.113,
+        "y": 5.27
+      },
+      {
+        "x": 1.968,
+        "y": 5.207
+      },
+      {
+        "x": 1.828,
+        "y": 5.136
+      },
+      {
+        "x": 1.69,
+        "y": 5.057
+      },
+      {
+        "x": 1.557,
+        "y": 4.972
+      },
+      {
+        "x": 1.429,
+        "y": 4.881
+      },
+      {
+        "x": 1.305,
+        "y": 4.783
+      },
+      {
+        "x": 1.185,
+        "y": 4.68
+      },
+      {
+        "x": 1.071,
+        "y": 4.571
+      },
+      {
+        "x": 0.961,
+        "y": 4.457
+      },
+      {
+        "x": 0.856,
+        "y": 4.339
+      },
+      {
+        "x": 0.757,
+        "y": 4.216
+      },
+      {
+        "x": 0.663,
+        "y": 4.089
+      },
+      {
+        "x": 0.576,
+        "y": 3.957
+      },
+      {
+        "x": 0.494,
+        "y": 3.822
+      },
+      {
+        "x": 0.42,
+        "y": 3.683
+      },
+      {
+        "x": 0.352,
+        "y": 3.54
+      },
+      {
+        "x": 0.294,
+        "y": 3.393
+      },
+      {
+        "x": 0.244,
+        "y": 3.243
+      },
+      {
+        "x": 0.207,
+        "y": 3.09
+      },
+      {
+        "x": 0.184,
+        "y": 2.934
+      },
+      {
+        "x": 0.179,
+        "y": 2.776
+      },
+      {
+        "x": 0.201,
+        "y": 2.62
+      },
+      {
+        "x": 0.259,
+        "y": 2.474
+      },
+      {
+        "x": 0.363,
+        "y": 2.356
+      },
+      {
+        "x": 0.504,
+        "y": 2.287
+      },
+      {
+        "x": 0.66,
+        "y": 2.27
+      },
+      {
+        "x": 0.817,
+        "y": 2.291
+      },
+      {
+        "x": 0.968,
+        "y": 2.335
+      },
+      {
+        "x": 1.114,
+        "y": 2.395
+      },
+      {
+        "x": 1.255,
+        "y": 2.467
+      },
+      {
+        "x": 1.392,
+        "y": 2.546
+      },
+      {
+        "x": 1.524,
+        "y": 2.632
+      },
+      {
+        "x": 1.654,
+        "y": 2.722
+      },
+      {
+        "x": 1.781,
+        "y": 2.816
+      },
+      {
+        "x": 1.906,
+        "y": 2.912
+      },
+      {
+        "x": 2.029,
+        "y": 3.012
+      },
+      {
+        "x": 2.151,
+        "y": 3.113
+      },
+      {
+        "x": 2.271,
+        "y": 3.215
+      },
+      {
+        "x": 2.389,
+        "y": 3.319
+      },
+      {
+        "x": 2.507,
+        "y": 3.425
+      },
+      {
+        "x": 2.623,
+        "y": 3.532
+      },
+      {
+        "x": 2.738,
+        "y": 3.64
+      },
+      {
+        "x": 2.852,
+        "y": 3.75
+      },
+      {
+        "x": 2.964,
+        "y": 3.861
+      },
+      {
+        "x": 3.074,
+        "y": 3.974
+      },
+      {
+        "x": 3.182,
+        "y": 4.09
+      },
+      {
+        "x": 3.286,
+        "y": 4.208
+      },
+      {
+        "x": 3.386,
+        "y": 4.331
+      },
+      {
+        "x": 3.479,
+        "y": 4.458
+      },
+      {
+        "x": 3.562,
+        "y": 4.593
+      }
+    ],
+    "fixedMounts": {
+      "groundCm": 8
+    },
+    "lengthBounds": {
+      "crank": [
+        1,
+        3.3
+      ],
+      "coupler": [
+        5.5,
+        9
+      ],
+      "rocker": [
+        3.5,
+        7
+      ]
+    },
+    "attachmentBounds": {
+      "alongCm": [
+        0,
+        9
+      ],
+      "acrossCm": [
+        -4,
+        4
+      ]
+    },
+    "obstacles": [
+      {
+        "id": "crank-clearance",
+        "center": {
+          "x": 2.12,
+          "y": 0
+        },
+        "radiusCm": 0.03,
+        "layerZCm": 0,
+        "depthCm": 0.2
+      }
+    ],
+    "clearanceCm": 0.08,
+    "linkRadiusCm": 0.08,
+    "linkDepthCm": 0.2,
+    "linkLayers": {
+      "crank": 0,
+      "coupler": 0.4,
+      "rocker": 0,
+      "ground": -0.4
+    },
+    "tolerances": {
+      "fitCm": 0.15,
+      "closureCm": 0.001,
+      "samples": 720
+    }
+  },
+  "selectedCandidateId": "fnv1a-529cf07a-loop-1",
+  "mechanism": {
+    "groundCm": 8,
+    "crankCm": 1.9182536037445252,
+    "couplerCm": 7.157288922184914,
+    "rockerCm": 4.61202030167849,
+    "branch": 1,
+    "attachmentAlongCm": 3.6665356606897372,
+    "attachmentAcrossCm": 2.321351332315328,
+    "startingPhaseRad": 0.41167875567258005,
+    "driveDirection": 1
+  },
+  "verification": {
+    "valid": true,
+    "failures": [],
+    "maxFitErrorCm": 0.08439603108461267,
+    "rmsFitErrorCm": 0.04536749286615485,
+    "maxClosureErrorCm": 6.217248937900877e-15,
+    "minClearanceCm": 0.011746396255474856,
+    "sampleCount": 720,
+    "scope": "sampled",
+    "limitations": [
+      "Clearance checked only at reported phase samples; collisions between samples are not excluded.",
+      "Adjacent pivot neighborhoods (3 link radii plus clearance) are exempt. Capsule endpoints model joint radii; inter-layer axles are not modeled.",
+      "No load, bearing, fabrication or physical manufacturability validation.",
+      "Fit compares ordered closed arc-length correspondence, with the first drawn point anchored to startingPhaseRad. Crank speed remains uniform during playback.",
+      "Attachment triangle rods B\u2192point and C\u2192point are checked against obstacles and other links with the same declared layer and pivot exemptions. Contacts within the rigid attachment/coupler triangle, inter-layer axles and pen hardware are excluded."
+    ],
+    "inputHash": "fnv1a-529cf07a",
+    "verifierVersion": "coupler-loop-1.0",
+    "fitWitness": {
+      "phaseRad": 0.9780491970451219,
+      "desired": {
+        "x": 3.4826695294007144,
+        "y": 5.299223916214014
+      },
+      "actual": {
+        "x": 3.427036578365327,
+        "y": 5.235760030247827
+      },
+      "errorCm": 0.08439603108461267,
+      "sampleIndex": 8
+    }
+  },
+  "share": {
+    "urlLength": 1586,
+    "qrModules": 133,
+    "urlSha256": "0f61c1cef952fa7c20106a218d71a5f9592f4c1a6e4b4588af88dd9da2567335"
+  },
+  "limits": [
+    "Browser and server evidence only; new native Loop gestures and rendered QR decode are not established by this record.",
+    "Fit and clearance are sampled. Hardware and manufacturing are untested."
+  ]
+}

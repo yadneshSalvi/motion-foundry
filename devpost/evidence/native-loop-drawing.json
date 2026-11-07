@@ -1,0 +1,425 @@
+{
+  "format": "motion-foundry/native-loop-drawing-evidence@1",
+  "recordedDate": "2026-11-07",
+  "interaction": "Actual InjectPreviewGesture through SIK pen drag and UIKit Close/Solve controls; no input state injection",
+  "openStroke": {
+    "revision": 0,
+    "inputHash": "fnv1a-b7fdf190",
+    "drawMode": "open",
+    "draftPointCount": 132,
+    "verifiedForCurrentRevision": true
+  },
+  "explicitClose": {
+    "revision": 1,
+    "inputHash": "fnv1a-7a3f14d6",
+    "drawMode": "none",
+    "verifiedForCurrentRevision": false
+  },
+  "solvedDrawing": {
+    "input": {
+      "schemaVersion": "loop-1.0",
+      "kind": "coupler-loop",
+      "designId": "known-coupler-starter",
+      "revision": 1,
+      "searchSeed": 42,
+      "stroke": [
+        {
+          "x": 7.258,
+          "y": 9.472
+        },
+        {
+          "x": 7.258,
+          "y": 9.79
+        },
+        {
+          "x": 7.259,
+          "y": 10.109
+        },
+        {
+          "x": 7.226,
+          "y": 10.411
+        },
+        {
+          "x": 6.97,
+          "y": 10.6
+        },
+        {
+          "x": 6.692,
+          "y": 10.744
+        },
+        {
+          "x": 6.389,
+          "y": 10.828
+        },
+        {
+          "x": 6.096,
+          "y": 10.944
+        },
+        {
+          "x": 5.779,
+          "y": 10.968
+        },
+        {
+          "x": 5.472,
+          "y": 10.908
+        },
+        {
+          "x": 5.173,
+          "y": 10.804
+        },
+        {
+          "x": 4.855,
+          "y": 10.783
+        },
+        {
+          "x": 4.551,
+          "y": 10.731
+        },
+        {
+          "x": 4.28,
+          "y": 10.563
+        },
+        {
+          "x": 4.001,
+          "y": 10.423
+        },
+        {
+          "x": 3.698,
+          "y": 10.347
+        },
+        {
+          "x": 3.429,
+          "y": 10.178
+        },
+        {
+          "x": 3.165,
+          "y": 10.001
+        },
+        {
+          "x": 2.901,
+          "y": 9.823
+        },
+        {
+          "x": 2.64,
+          "y": 9.641
+        },
+        {
+          "x": 2.416,
+          "y": 9.418
+        },
+        {
+          "x": 2.159,
+          "y": 9.23
+        },
+        {
+          "x": 1.939,
+          "y": 9.011
+        },
+        {
+          "x": 1.786,
+          "y": 8.735
+        },
+        {
+          "x": 1.544,
+          "y": 8.529
+        },
+        {
+          "x": 1.343,
+          "y": 8.282
+        },
+        {
+          "x": 1.151,
+          "y": 8.028
+        },
+        {
+          "x": 0.972,
+          "y": 7.766
+        },
+        {
+          "x": 0.842,
+          "y": 7.476
+        },
+        {
+          "x": 0.676,
+          "y": 7.204
+        },
+        {
+          "x": 0.557,
+          "y": 6.909
+        },
+        {
+          "x": 0.423,
+          "y": 6.625
+        },
+        {
+          "x": 0.37,
+          "y": 6.312
+        },
+        {
+          "x": 0.246,
+          "y": 6.022
+        },
+        {
+          "x": 0.225,
+          "y": 5.705
+        },
+        {
+          "x": 0.219,
+          "y": 5.386
+        },
+        {
+          "x": 0.345,
+          "y": 5.099
+        },
+        {
+          "x": 0.546,
+          "y": 4.857
+        },
+        {
+          "x": 0.826,
+          "y": 4.729
+        },
+        {
+          "x": 1.144,
+          "y": 4.705
+        },
+        {
+          "x": 1.456,
+          "y": 4.728
+        },
+        {
+          "x": 1.739,
+          "y": 4.869
+        },
+        {
+          "x": 2.047,
+          "y": 4.923
+        },
+        {
+          "x": 2.319,
+          "y": 5.089
+        },
+        {
+          "x": 2.583,
+          "y": 5.266
+        },
+        {
+          "x": 2.846,
+          "y": 5.445
+        },
+        {
+          "x": 3.109,
+          "y": 5.625
+        },
+        {
+          "x": 3.373,
+          "y": 5.804
+        },
+        {
+          "x": 3.679,
+          "y": 5.859
+        },
+        {
+          "x": 3.894,
+          "y": 6.094
+        },
+        {
+          "x": 4.09,
+          "y": 6.344
+        },
+        {
+          "x": 4.332,
+          "y": 6.548
+        },
+        {
+          "x": 4.567,
+          "y": 6.76
+        },
+        {
+          "x": 4.791,
+          "y": 6.986
+        },
+        {
+          "x": 5.016,
+          "y": 7.212
+        },
+        {
+          "x": 5.24,
+          "y": 7.438
+        },
+        {
+          "x": 5.464,
+          "y": 7.664
+        },
+        {
+          "x": 5.688,
+          "y": 7.89
+        },
+        {
+          "x": 5.913,
+          "y": 8.116
+        },
+        {
+          "x": 6.137,
+          "y": 8.342
+        },
+        {
+          "x": 6.361,
+          "y": 8.568
+        },
+        {
+          "x": 6.585,
+          "y": 8.794
+        },
+        {
+          "x": 6.81,
+          "y": 9.02
+        },
+        {
+          "x": 7.034,
+          "y": 9.246
+        }
+      ],
+      "fixedMounts": {
+        "groundCm": 16
+      },
+      "lengthBounds": {
+        "crank": [
+          2,
+          6.6
+        ],
+        "coupler": [
+          11,
+          18
+        ],
+        "rocker": [
+          7,
+          14
+        ]
+      },
+      "attachmentBounds": {
+        "alongCm": [
+          0,
+          18
+        ],
+        "acrossCm": [
+          -8,
+          8
+        ]
+      },
+      "obstacles": [],
+      "clearanceCm": 0.16,
+      "linkRadiusCm": 0.16,
+      "linkDepthCm": 0.4,
+      "linkLayers": {
+        "crank": 0,
+        "coupler": 0.8,
+        "rocker": 0,
+        "ground": -0.8
+      },
+      "tolerances": {
+        "fitCm": 0.3,
+        "closureCm": 0.002,
+        "samples": 720
+      }
+    },
+    "revision": 1,
+    "inputHash": "fnv1a-7a3f14d6",
+    "candidateId": "fnv1a-7a3f14d6-loop-1",
+    "parameters": {
+      "groundCm": 16,
+      "crankCm": 3.979481911901323,
+      "couplerCm": 14.003481656467828,
+      "rockerCm": 11.17935100466848,
+      "branch": 1,
+      "attachmentAlongCm": 7.9755626326987175,
+      "attachmentAcrossCm": 3.6245268284842846,
+      "startingPhaseRad": 0.3779117527348314,
+      "driveDirection": 1
+    },
+    "verification": {
+      "valid": true,
+      "failures": [],
+      "maxFitErrorCm": 0.19393377725024485,
+      "rmsFitErrorCm": 0.07833211859297785,
+      "maxClosureErrorCm": 1.0658141036401503e-14,
+      "minClearanceCm": 9.544016436246887,
+      "sampleCount": 720,
+      "scope": "sampled",
+      "limitations": [
+        "Clearance checked only at reported phase samples; collisions between samples are not excluded.",
+        "Adjacent pivot neighborhoods (3 link radii plus clearance) are exempt. Capsule endpoints model joint radii; inter-layer axles are not modeled.",
+        "No load, bearing, fabrication or physical manufacturability validation.",
+        "Fit compares ordered closed arc-length correspondence, with the first drawn point anchored to startingPhaseRad. Crank speed remains uniform during playback.",
+        "Attachment triangle rods B→point and C→point are checked against obstacles and other links with the same declared layer and pivot exemptions. Contacts within the rigid attachment/coupler triangle, inter-layer axles and pen hardware are excluded."
+      ],
+      "inputHash": "fnv1a-7a3f14d6",
+      "verifierVersion": "coupler-loop-1.0",
+      "fitWitness": {
+        "phaseRad": 0.3779117527348314,
+        "desired": {
+          "x": 7.258,
+          "y": 9.472
+        },
+        "actual": {
+          "x": 7.080383968999663,
+          "y": 9.549864340299234
+        },
+        "errorCm": 0.19393377725024485,
+        "sampleIndex": 0
+      }
+    },
+    "verifiedForCurrentRevision": true,
+    "candidateCount": 2
+  },
+  "finalPointEditRegression": {
+    "revision": 1,
+    "inputHash": "fnv1a-02355194",
+    "parameters": {
+      "groundCm": 16,
+      "crankCm": 4.002739475138674,
+      "couplerCm": 14.047712719896515,
+      "rockerCm": 10.115345177145095,
+      "branch": 1,
+      "attachmentAlongCm": 7.6539736295877505,
+      "attachmentAcrossCm": 4.130495772551648,
+      "startingPhaseRad": 0.41676482409907767,
+      "driveDirection": 1
+    },
+    "verification": {
+      "valid": true,
+      "failures": [],
+      "maxFitErrorCm": 0.10780642941975474,
+      "rmsFitErrorCm": 0.018183355541666966,
+      "maxClosureErrorCm": 8.881784197001252e-15,
+      "minClearanceCm": 9.564980250565508,
+      "sampleCount": 720,
+      "scope": "sampled",
+      "limitations": [
+        "Clearance checked only at reported phase samples; collisions between samples are not excluded.",
+        "Adjacent pivot neighborhoods (3 link radii plus clearance) are exempt. Capsule endpoints model joint radii; inter-layer axles are not modeled.",
+        "No load, bearing, fabrication or physical manufacturability validation.",
+        "Fit compares ordered closed arc-length correspondence, with the first drawn point anchored to startingPhaseRad. Crank speed remains uniform during playback.",
+        "Attachment triangle rods B→point and C→point are checked against obstacles and other links with the same declared layer and pivot exemptions. Contacts within the rigid attachment/coupler triangle, inter-layer axles and pen hardware are excluded."
+      ],
+      "inputHash": "fnv1a-02355194",
+      "verifierVersion": "coupler-loop-1.0",
+      "fitWitness": {
+        "phaseRad": 0.41676482409907767,
+        "desired": {
+          "x": 7.398,
+          "y": 9.472
+        },
+        "actual": {
+          "x": 7.3009631745204775,
+          "y": 9.518968933616735
+        },
+        "errorCm": 0.10780642941975474,
+        "sampleIndex": 0
+      }
+    },
+    "historyLength": 1,
+    "verifiedForCurrentRevision": true
+  },
+  "scope": "Desktop Preview mouse input only. The initial drawing capture preceded only no-op/copy/display-ring polish. Final point-edit regression uses the final guards. No measurement or hardware accuracy claim."
+}

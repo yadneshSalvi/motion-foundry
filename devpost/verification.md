@@ -2,13 +2,114 @@
 
 Recorded November 7, 2026. Results below describe the actual test environment and keep local, hosted, and device evidence distinct.
 
+## Current Loop release
+
+The primary Loop web/API release is **b74b35e**, deployed at [motion-foundry-nine.vercel.app](https://motion-foundry-nine.vercel.app). The native Loop workflow has also passed actual Interactive Preview acceptance against that production service. The earlier Petal native results are retained below and labeled separately.
+
 ## Automated checks
 
-`npm run typecheck` passed. `npm test` passed **17 tests across two files**. The final Next.js production build passed. `npm run lens:check` confirmed the portable domain and all six native source mirrors match.
+`npm run typecheck` passed. `npm test` passed **37 tests across four files**: 13 Loop domain tests, seven Loop API/export tests, nine Petal domain tests and eight Petal API/export tests. All four fresh Petal fixtures and the optimized production build passed. All **ten native source mirrors** match their final recorded SHA256 hashes. Native compilation passed. The final product-runtime interval and fresh debugger-detached startup were clean; host cleanup warnings are recorded separately below.
 
-The numerical suite checks full-cycle closure against an independent law-of-cosines path, continuous playback, individual angular tolerances and wraparound, layers and capsule thickness, singularity and unknown-parameter rejection, deterministic repeatability, and recovery of held-out known mechanisms on both assembly branches. It distinguishes provable contradictions from bounded search exhaustion.
+Loop coverage includes a held-out mechanism different from the starter, both assembly branches, attachment-coordinate variation, correct reversed drive, a physically generated self-intersecting path, incorrect crossing order, independent pose/closure math, impossible bounds and bounded no-fit behavior. Search preserves fixed mount spacing, physical units, tolerance and obstacles. Constraint-aware synthesis finds a slightly worse-fitting but clear mechanism for the obstructed study, including at the native 2× physical scale.
 
-The API/export suite checks exact-alternative export, signature tampering, wrong token purpose, unrelated candidate IDs, null and malformed inputs, unsupported fields/units, oversized bodies, production secret requirements, key rotation, bounded decompression, oversized Unicode share payloads, revalidation of locally supplied geometry, stale response handling, and drawings for large accepted dimensions.
+Witness tests check base-link and attachment contacts and compare the largest-error witness's physical position with the separate playback evaluator. API tests check exact canonical and unquantized input round-trips, selected-candidate exports, tampering, token-purpose separation, malformed input, bounded decompression, obstacle/layer details in SVG and response rejection after edits, cancellation, retry or stroke reordering. The independent review also checked cyclic starting-point shifts and rejection of unrefitted translated targets.
+
+The retained Petal suite covers continuous playback, individual angular tolerance and wraparound, capsule thickness and layers, singularities, strict parameter validation, deterministic repeatability and held-out mechanisms. Its API suite additionally covers production signing requirements, key rotation, oversized Unicode shares, raw-candidate revalidation and large accepted drawing dimensions. Neither suite treats a bounded search failure as proof of impossibility.
+
+## Loop browser and production evidence
+
+Browser review covered the real application on desktop and a 390 × 844 mobile viewport. The mechanism and draw controls remain in the first viewport, DM Sans is the actual computed font, and no horizontal overflow was observed. The final production page and export flow had no console errors.
+
+A real pointer-drawn partial stroke remained open until explicit **Close loop**. A fresh solve produced changed mechanism parameters with about **0.099 cm** maximum error. A large pointer-drawn rectangle exceeded its declared limit and returned no-result; prior geometry remained visible, export was disabled, and Undo recovered. Cancel, retry and Undo during a pending request restored the accepted revision. Switching to Petal, solving its Compact study, then returning to Loop preserved the accepted Loop design.
+
+The clearance-study flow passed in the browser: inspect the reference crank contact, solve, inspect the maximum-error witness, export and share. The generated SVG includes the declared obstacle, its layer/depth context and sampled clearance result. Desired and actual traces are distinct; the largest-error view pauses at an actual physical crank pose.
+
+The production check retained the exact drawing, **8 cm mounts** and **0.15 cm fit limit**:
+
+| Production Loop result | Observed value |
+| --- | --- |
+| Solve / selected export / share / signed page | HTTP 200 for each |
+| Fresh alternatives | 3 |
+| Revision / input hash | 2 / `fnv1a-529cf07a` |
+| Server-reported solve time | 2,213.39 ms for this request; not a latency benchmark |
+| Maximum / RMS fit error | 0.0843960311 / 0.0453674929 cm |
+| Sampled clearance margin after required separation | +0.0117463963 cm |
+| Maximum closure residual | 6.2172489379e-15 cm |
+| Verification poses / failures | 720 / none |
+| Exact exported input round-trip | Passed |
+| Signed URL / QR size | 1,586 characters / 133 modules per side |
+
+The [sanitized production record](evidence/loop-web-production.json) contains the exact input, selected parameters and verifier report. These numbers establish a real computed repair under fixed constraints. They do not establish continuous collision freedom or manufacturing accuracy. The URL/QR dimensions above describe this web request; the independently decoded native cards are recorded below.
+
+![Actual deployed Loop workshop with its maximum-error witness](media/web-loop-workshop.png)
+
+## Native Loop acceptance
+
+Environment: Lens Studio 5.23.2, SPECS 27, Interactive Plane Preview, SIK 0.18.0 MouseInteractor and UIKit. Actual injected mouse gestures drove the authored pen, buttons and sliders. Before/after runtime snapshots and physical transforms confirmed the effects; a successful input-injection call alone was not treated as proof. The saved root remains `(0, 0, -110)` cm with identity rotation/unit scale, the camera remains identity, and the production endpoint is retained.
+
+| Actual native interaction | Observed result |
+| --- | --- |
+| Draw and release open | The pen captured 132 ordered samples. The large remaining gap stayed open and required Close. |
+| Explicit Close and fresh Solve | Close committed 64 canonical points at revision 1 / `fnv1a-7a3f14d6`. HTTPS synthesis returned two changed, independently verified mechanisms; selected maximum error was 0.1939337773 cm under the unchanged 0.30 cm limit. |
+| Point edit and no-op handling | A real drag changed point 1 x from 7.258 to 7.398 cm. After the no-op fix, fresh solving kept revision/history at 1 / `fnv1a-02355194` and returned 0.1078064294 cm error. A grab/release without movement retained the exact hash, revision and history. |
+| Play, Reveal, crank and Next | Physical geometry and rod visibility changed. An actual slider drag set phase 5.29127574 rad and paused. Next changed the selected mechanism; Fit error paused at its physical witness. |
+| Large completed stroke and recovery | A real large closed drawing returned bounded no-fit, retained prior parameters and rejected stale Save. Undo restored the exact reference input and candidate. |
+| Mount, fit limit and obstacle controls | Separate real slider edits reached 16.870 cm mount spacing, 0.384 cm fit limit and obstacle x 6.204 cm. Undo restored each input; these temporary edits did not relax the clearance study. |
+| Petal regression | Actual mode controls, HTTPS solve and sampled checks passed; returning to Loop retained its state. |
+
+The [captured-drawing record](evidence/native-loop-drawing.json) preserves the exact committed drawing and computed parameters. These initial drawing captures preceded only narrow no-op, success-copy and display-ring refinements; affected interactions were checked again. A supplemental same-value scalar method check also preserved history, but is not presented as a gesture test.
+
+### Fixed-constraint native repair
+
+Actual Study loaded the reference and an obstacle at `(4.24, 0)` cm, radius 0.06 cm, layer 0 and depth 0.4 cm. Contact paused at crank phase 0 and showed a **−0.140 cm** margin. Fresh solve/retry retained every input field, including the drawing, **16 cm mounts**, **0.30 cm fit limit**, bounds, rod dimensions, layers and obstacle.
+
+| Selected repaired result | Observed value |
+| --- | --- |
+| Revision / input hash | 2 / `fnv1a-351f40a1` |
+| Fresh alternatives | 3 |
+| Ground / crank / coupler / rocker | 16 / 3.8365212798 / 14.2896066999 / 8.9533396882 cm |
+| Attachment along / across | 7.2337209529 / 4.7907343215 cm |
+| Maximum / RMS fit error | 0.1723420112 / 0.0906477379 cm |
+| Sampled clearance margin after required separation | +0.0234787202 cm |
+| Independent verification | 720 poses; valid; no failures |
+| Fit-witness crank phase | 0.9750417900 rad, about 55.8668° |
+
+At the inspected error pose, the desired point is `(6.9653390588, 10.5984478324)` cm and the actual tracing point is `(6.8500011512, 10.4703895025)` cm. Blue/coral display rings and their connector leave both exact positions visible.
+
+![Actual native Loop maximum-error inspection after the fixed-constraint repair](media/native-loop-error.png)
+
+A separate audit compared all six rendered rod endpoint transforms with kinematics: maximum discrepancy was about 1.44e-6 cm; the tracing marker's rigid-attachment discrepancy was about 8.38e-7 cm. An independently written circle-intersection calculation agreed with all 361 exported tracing poses within 8.89e-16 cm. These are numerical/rendering comparisons, not measurement accuracy. Separate midpoint-contact fixtures correctly rejected and named crank, coupler, rocker, ground, attachment-B and attachment-C.
+
+### Recovery and request identity
+
+Supplemental transport fault injection delayed delivery of genuine production HTTP responses, without substituting response bodies or geometry. Actual SIK Cancel, Undo and Loop→Petal actions prevented late responses from installing stale results. The real controls also exercised an approximately 28.08-second solve timeout and 20.04-second Save timeout, followed by successful retries.
+
+In the overlapping Save check, the older response arrived while the newer request was still pending. `sharing` remained true and the export URL remained empty; only the newer response completed that Save. The temporary delay wrapper was removed and Preview reset afterward. These artificial delays are not normal performance measurements.
+
+Three ordinary request-to-observed-settled samples were 4.201, 2.103 and 2.519 seconds with a debugger attached. They include network, JSON parsing, local independent acceptance and a following frame. They are desktop observations, not an isolated verifier benchmark or glasses-performance claim.
+
+### Actual QR and exact handoff
+
+Both raw-reference Save without a receipt and solved-receipt Save ran through native controls. **ZXing-C++ automatically decoded both untouched full 1392 × 1910 Preview frames**, with no crop, manual corners, short-link substitution, resized card or generated fixture.
+
+| Native card | Exact decoded URL | Production result |
+| --- | --- | --- |
+| [Raw reference](media/native-loop-raw-share.png) | 1,390 characters; exactly matches runtime URL | Signed page, JSON and SVG HTTP 200; exact reference input/parameters |
+| [Solved receipt](media/native-loop-solved-share.png) | 1,598 characters; version 29, 133 modules, four-module quiet zone, error correction L | Signed page, JSON and SVG HTTP 200; exact input, revision/hash, selected candidate, parameters and units |
+
+A separate real browser opened the native receipt URL and downloaded JSON. Recursive comparison matched every native input field, mechanism parameter, selected candidate and hash. The downloaded result passed 720-pose verification with the same reported error. Tiny verifier differences across JavaScript engines were around 1e-15; comparisons used 1e-10 tolerance, while inputs and parameters matched exactly.
+
+![Actual native solved-result share card, automatically decoded from this full frame](media/native-loop-solved-share.png)
+
+The [sanitized native production record](evidence/native-loop-production.json) includes exact input/parameters, native and downloaded verification, geometry checks, source/screenshot hashes, QR/download proofs, timing scope and the independent browser comparison. It contains no credentials or private workspace paths. The card is the unchanged 26 cm renderer; a successful image decoder does not establish physical phone-camera scanning.
+
+### Final source and runtime
+
+The acceptance fixes were confined to no-op guards and concise success status in LoopController, collapsing empty detail space in LoopWorkshopUI, and display rings in LoopAssembly. The numerical core and backend did not change. All ten authored/imported mirrors match the final recorded hashes; compilation passed.
+
+The final-source Lens runtime interval contained zero warning/error/fatal lines. Two host Qt socket-disconnect warnings occurred after debugger cleanup and are retained separately; the complete host log is therefore not described as warning-free. A fresh startup with the debugger detached was fully clean and reached Ready. The project was saved on primary Loop home, and debugger cleanup left no breakpoints. No native integration blocker remained.
+
+## Earlier Petal fixture results
 
 Fresh fixture results:
 
@@ -21,7 +122,7 @@ Fresh fixture results:
 
 The obstacle-after result changed the three moving link lengths to approximately 1.617, 6.898, and 4.019 cm. The old result failed the relocated obstacle. The new result passed 365 sampled poses with about 3.13° maximum target error under its declared 6.88° tolerance. These are genuine fresh numerical results, not labels attached to a preset animation.
 
-## Browser review
+## Earlier Petal browser and provider review
 
 The development application on port 3101 and the production build on port 3103 were inspected in a real browser. Desktop and 390 × 844 mobile layouts were checked. The final reviewed production build had no browser console errors.
 
@@ -31,11 +132,11 @@ Provider evidence: `gpt-6.1-sol` completed a real OpenAI generation. The Gemini 
 
 The final signed-link flow was opened in a fresh tab. The page revalidated signature and geometry, displayed the generated dimensioned assembly drawing, and downloaded the matching JSON. QR generation and the corresponding link were present in the export modal.
 
-The production service is deployed at **https://motion-foundry-nine.vercel.app**. Its unauthenticated health check returned HTTP 200 with AI and signing configured. The connected native solve and both production sharing paths were subsequently verified as described below.
+The production service is deployed at **https://motion-foundry-nine.vercel.app**. Its unauthenticated health check returned HTTP 200 with AI and signing configured. The earlier Petal native solve and both Petal production sharing paths were subsequently verified as described below.
 
 ![The actual deployed web workshop](media/web-workshop.jpg)
 
-## Actual Lens Studio Preview
+## Earlier Petal Lens Studio Preview
 
 Environment: Lens Studio 5.23.2, SPECS 27, Interactive Preview, Plane/Front view. Tests injected real Preview gestures routed through SIK MouseInteractor, UIKit, and the authored drag component. Runtime state and visible results were checked after interaction. Final compilation succeeded and fresh runtime diagnostics contained no errors.
 
@@ -59,7 +160,7 @@ The native QR renderer was also tested with a direct-method fixture containing t
 
 ![Actual Lens Studio Preview after the production integration pass](media/native-preview.png)
 
-## Native production solve and sharing
+## Earlier Petal native production solve and sharing
 
 The native project was saved with `https://motion-foundry-nine.vercel.app` as its backend. Actual Preview gestures through SIK moved a pose target, creating revision 1 with input hash `fnv1a-da84cad4`. Pressing Solve sent that revision to the HTTPS service. The result carried a solve receipt and was independently rechecked inside the Lens before the UI reported **HTTPS solve**.
 
@@ -77,7 +178,7 @@ Actual Checks → Save exercised two distinct production paths. A freshly reset 
 
 The revision-1 JSON exactly matched the native revision, input hash, candidate ID, and mechanism dimensions. Native and downloaded verification both passed 365 poses with no failures and identical maximum closure residuals. Their largest target-residual difference was 4.440892098500626e-16 radians. The JSON additionally contains 361 trajectory samples, which are distinct from the verification sample count.
 
-### Rendered QR evidence
+### Earlier Petal rendered QR evidence
 
 **ZXing automatically decoded both full, unmodified 1392 × 1910 Preview screenshots.** No crop or manual corner input was used. The bundled card yielded a 1,068-character URL and the solved card a 1,134-character URL; both exactly matched their runtime export URL. These were actual rendered production cards, with no regenerated QR or backend module reconstruction.
 

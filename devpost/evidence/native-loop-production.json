@@ -1,0 +1,827 @@
+{
+  "format": "motion-foundry/native-loop-evidence@1",
+  "recordedDate": "2026-11-07",
+  "environment": {
+    "lensStudio": "5.23.2",
+    "specs": 27,
+    "interaction": "Interactive Preview, SIK 0.18.0 MouseInteractor and UIKit",
+    "hardwareTested": false,
+    "rootPositionCm": [
+      0,
+      0,
+      -110
+    ],
+    "rootScale": [
+      1,
+      1,
+      1
+    ],
+    "identityCamera": true
+  },
+  "production": "https://motion-foundry-nine.vercel.app",
+  "webApiRelease": "b74b35e",
+  "sourceHashes": [
+    {
+      "file": "DragInteraction.ts",
+      "sourceSha256": "4bc6df6e599ee3876bf64762b750c48631b1ee55b95c861c77b45871d2beac6b",
+      "assetSha256": "4bc6df6e599ee3876bf64762b750c48631b1ee55b95c861c77b45871d2beac6b"
+    },
+    {
+      "file": "LoopAssembly.ts",
+      "sourceSha256": "69cbde33f16517efce6b24efdbfeff1b199f09dcf8b2ef714dee66488ed01728",
+      "assetSha256": "69cbde33f16517efce6b24efdbfeff1b199f09dcf8b2ef714dee66488ed01728"
+    },
+    {
+      "file": "LoopController.ts",
+      "sourceSha256": "59c70aae3467613f097a18aa963fd41c1847a73fb6d3934d57f63f39f03f91be",
+      "assetSha256": "59c70aae3467613f097a18aa963fd41c1847a73fb6d3934d57f63f39f03f91be"
+    },
+    {
+      "file": "LoopDomain.ts",
+      "sourceSha256": "b4c9bd0a1a5d4c3c7015216bbff07a8f43f04819eedb94a2532af0586ad796ba",
+      "assetSha256": "b4c9bd0a1a5d4c3c7015216bbff07a8f43f04819eedb94a2532af0586ad796ba"
+    },
+    {
+      "file": "LoopWorkshopUI.ts",
+      "sourceSha256": "c659a7937c483684a48aa1cc763d1cbc9801215bcb6e10f64c5f78f5aeb6f80f",
+      "assetSha256": "c659a7937c483684a48aa1cc763d1cbc9801215bcb6e10f64c5f78f5aeb6f80f"
+    },
+    {
+      "file": "MotionAssembly.ts",
+      "sourceSha256": "70148b7d0fc201e58bc324016063d85bedc34725e86b1299bb5df1d8ec0c222e",
+      "assetSha256": "70148b7d0fc201e58bc324016063d85bedc34725e86b1299bb5df1d8ec0c222e"
+    },
+    {
+      "file": "MotionDomain.ts",
+      "sourceSha256": "bfa824927be9634c013c4a2c201904067b05eb4c8e5db4fc18b553a677d40b17",
+      "assetSha256": "bfa824927be9634c013c4a2c201904067b05eb4c8e5db4fc18b553a677d40b17"
+    },
+    {
+      "file": "MotionExportCard.ts",
+      "sourceSha256": "0563886010076b8d9c7665d3f07c097f8715e4e146c55e4c633383da4395519a",
+      "assetSha256": "0563886010076b8d9c7665d3f07c097f8715e4e146c55e4c633383da4395519a"
+    },
+    {
+      "file": "MotionFoundry.ts",
+      "sourceSha256": "6ab6409b3ba6c81c1b4bf3abafaa286ed261e402faab47149d90983f52f1ca8a",
+      "assetSha256": "6ab6409b3ba6c81c1b4bf3abafaa286ed261e402faab47149d90983f52f1ca8a"
+    },
+    {
+      "file": "MotionWorkshopUI.ts",
+      "sourceSha256": "9cd8d0adcde5cb51f9a6910f58fb7d3904e76b44ccfcc1eef025b9bfc6ef1d9f",
+      "assetSha256": "9cd8d0adcde5cb51f9a6910f58fb7d3904e76b44ccfcc1eef025b9bfc6ef1d9f"
+    }
+  ],
+  "sourceNote": "Final authored/imported sources match. Initial drawing captures preceded only the documented no-op guards, success copy and fit-ring display polish; affected interactions were checked again. Numerical core and backend remained unchanged.",
+  "clearanceStudy": {
+    "input": {
+      "schemaVersion": "loop-1.0",
+      "kind": "coupler-loop",
+      "designId": "known-coupler-starter",
+      "revision": 2,
+      "searchSeed": 42,
+      "fixedMounts": {
+        "groundCm": 16
+      },
+      "lengthBounds": {
+        "crank": [
+          2,
+          6.6
+        ],
+        "coupler": [
+          11,
+          18
+        ],
+        "rocker": [
+          7,
+          14
+        ]
+      },
+      "attachmentBounds": {
+        "alongCm": [
+          0,
+          18
+        ],
+        "acrossCm": [
+          -8,
+          8
+        ]
+      },
+      "obstacles": [
+        {
+          "id": "crank-clearance",
+          "center": {
+            "x": 4.24,
+            "y": 0
+          },
+          "radiusCm": 0.06,
+          "layerZCm": 0,
+          "depthCm": 0.4
+        }
+      ],
+      "clearanceCm": 0.16,
+      "linkRadiusCm": 0.16,
+      "linkDepthCm": 0.4,
+      "linkLayers": {
+        "crank": 0,
+        "coupler": 0.8,
+        "rocker": 0,
+        "ground": -0.8
+      },
+      "tolerances": {
+        "fitCm": 0.3,
+        "closureCm": 0.002,
+        "samples": 720
+      },
+      "stroke": [
+        {
+          "x": 7.258,
+          "y": 9.472
+        },
+        {
+          "x": 7.336,
+          "y": 9.778
+        },
+        {
+          "x": 7.324,
+          "y": 10.092
+        },
+        {
+          "x": 7.196,
+          "y": 10.378
+        },
+        {
+          "x": 6.97,
+          "y": 10.596
+        },
+        {
+          "x": 6.692,
+          "y": 10.742
+        },
+        {
+          "x": 6.388,
+          "y": 10.832
+        },
+        {
+          "x": 6.076,
+          "y": 10.876
+        },
+        {
+          "x": 5.76,
+          "y": 10.884
+        },
+        {
+          "x": 5.444,
+          "y": 10.86
+        },
+        {
+          "x": 5.132,
+          "y": 10.812
+        },
+        {
+          "x": 4.824,
+          "y": 10.742
+        },
+        {
+          "x": 4.522,
+          "y": 10.65
+        },
+        {
+          "x": 4.226,
+          "y": 10.54
+        },
+        {
+          "x": 3.936,
+          "y": 10.414
+        },
+        {
+          "x": 3.656,
+          "y": 10.272
+        },
+        {
+          "x": 3.38,
+          "y": 10.114
+        },
+        {
+          "x": 3.114,
+          "y": 9.944
+        },
+        {
+          "x": 2.858,
+          "y": 9.762
+        },
+        {
+          "x": 2.61,
+          "y": 9.566
+        },
+        {
+          "x": 2.37,
+          "y": 9.36
+        },
+        {
+          "x": 2.142,
+          "y": 9.142
+        },
+        {
+          "x": 1.922,
+          "y": 8.914
+        },
+        {
+          "x": 1.712,
+          "y": 8.678
+        },
+        {
+          "x": 1.514,
+          "y": 8.432
+        },
+        {
+          "x": 1.326,
+          "y": 8.178
+        },
+        {
+          "x": 1.152,
+          "y": 7.914
+        },
+        {
+          "x": 0.988,
+          "y": 7.644
+        },
+        {
+          "x": 0.84,
+          "y": 7.366
+        },
+        {
+          "x": 0.704,
+          "y": 7.08
+        },
+        {
+          "x": 0.588,
+          "y": 6.786
+        },
+        {
+          "x": 0.488,
+          "y": 6.486
+        },
+        {
+          "x": 0.414,
+          "y": 6.18
+        },
+        {
+          "x": 0.368,
+          "y": 5.868
+        },
+        {
+          "x": 0.358,
+          "y": 5.552
+        },
+        {
+          "x": 0.402,
+          "y": 5.24
+        },
+        {
+          "x": 0.518,
+          "y": 4.948
+        },
+        {
+          "x": 0.726,
+          "y": 4.712
+        },
+        {
+          "x": 1.008,
+          "y": 4.574
+        },
+        {
+          "x": 1.32,
+          "y": 4.54
+        },
+        {
+          "x": 1.634,
+          "y": 4.582
+        },
+        {
+          "x": 1.936,
+          "y": 4.67
+        },
+        {
+          "x": 2.228,
+          "y": 4.79
+        },
+        {
+          "x": 2.51,
+          "y": 4.934
+        },
+        {
+          "x": 2.784,
+          "y": 5.092
+        },
+        {
+          "x": 3.048,
+          "y": 5.264
+        },
+        {
+          "x": 3.308,
+          "y": 5.444
+        },
+        {
+          "x": 3.562,
+          "y": 5.632
+        },
+        {
+          "x": 3.812,
+          "y": 5.824
+        },
+        {
+          "x": 4.058,
+          "y": 6.024
+        },
+        {
+          "x": 4.302,
+          "y": 6.226
+        },
+        {
+          "x": 4.542,
+          "y": 6.43
+        },
+        {
+          "x": 4.778,
+          "y": 6.638
+        },
+        {
+          "x": 5.014,
+          "y": 6.85
+        },
+        {
+          "x": 5.246,
+          "y": 7.064
+        },
+        {
+          "x": 5.476,
+          "y": 7.28
+        },
+        {
+          "x": 5.704,
+          "y": 7.5
+        },
+        {
+          "x": 5.928,
+          "y": 7.722
+        },
+        {
+          "x": 6.148,
+          "y": 7.948
+        },
+        {
+          "x": 6.364,
+          "y": 8.18
+        },
+        {
+          "x": 6.572,
+          "y": 8.416
+        },
+        {
+          "x": 6.772,
+          "y": 8.662
+        },
+        {
+          "x": 6.958,
+          "y": 8.916
+        },
+        {
+          "x": 7.124,
+          "y": 9.186
+        }
+      ]
+    },
+    "selectedCandidateId": "fnv1a-351f40a1-loop-1",
+    "mechanism": {
+      "groundCm": 16,
+      "crankCm": 3.8365212797677897,
+      "couplerCm": 14.289606699902892,
+      "rockerCm": 8.953339688166253,
+      "branch": 1,
+      "attachmentAlongCm": 7.233720952948919,
+      "attachmentAcrossCm": 4.790734321535665,
+      "startingPhaseRad": 0.4121917164634711,
+      "driveDirection": 1
+    },
+    "verification": {
+      "valid": true,
+      "failures": [],
+      "maxFitErrorCm": 0.17234201117515957,
+      "rmsFitErrorCm": 0.09064773790764033,
+      "maxClosureErrorCm": 8.881784197001252e-15,
+      "minClearanceCm": 0.023478720232210537,
+      "sampleCount": 720,
+      "scope": "sampled",
+      "limitations": [
+        "Clearance checked only at reported phase samples; collisions between samples are not excluded.",
+        "Adjacent pivot neighborhoods (3 link radii plus clearance) are exempt. Capsule endpoints model joint radii; inter-layer axles are not modeled.",
+        "No load, bearing, fabrication or physical manufacturability validation.",
+        "Fit compares ordered closed arc-length correspondence, with the first drawn point anchored to startingPhaseRad. Crank speed remains uniform during playback.",
+        "Attachment triangle rods B→point and C→point are checked against obstacles and other links with the same declared layer and pivot exemptions. Contacts within the rigid attachment/coupler triangle, inter-layer axles and pen hardware are excluded."
+      ],
+      "inputHash": "fnv1a-351f40a1",
+      "verifierVersion": "coupler-loop-1.0",
+      "fitWitness": {
+        "phaseRad": 0.9750417900328784,
+        "desired": {
+          "x": 6.965339058801429,
+          "y": 10.598447832428027
+        },
+        "actual": {
+          "x": 6.850001151150115,
+          "y": 10.470389502458767
+        },
+        "errorCm": 0.17234201117515957,
+        "sampleIndex": 8
+      }
+    },
+    "referenceCrankMarginCm": -0.14,
+    "exactInputRetained": true,
+    "exportedTrajectoryPoseCount": 361,
+    "nativeVerification": {
+      "valid": true,
+      "failures": [],
+      "maxFitErrorCm": 0.1723420111751605,
+      "rmsFitErrorCm": 0.09064773790764061,
+      "maxClosureErrorCm": 8.881784197001252e-15,
+      "minClearanceCm": 0.023478720232210537,
+      "sampleCount": 720,
+      "scope": "sampled",
+      "limitations": [
+        "Clearance checked only at reported phase samples; collisions between samples are not excluded.",
+        "Adjacent pivot neighborhoods (3 link radii plus clearance) are exempt. Capsule endpoints model joint radii; inter-layer axles are not modeled.",
+        "No load, bearing, fabrication or physical manufacturability validation.",
+        "Fit compares ordered closed arc-length correspondence, with the first drawn point anchored to startingPhaseRad. Crank speed remains uniform during playback.",
+        "Attachment triangle rods B→point and C→point are checked against obstacles and other links with the same declared layer and pivot exemptions. Contacts within the rigid attachment/coupler triangle, inter-layer axles and pen hardware are excluded."
+      ],
+      "inputHash": "fnv1a-351f40a1",
+      "verifierVersion": "coupler-loop-1.0",
+      "fitWitness": {
+        "phaseRad": 0.9750417900328799,
+        "desired": {
+          "x": 6.965339058801429,
+          "y": 10.598447832428027
+        },
+        "actual": {
+          "x": 6.85000115115011,
+          "y": 10.47038950245877
+        },
+        "errorCm": 0.1723420111751605,
+        "sampleIndex": 8
+      }
+    },
+    "independentReverification": {
+      "valid": true,
+      "failures": [],
+      "maxFitErrorCm": 0.17234201117516076,
+      "rmsFitErrorCm": 0.09064773790764044,
+      "maxClosureErrorCm": 8.881784197001252e-15,
+      "minClearanceCm": 0.023478720232210537,
+      "sampleCount": 720,
+      "scope": "sampled",
+      "limitations": [
+        "Clearance checked only at reported phase samples; collisions between samples are not excluded.",
+        "Adjacent pivot neighborhoods (3 link radii plus clearance) are exempt. Capsule endpoints model joint radii; inter-layer axles are not modeled.",
+        "No load, bearing, fabrication or physical manufacturability validation.",
+        "Fit compares ordered closed arc-length correspondence, with the first drawn point anchored to startingPhaseRad. Crank speed remains uniform during playback.",
+        "Attachment triangle rods B→point and C→point are checked against obstacles and other links with the same declared layer and pivot exemptions. Contacts within the rigid attachment/coupler triangle, inter-layer axles and pen hardware are excluded."
+      ],
+      "inputHash": "fnv1a-351f40a1",
+      "verifierVersion": "coupler-loop-1.0",
+      "fitWitness": {
+        "phaseRad": 0.9750417900328786,
+        "desired": {
+          "x": 6.965339058801429,
+          "y": 10.598447832428027
+        },
+        "actual": {
+          "x": 6.8500011511501135,
+          "y": 10.470389502458767
+        },
+        "errorCm": 0.17234201117516076,
+        "sampleIndex": 8
+      }
+    }
+  },
+  "renderedPhysicalCorrespondence": {
+    "physicalRodEndpointErrorsCm": [
+      8.293807234944844e-07,
+      1.4346745600125332e-06,
+      5.268568716444262e-07,
+      1.3486991523486091e-06,
+      1.105403595570797e-06,
+      1.334342999173678e-06
+    ],
+    "tracingPointAttachmentErrorCm": 8.378186213767642e-07,
+    "independentExportPoseErrorCm": 8.881784197001252e-16,
+    "scopeFixtures": [
+      {
+        "name": "crank",
+        "rejected": true,
+        "witness": {
+          "phaseRad": 0,
+          "geometry": "crank",
+          "obstacleId": "scope-crank",
+          "location": {
+            "x": 1.9182606398838948,
+            "y": 0
+          },
+          "marginCm": -0.35
+        },
+        "failures": [
+          "Obstacle capsule collision"
+        ]
+      },
+      {
+        "name": "coupler",
+        "rejected": true,
+        "witness": {
+          "phaseRad": 0,
+          "geometry": "coupler",
+          "obstacleId": "scope-coupler",
+          "location": {
+            "x": 9.42663223608815,
+            "y": 4.449592611184141
+          },
+          "marginCm": -0.3499999999999991
+        },
+        "failures": [
+          "Obstacle capsule collision"
+        ]
+      },
+      {
+        "name": "rocker",
+        "rejected": true,
+        "witness": {
+          "phaseRad": 0,
+          "geometry": "rocker",
+          "obstacleId": "scope-rocker",
+          "location": {
+            "x": 15.508371596204254,
+            "y": 4.44959261118414
+          },
+          "marginCm": -0.35
+        },
+        "failures": [
+          "Obstacle capsule collision"
+        ]
+      },
+      {
+        "name": "ground",
+        "rejected": true,
+        "witness": {
+          "phaseRad": 1,
+          "geometry": "ground",
+          "obstacleId": "scope-ground",
+          "location": {
+            "x": 8,
+            "y": 0
+          },
+          "marginCm": -0.35
+        },
+        "failures": [
+          "Obstacle capsule collision"
+        ]
+      },
+      {
+        "name": "attachment-B",
+        "rejected": true,
+        "witness": {
+          "phaseRad": 6.3463111732441915,
+          "geometry": "attachment-B",
+          "obstacleId": "scope-attachment-B",
+          "location": {
+            "x": 5.174770815887324,
+            "y": 4.12656258118863
+          },
+          "marginCm": -0.3498094507981903
+        },
+        "failures": [
+          "Obstacle capsule collision",
+          "Attachment obstacle capsule collision"
+        ]
+      },
+      {
+        "name": "attachment-C",
+        "rejected": true,
+        "witness": {
+          "phaseRad": 6.285224649424389,
+          "geometry": "attachment-C",
+          "obstacleId": "scope-attachment-C",
+          "location": {
+            "x": 10.764480792860319,
+            "y": 8.579151236195543
+          },
+          "marginCm": -0.3470580310009839
+        },
+        "failures": [
+          "Attachment obstacle capsule collision"
+        ]
+      }
+    ]
+  },
+  "receiptShare": {
+    "decoder": "ZXing-C++",
+    "fullFrame": true,
+    "frameSize": [
+      1392,
+      1910
+    ],
+    "exactUrl": true,
+    "decodedCharacters": 1598,
+    "urlSha256": "2f7adee85380230a1bd19d1735549bdadb08d7aa3a0696720235819d0aec2eff",
+    "quietZoneModules": 4,
+    "qrSizeModules": 133,
+    "html": {
+      "status": 200,
+      "elapsedSec": 0.6297615000003134,
+      "bytes": 69497,
+      "sha256": "25d5ec517ae7a2616f93d4654b1e85000f45544b6c6562abc84dab3d29cc7f72"
+    },
+    "json": {
+      "status": 200,
+      "elapsedSec": 0.5215164579967677,
+      "bytes": 187343,
+      "sha256": "16cdfe6d2aa1e8d1363b4bd892ddf6ae7b68fbb651986a0f35886cff93674817"
+    },
+    "inputExact": true,
+    "parametersExact": true,
+    "hashExact": true,
+    "revisionExact": true,
+    "candidateExact": true,
+    "units": {
+      "length": "centimetres",
+      "angle": "radians"
+    },
+    "svg": {
+      "status": 200,
+      "elapsedSec": 0.4575979580004059,
+      "bytes": 20531,
+      "sha256": "e1ad9ffe13483ec6fef7cd978c2ab5db5186ab43db6c29c744d5079f80fba219"
+    },
+    "decoderMetadata": {
+      "DataMask": 4,
+      "UEC": 1.0,
+      "Version": "29",
+      "ECLevel": "L"
+    },
+    "detectedPosition": "375x294 1017x294 1017x936 375x936"
+  },
+  "rawReferenceShare": {
+    "qr": {
+      "decoder": "ZXing-C++",
+      "fullFrame": true,
+      "count": 1,
+      "expectedLength": 1390,
+      "decodedLength": 1390,
+      "exact": true,
+      "urlSha256": "73252d5a986e0c6ad66a65f238f71440489308976bef04c045382bb4acbeb6ce"
+    },
+    "downloads": {
+      "json": {
+        "status": 200,
+        "elapsedSec": 0.5911060840007849,
+        "sha256": "488510cabade47798ee21e64f9736d7498b2db86092f0e52fce3a4a1801d187f",
+        "bytes": 187022
+      },
+      "keys": [
+        "format",
+        "units",
+        "exportedAt",
+        "provenance",
+        "coordinateFrame",
+        "input",
+        "selectedCandidateId",
+        "mechanism",
+        "verification",
+        "solverVersion",
+        "samples",
+        "assumptions"
+      ],
+      "jsonInputExact": true,
+      "jsonParameterExact": true,
+      "svg": {
+        "status": 200,
+        "elapsedSec": 0.3383620839995274,
+        "sha256": "3b32cf42e1c7386519762ab7de55609fc0e7cfbc69a78970b628c423288c7755",
+        "bytes": 20169
+      },
+      "jsonRevisionExact": true,
+      "jsonHashExact": true
+    },
+    "pageHttpStatus": 200
+  },
+  "independentBrowserDownload": {
+    "checkedAt": "2026-11-07T17:20:50.792Z",
+    "revision": 2,
+    "inputExact": true,
+    "parametersExact": true,
+    "candidateExact": true,
+    "hashExact": true,
+    "maximumErrorCm": 0.17234201117515957,
+    "valid": true,
+    "inputDifferences": []
+  },
+  "runtime": {
+    "compilePassed": true,
+    "finalSourceLensWarningErrorFatalLines": [],
+    "hostQtDisconnectAfterDebuggerCleanup": true,
+    "hostCleanupWarningCount": 2,
+    "finalSourceRuntimeSha256": "8aca899a4d8e65dbe5d3a0cc82f71cb0d5ccf192c380eee6c46db05aa78c509b",
+    "freshStartupDebuggerAttached": false,
+    "freshStartupReadyObserved": true,
+    "freshStartupWarningsErrorsFatal": [],
+    "freshStartupSha256": "a24384ea739b2ffe4221195124b1b43402bd8ddb82e20c06f2ece09cd2583217"
+  },
+  "captures": {
+    "native-loop-overview.png": {
+      "sha256": "4e1eeaf1caf8b94b934e32426ca57e7668fed3fb9534bf614e2518beb096a85e",
+      "unmodified": true,
+      "source": "Actual Lens Studio Interactive Preview capture"
+    },
+    "native-loop-repaired.png": {
+      "sha256": "23758688592be66d4c35945573fdd92eea02511c17e4ad7ba17b12fac74d1338",
+      "unmodified": true,
+      "source": "Actual Lens Studio Interactive Preview capture"
+    },
+    "native-loop-error.png": {
+      "sha256": "515d6bfa7bee610c0186dbe83f365edf99aa841d33893e7a88392b993fe8655b",
+      "unmodified": true,
+      "source": "Actual Lens Studio Interactive Preview capture"
+    },
+    "native-loop-contact.png": {
+      "sha256": "b690ddc890400166de319796e8d41d369bbd5713835aff79fe9914c8adb6b5f7",
+      "unmodified": true,
+      "source": "Actual Lens Studio Interactive Preview capture"
+    },
+    "native-loop-raw-share.png": {
+      "sha256": "f720d7997103c88531deb53e31864abdb8b36598cb17b52dcb12aed78a8176fe",
+      "unmodified": true,
+      "source": "Actual Lens Studio Interactive Preview capture"
+    },
+    "native-loop-solved-share.png": {
+      "sha256": "26d2bb5de44ee64b47bf9240c6786ff3d5b4b5c878c0a1766fdbd090ec112c84",
+      "unmodified": true,
+      "source": "Actual Lens Studio Interactive Preview capture"
+    }
+  },
+  "limits": [
+    "Desktop Interactive Preview mouse-driven SIK only; no glasses, hardware hand tracking, device-performance, physical-camera QR scan or LEAF claim.",
+    "Fit and geometric clearance are sampled, not continuous collision proof or manufacturing accuracy.",
+    "Inter-layer axles, pen hardware, solid attachment interior, rigid internal contacts, loads, bearings and fabrication are excluded."
+  ],
+  "numericalComparisonTolerance": 1e-10,
+  "observedTimings": {
+    "environment": "Lens Studio 5.23.2, SPECS 27 Interactive Preview, desktop Mac; lsdbg attached",
+    "hardwareBenchmark": false,
+    "headersBoundary": "Native fetch resolved Response; body parse/local independent acceptance and following frame are included after that boundary. Not isolated verifier CPU time.",
+    "normal": [
+      {
+        "endpoint": "https://motion-foundry-nine.vercel.app/api/loops/solve",
+        "headersMs": 4128,
+        "postHeadersToObservedSettledMs": 73,
+        "requestToObservedSettledMs": 4201
+      },
+      {
+        "endpoint": "https://motion-foundry-nine.vercel.app/api/loops/solve",
+        "headersMs": 1951,
+        "postHeadersToObservedSettledMs": 152,
+        "requestToObservedSettledMs": 2103
+      },
+      {
+        "endpoint": "https://motion-foundry-nine.vercel.app/api/loops/solve",
+        "headersMs": 2263,
+        "postHeadersToObservedSettledMs": 256,
+        "requestToObservedSettledMs": 2519
+      }
+    ],
+    "faultInjection": "Real HTTPS requests/responses. Delivery intentionally delayed by runtime DelayedCallbackEvent. These durations are NOT normal app performance.",
+    "delayedRequestCount": 9,
+    "delaySeconds": [
+      8,
+      10,
+      10,
+      30,
+      30,
+      22,
+      5,
+      28,
+      12
+    ],
+    "debuggerAndToolOverhead": "Debugger attached during samples. Screenshot/attach/tool wall times are separate and are not reported as native algorithm duration."
+  },
+  "transportFaultChecks": {
+    "method": "Temporary delivery delays on genuine HTTPS responses, controlled through actual SIK Cancel, Undo, mode-switch, Solve and Save controls; original transport restored afterward.",
+    "solveTimeoutSecondsApproximately": 28.08,
+    "shareTimeoutSecondsApproximately": 20.04,
+    "cancelUndoAndModeStaleResponsesIgnored": true,
+    "olderShareWhileNewerPending": {
+      "revision": 2,
+      "inputHash": "fnv1a-351f40a1",
+      "sharing": true,
+      "exportUrl": ""
+    },
+    "overlapOutcome": "Older response did not finish or replace the newer request; newer completed with exact final signed URL."
+  }
+}

@@ -14,8 +14,8 @@ export class MotionWorkshopUI extends BaseScriptComponent {
  private state:UiState={status:"Bundled example",detail:"One computed cell · centimetres",editLabel:"Target 1",editValue:.5,phase:0,playing:true,reveal:false};
  onAwake(){
   this.sceneObject.createComponent("Component.Canvas");
-  const content=this.obj(this.sceneObject,"Floating workshop dock");this.flex(content,FlexDirection.Column,40,21,.5);
-  this.text(content,"MOTION FOUNDRY",2.2,"title");this.statusText=this.text(content,this.state.status,1.8,"caption");this.detailText=this.text(content,this.state.detail,2.8,"caption");
+  const content=this.obj(this.sceneObject,"Floating workshop dock");this.flex(content,FlexDirection.Column,40,22,.5);
+  const modes=this.row(content,"Mechanism mode",3.2);this.button(modes,"Loop",19.6,"mode:loop",3.2);this.button(modes,"Petal",19.6,"mode:petal",3.2);this.statusText=this.text(content,this.state.status,1.8,"caption");this.detailText=this.text(content,this.state.detail,2.8,"caption");
   const slot=this.item(content,"Contextual controls",40,12.5);
   const browse=this.pageRoot(slot,"browse",12.5),top=this.row(browse,"Playback",4.4);
   this.playLabel=this.button(top,"Pause",12.8,"play");this.revealLabel=this.button(top,"Reveal",12.8,"reveal");this.button(top,"Design",12.8,"design");
@@ -30,7 +30,7 @@ export class MotionWorkshopUI extends BaseScriptComponent {
  }
  public setState(state:UiState){this.state=state;if(!this.statusText)return;this.updating=true;this.statusText.text=state.status;this.detailText.text=state.detail;this.editText.text=state.editLabel;this.metricsText.text=state.metrics||"Full input rotation · sampled geometry";this.phaseSlider.currentValue=state.phase;this.editSlider.currentValue=state.editValue;this.playLabel.text=state.playing?"Pause":"Play";this.revealLabel.text=state.reveal?"Petal":"Reveal";this.updating=false;}
  private showPage(){this.pages.forEach(p=>{p.root.enabled=p.name===this.page;});}
- private dispatch(action:string){if(action==="design"||action==="checks"){this.page=action;this.showPage();return;}if(action==="done"||action==="back"){this.page="browse";this.showPage();return;}this.onAction.invoke(action);}
+ private dispatch(action:string){if(action==="mode:petal"){this.page="browse";this.showPage();return;}if(action==="design"||action==="checks"){this.page=action;this.showPage();return;}if(action==="done"||action==="back"){this.page="browse";this.showPage();return;}this.onAction.invoke(action);}
  private pageRoot(parent:SceneObject,name:string,h:number){const root=this.obj(parent,`Workshop ${name} page`);this.flex(root,FlexDirection.Column,40,h,.5);this.pages.push({name,root});return root;}
  private obj(parent:SceneObject,name:string){const o=global.scene.createSceneObject(name);o.setParent(parent);return o;}
  private item(parent:SceneObject,name:string,w:number,h:number){const o=this.obj(parent,name),item=o.createComponent(FlexItem.getTypeName()) as FlexItem;item.overrideWidth=w;item.overrideHeight=h;item.flexShrink=0;item.alignSelf=FlexAlignSelf.Stretch;const f=parent.getComponent(FlexLayout.getTypeName()) as FlexLayout;if(f)f.addItems([item]);return o;}
@@ -38,6 +38,6 @@ export class MotionWorkshopUI extends BaseScriptComponent {
  private row(parent:SceneObject,name:string,h:number){const o=this.item(parent,name,40,h);this.flex(o,FlexDirection.Row,40,h,.8);return o;}
  private text(parent:SceneObject,value:string,h:number,role:keyof typeof TYPE_SCALE){return this.label(this.item(parent,`Label ${value}`,40,h),value,40,h,role);}
  private label(parent:SceneObject,value:string,w:number,h:number,role:keyof typeof TYPE_SCALE){const o=this.obj(parent,"Text");o.getTransform().setLocalPosition(new vec3(0,0,.1));const t=o.createComponent("Component.Text") as Text;t.text=value;t.depthTest=true;t.size=TYPE_SCALE[role].size;(t as Text&{weight?:number}).weight=TYPE_SCALE[role].weight;t.textFill.color=role==="title"?new vec4(1,.94,.77,1):new vec4(.85,.96,.86,1);t.horizontalAlignment=HorizontalAlignment.Center;t.verticalAlignment=VerticalAlignment.Center;t.horizontalOverflow=HorizontalOverflow.Wrap;t.verticalOverflow=VerticalOverflow.Overflow;t.layoutRect=Rect.create(-w/2,w/2,-h/2,h/2);return t;}
- private button(parent:SceneObject,label:string,w:number,action:string){const o=this.item(parent,`MF ${action}`,w,4.2),b=o.createComponent(Button.getTypeName()) as Button;b.onInitialized.add(()=>{b.size=new vec3(w,4.2,1);});b.onTriggerUp.add(()=>this.dispatch(action));return this.label(o,label,w-.5,3,"body");}
+ private button(parent:SceneObject,label:string,w:number,action:string,h=4.2){const o=this.item(parent,`MF ${action}`,w,h),b=o.createComponent(Button.getTypeName()) as Button;b.onInitialized.add(()=>{b.size=new vec3(w,h,1);});b.onTriggerUp.add(()=>this.dispatch(action));return this.label(o,label,w-.5,h-.5,"body");}
  private slider(parent:SceneObject,name:string,fn:(value:number)=>void){const o=this.item(parent,name,40,3),s=o.createComponent(Slider.getTypeName()) as Slider;s.size=new vec3(40,3,1);s.currentValue=.5;s.onValueChange.add((value:number)=>{if(!this.updating)fn(value);});return s;}
 }

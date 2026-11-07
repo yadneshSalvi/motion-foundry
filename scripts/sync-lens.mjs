@@ -4,9 +4,10 @@ import { fileURLToPath } from "node:url";
 
 const root = fileURLToPath(new URL("..", import.meta.url));
 const check = process.argv.includes("--check");
-const names = ["DragInteraction.ts", "MotionAssembly.ts", "MotionDomain.ts", "MotionExportCard.ts", "MotionFoundry.ts", "MotionWorkshopUI.ts"];
-async function mirror(source, destination) {
-  const data = await readFile(join(root, source));
+const names = ["DragInteraction.ts", "MotionAssembly.ts", "MotionDomain.ts", "MotionExportCard.ts", "MotionFoundry.ts", "MotionWorkshopUI.ts", "LoopDomain.ts", "LoopAssembly.ts", "LoopWorkshopUI.ts", "LoopController.ts"];
+async function mirror(source, destination, transform) {
+  const original = await readFile(join(root, source));
+  const data = transform ? Buffer.from(transform(original.toString("utf8"))) : original;
   const previous = await readFile(join(root, destination)).catch(error => {
     if (error.code === "ENOENT") return null;
     throw error;
@@ -18,5 +19,6 @@ async function mirror(source, destination) {
   console.log(`Updated ${destination}`);
 }
 await mirror("src/domain/index.ts", "lens-src/MotionDomain.ts");
+await mirror("src/domain/loop.ts", "lens-src/LoopDomain.ts", text => text.replace("from './index'", "from './MotionDomain'"));
 for (const name of names) await mirror(`lens-src/${name}`, `lens/Assets/Scripts/${name}`);
-console.log(check ? "Portable domain and all six native script mirrors match." : "Native source sync complete. Recompile the Lens in Lens Studio.");
+console.log(check ? "Portable domain and all native script mirrors match." : "Native source sync complete. Recompile the Lens in Lens Studio.");

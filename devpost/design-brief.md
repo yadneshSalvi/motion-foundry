@@ -1,35 +1,39 @@
 # Motion Foundry — design brief
 
-## Intent
+Motion Foundry is a SPECS Lens for kinetic makers. Draw a closed loop, synthesize a four-bar linkage, then inspect how its rigidly attached tracing point follows the requested path. Loop is the opening mode; Petal retains the original angular-target study.
 
-**Show the motion. Invent the machine.** Motion Foundry helps kinetic artists, makers, and educators connect a desired movement to the geometry that could produce it. The implemented study is a single mechanical petal driven by a planar crank-rocker four-bar. The project owner selected this concept and approved the build; interaction and numerical scope were refined through implementation and Preview testing.
+## The spatial moment
 
-The desired outcome is a comprehensible, editable mechanism. A successful interaction ends with a user understanding why an alternative passes, or why the current request failed, and being able to keep the selected dimensions and evidence.
+Drag a pen on the virtual board. The desired loop stays visible while a bounded solver searches for a four-bar mechanism. Turn its crank: the rigidly attached tracing point follows the computed linkage, including its natural change in speed. Reveal the rods, pause at the largest fitting error, or inspect an obstacle contact. A fresh solve can change the machine while keeping the drawing and constraints fixed.
 
-## Why a spatial Lens
+This belongs in space because the maker can inspect link layers, fixed pivots, moving rods and clearance around the same object at its declared scale. It is a virtual workshop with manually authored dimensions and constraints. Real-machine scanning and recognition are outside its scope.
 
-Mount spacing, a moving joint, and a clearance obstacle are spatial constraints. The Lens lets the user see the petal and its generating linkage together, scrub a full input rotation, move a target handle, and reveal the underlying motion. A separate companion provides a more detailed record, optional language proposals, and downloadable artifacts.
+## Placement and interaction
 
-The sculpture is placed about 110 cm in front of the Preview camera. Its physical native fixture has a 16 cm ground link, 4 cm input crank, 14 cm coupler, and 10 cm rocker. These are actual serialized centimetre dimensions. The web reference fixture is half that size. The decorative petal and its rigid sepals move with one output rocker; the artwork does not imply an independently solved radial flower.
+The saved Lens root is 110 cm in front of an identity Preview camera, with unit scale. The Loop reference uses 16 cm mount spacing and a 0.30 cm fit limit; the web reference uses half those physical dimensions. This is a consistent input-unit conversion, not an enlarged rendering with unchanged numerical dimensions.
 
-## Experience
+The primary dock contains playback, drawing and contextual controls. A standard SIK pen handle supports placement, drawing and point editing through Preview MouseInteractor. World positions transform into the board's local centimetre frame. Releasing near the starting point closes the stroke under an explicit instruction; a larger gap requires Close or Clear. The captured drawing becomes 64 ordered points in 0.001 cm increments (0.01 mm) before solving. This is representational precision, not measurement accuracy.
 
-The opening state is a labeled, preverified bundled example that already moves. Three primary controls keep the sculpture central: pause/play, reveal, and design. A crank slider makes cause and effect immediately inspectable.
+Desired motion is blue and dashed; the actual trace is green and solid. The attachment is shown as rods B→P and C→P, with a tracing-point indicator. No solid triangle appears to have been collision-checked. A fit witness connects the desired point to an independently evaluated physical pose; a contact witness identifies the offending rod and obstacle.
 
-The Design view contains contextual Pose, Mount, and Space tools, with Solve, Undo, and Checks. Targets are angles at fixed crank phases. Moving a handle pauses playback and creates a new revision. Previous geometry stays available for inspection while its stale status is explicit. Checks exposes alternatives, measured target error, sample count, and Save. A deliberate conflicting-target study makes failure and recovery demonstrable.
+Previous geometry remains visible after an edit. Its label says it belongs to the previous result, and export requires a fresh accepted revision. Undo restores the input, chosen candidate, alternatives and receipt together. Cancellation and retries have distinct request generations, including native share requests.
 
-The Lens uses standard SIK interaction and UIKit controls. The demonstrated input method is Preview's MouseInteractor. Browser controls provide keyboard access, visible state, mobile layouts, reduced-motion handling, and modal focus management. Physical hand tracking and device ergonomics require a separate hardware evaluation.
+## What is computed
 
-## Computation and trust
+The solver searches three moving-link lengths, the tracing point's along/across coordinates, starting crank phase, assembly branch and drive direction. Fixed mounts, drawing scale, tolerance and obstacles are not optimization variables. Ordered cyclic arc-length correspondence preserves traversal through crossings; it does not claim to reproduce the speed of the user's hand.
 
-The bounded deterministic search varies three link lengths and assembly branch. It never adjusts phase timing or silently relaxes constraints. Analytic initialization and seeded refinement generate candidates; a separate trigonometric path checks geometry and each target tolerance. A rejected result never replaces the last inspectable mechanism.
+A bounded seeded search uses obstacle-aware penalties and candidate retention. A separate law-of-cosines verifier checks each accepted design. Full-turn reachability is analytic; fitting and clearance are sampled. The default Loop report checks 720 crank poses. Exhausting the search is reported as no verified fit, not a proof of impossibility.
 
-AI is an optional web companion feature. Its structured proposal may change target angles and explicitly requested mount spacing after user acceptance. AI does not verify a mechanism, choose tolerances, or certify an export. If providers are unavailable, manual editing and numerical solving continue.
+The clearance study is a concrete causal example: an obstacle intersects the existing crank, its contact phase is inspectable, and a slightly shorter crank with adjusted remaining dimensions fits the same drawing within the original tolerance. No preset destination is substituted for a fresh solve.
 
-The server signs solve receipts and self-contained links only after geometric checks. Exports revalidate the selected candidate. No model credentials are present in the Lens or browser bundle. All design-link data is readable by anyone with the link.
+## Completed outcome
 
-## Deliberate boundaries
+A selected fresh design can be shared by signed link and QR or downloaded as exact JSON and an SVG drawing. The drawing shows desired/actual paths, dimensions, obstacles and fit/clearance. Self-contained compressed shares preserve input coordinates losslessly and keep the older Petal link format separate.
 
-The supported family is one crank-rocker cell. Full-cycle reachability is checked analytically, while collision clearance is sampled using declared capsule radii and layers. Joint neighborhoods have an explicit exemption. Ornamental surfaces, inter-layer axle bridges, loading, bearings, fabrication, and manufacturability are outside this study.
+Petal remains available for fixed-phase output-angle design, its rigid decorative rocker petal and optional AI target proposals. AI does not synthesize or verify a Loop mechanism. Petal proposals also require explicit acceptance and a separate numerical solve.
 
-The resulting JSON and SVG are an inspectable kinematic record. They support learning and further engineering work; they do not constitute a production-ready mechanical design.
+## Boundaries and evidence
+
+The supported family is a planar four-bar crank-rocker with a rigid coupler attachment. Clearance uses declared capsule radii and layers, with adjacent-pivot exemptions. Rigid attachment-internal contacts, pen hardware, axle bridges, decorative surfaces, forces, bearings and fabrication are excluded. No arbitrary spatial-mechanism or manufacturing claim is made.
+
+The Loop web/API workflow has passed numerical, security, browser and production checks. Actual native SIK drawing, fixed-constraint repair, physical witnesses, failure recovery, stale-response guards and exact production QR handoff also passed. The [verification record](verification.md) separates those observations from supplemental fault injection and the earlier Petal evidence. No physical glasses, hand-tracking accuracy, comfort or device-performance result is claimed.
