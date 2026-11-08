@@ -2,11 +2,11 @@
 
 [Open the workshop](https://motion-foundry-nine.vercel.app)
 
-![Actual deployed Loop workshop with a computed clearance repair and maximum-error witness](devpost/media/web-loop-workshop.png)
+![Actual Motion Foundry tabletop workbench in Lens Studio Sunlit Room Preview after the drawn-loop cycle](devpost/media/native-tabletop-overview.png)
 
 Draw a closed loop, synthesize a four-bar linkage, and turn its crank to see a rigidly attached point trace your drawing. Compare desired and actual paths, inspect the largest error, introduce an obstacle, and solve again with the same physical constraints. Keep the exact selected mechanism as signed JSON and SVG.
 
-Motion Foundry is a SPECS Lens with a web companion. **Loop** is the primary mode. **Petal** retains the original angular-target study, decorative rocker petal, optional language proposals and its saved designs. Both modes use deterministic numerical synthesis and independent geometric verification. Neither animates a mechanism through target coordinates.
+Motion Foundry is a SPECS Lens with a web companion. The native workbench focuses on **Loop**: draw on a table and turn the physical crank to grow the machine’s ink. **Petal** remains available in the companion and retained code, with its angular-target designs and optional language proposals. Both numerical modes use deterministic synthesis and independent geometric verification; neither animates a mechanism through target coordinates.
 
 ## Try Loop
 
@@ -42,15 +42,15 @@ The Next.js Node route handlers are Vercel-compatible. No database or object sto
 
 ## Native Lens
 
-Open `lens/MotionFoundry.esproj` in Lens Studio, using SPECS 27 Interactive Preview. The saved component already has its materials and production endpoint. The root remains at `(0, 0, -110)` cm with an identity camera and true-centimetre geometry.
+Open `lens/MotionFoundry.esproj` in Lens Studio, using Interactive Preview in **Sunlit Room** for the current staging. The November 8 spatial revision places a flat, true-centimetre workbench on a measured tabletop. Rounded colored rods, distinct height layers, through-axles and clamps expose how the mechanism works. The large crank grip advances the physical linkage; its decorative pen grows a luminous line from the actual coupler poses.
 
-Loop uses a standard SIK draggable pen on a planar board. **Place** moves its starting point; **Draw** records the next drag; an open stroke requires **Close** or **Clear**. Controls provide point, mount, obstacle and tolerance edits, solve and undo. Checks provides alternatives, fit/contact witnesses, the clearance study and QR Save. The native reference has 16 cm mounts and a 0.30 cm fit limit: every physical quantity is scaled consistently from the web reference.
+**Draw** records a standard SIK pinch/drag directly on the board. Near-start release closes the loop; a larger gap needs **Done**. **Make it** sends the exact drawing and constraints for a fresh HTTPS solve. Mount spacing, the measured keep-out and the fit limit have physical handles. A short fit label and proximity error/contact indicators sit on the relevant geometry. At most three contextual tools are active, and **Keep** displays a signed design tag beside the machine.
 
-Native Loop synthesis runs on the configured HTTPS companion so Preview remains responsive. With no endpoint, its reference and drafting remain local and the UI explicitly requires a connection to synthesize or share. Petal retains its portable local solve when its endpoint is empty.
+The native reference has 16 cm mounts and a 0.30 cm fit limit. Its new capsule radius is **0.45 cm**, depth **0.70 cm**, with separate ground/crank/rocker/coupler heights. These are deliberate numerical input changes, not enlarged graphics over the old clearance model. Axles, clamps, crank grip and pen hardware are decorative and excluded from the stated checks.
 
-**Validation status:** Loop passed actual SIK drawing, edits, HTTPS synthesis, physical witness inspection, no-fit recovery, delayed-response checks and production QR handoff in Interactive Preview. Petal regression and earlier production sharing also passed. The [verification record](devpost/verification.md) separates browser, native and supplemental fault-injection evidence. No hardware testing is claimed.
+Native synthesis uses the configured HTTPS companion so Preview remains responsive. Manual authored placement remains the fallback; an explicit Place action starts a one-shot WorldQuery surface placement. The provided low container is 9 cm in diameter and 4 cm high. Its keep-out is manually aligned, not detected or scanned.
 
-![Actual native Loop result after a fixed-constraint clearance repair](devpost/media/native-loop-repaired.png)
+**Revision status:** the unchanged engine passes all 46 tests, fresh fixtures and a production build; all 24 product/test TypeScript files compile against the installed native APIs. Native LEAF drawing/HTTPS/crank/repair and direct-reach/Undo checks passed. Independently accepted source footage contains an uncut **82.1-second** drawing-to-machine and separate container-repair sequence, plus actual room orbit and SPECS Center views. The main input is a scripted reference-path stroke through real SIK controls, not a human freehand or hardware capture. The fresh side-tag pixels, signed payload and actual companion all match the exact Study input and mechanism. The final edited film and optional one-shot placement retain separate gates. See the [tabletop record](devpost/native-tabletop.md) and [actual Preview gallery](devpost/gallery.md). Earlier evidence remains historical; no hardware testing is claimed.
 
 ## Numerical model
 
@@ -79,12 +79,15 @@ The JSON records exact inputs, units, coordinate frame, dimensions, revision/has
 
 ## Evidence and limits
 
-The current web release passes **37 tests**, typechecking, the four existing Petal fixtures and a production build. Tests include held-out coupler mechanisms, both branches, attachment variation, reversed and self-intersecting traversal, actual obstacle-driven recovery, impossible bounds, no-fit inputs, physical error witnesses, stale/cancel guards and exact signed exports.
+The current project passes **46 tests**, typechecking, the four existing Petal fixtures and a production build. Tests include held-out coupler mechanisms, both branches, attachment variation, reversed and self-intersecting traversal, actual obstacle-driven recovery, impossible bounds, no-fit inputs, physical error witnesses, stale/cancel guards and exact signed exports.
 
-The web clearance study computes a different crank with about **0.0844 cm** maximum error under the unchanged **0.15 cm** limit, with about **+0.01175 cm** sampled clearance margin after the required separation. Production solve, selected export, share and signed-page checks passed. In actual native Preview, the study at 16 cm mounts and a 0.30 cm limit produced **0.17234 cm** maximum error and **+0.02348 cm** sampled margin. Both full native QR frames decoded exactly, and a separate browser download matched every native input field and mechanism parameter. These are measured kinematic results, not manufacturing tolerances.
+The web clearance study computes a different crank with about **0.0844 cm** maximum error under the unchanged **0.15 cm** limit, with about **+0.01175 cm** sampled clearance margin after the required separation. Production solve, selected export, share and signed-page checks passed. In the earlier accepted Plane Preview, the smaller-obstacle study at 16 cm mounts and a 0.30 cm limit produced **0.17234 cm** maximum error and **+0.02348 cm** sampled margin. Both earlier full native QR frames decoded exactly, and a separate browser download matched every native input field and mechanism parameter. These are measured kinematic results, not manufacturing tolerances.
 
 Clearance is sampled; collisions between samples are not excluded. Adjacent pivot neighborhoods, rigid attachment-internal contacts, pen hardware, decorative surfaces, inter-layer axles, loads, bearings and fabrication are outside the stated checks. No physical glasses, hardware hand tracking, comfort, device performance or hardware QR scanning is claimed.
 
+- [Actual Preview gallery](devpost/gallery.md)
+- [Tabletop revision and acceptance status](devpost/native-tabletop.md)
+- [Submission draft](devpost/submission-draft.md)
 - [Design brief](devpost/design-brief.md)
 - [Iteration record](devpost/iteration-log.md)
 - [Reproduction and demo walkthrough](devpost/reproducibility.md)

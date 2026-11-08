@@ -30,8 +30,13 @@
   ScriptInputsHidden:
     backendUrl: false
     champagne: false
+    clearCue: false
+    contactCue: false
     coral: false
+    crankTick: false
+    measuredKeepOutProp: false
     mint: false
+    placeOnSurface: false
     porcelain: false
     sky: false
   ScriptTypesHidden:
@@ -49,6 +54,11 @@
       mint: !<reference.Material> 00000000-0000-0000-0000-000000000000
       sky: !<reference.Material> 00000000-0000-0000-0000-000000000000
       coral: !<reference.Material> 00000000-0000-0000-0000-000000000000
+      crankTick: !<reference.AudioTrackAsset> 00000000-0000-0000-0000-000000000000
+      contactCue: !<reference.AudioTrackAsset> 00000000-0000-0000-0000-000000000000
+      clearCue: !<reference.AudioTrackAsset> 00000000-0000-0000-0000-000000000000
+      measuredKeepOutProp: !<reference.SceneObject> 00000000-0000-0000-0000-000000000000
+      placeOnSurface: false
   ScriptTypes:
     -
       {}
@@ -59,3 +69,8 @@
     - '// @input Asset.Material mint {"hint":"Light mint material for the actual trajectory."}'
     - '// @input Asset.Material sky {"hint":"Light blue material for the desired pose handle."}'
     - '// @input Asset.Material coral {"hint":"Coral material for the constraint obstacle."}'
+    - '// @input Asset.AudioTrackAsset crankTick {"hint":"Original ratchet tick imported from lens-src/audio/crank-tick.wav."}'
+    - '// @input Asset.AudioTrackAsset contactCue {"hint":"Original short contact cue."}'
+    - '// @input Asset.AudioTrackAsset clearCue {"hint":"Original clear/loop-closed chime."}'
+    - '// @input SceneObject measuredKeepOutProp {"hint":"Optional provided low container, 9 cm diameter × 4 cm tall, Y-up; follows the declared study keep-out."}'
+    - '// @input bool placeOnSurface {"hint":"Ask for one WorldQuery surface pinch at startup. False uses the authored, manually measured table pose."}'

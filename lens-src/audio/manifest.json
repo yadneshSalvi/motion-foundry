@@ -1,0 +1,27 @@
+{
+  "license": "CC0-1.0",
+  "origin": "Original analytic waveforms, generated locally; no sampled or third-party audio.",
+  "generator": "scripts/generate-native-audio.py",
+  "sampleRateHz": 48000,
+  "channels": 1,
+  "files": [
+    {
+      "file": "crank-tick.wav",
+      "frames": 3120,
+      "durationSeconds": 0.065,
+      "sha256": "9713ecae6f590059b140ae241d40e78790b3eb108da969c9d99030293b07ca60"
+    },
+    {
+      "file": "contact.wav",
+      "frames": 11520,
+      "durationSeconds": 0.24,
+      "sha256": "d0008a5ed5540239f9727010a7ff40ea151e26f90cb46a18bbdef0ff00505ae1"
+    },
+    {
+      "file": "clear.wav",
+      "frames": 31200,
+      "durationSeconds": 0.65,
+      "sha256": "bd8d8ab2461e189bf507a4460c9a5dfd5ec5d579da8c613fe7037d7d89e47b41"
+    }
+  ]
+}

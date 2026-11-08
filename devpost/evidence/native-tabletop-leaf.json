@@ -1,0 +1,138 @@
+{
+  "recorded": "2026-11-08",
+  "environment": "Lens Studio Interactive Preview, Sunlit Room; provided low-container fixture",
+  "scope": "Actual LEAF native SIK/IK tests and real HTTPS synthesis. No physical glasses, human performance, acoustic recording or film acceptance is claimed.",
+  "records": [
+    {
+      "sourceRecord": "motion-leaf-journey-03.json",
+      "sourceSha256": "3c7688adf44a1665cf0cdbb7f1e99eb0d706d326e9aa99f12682905847dd70c6",
+      "runnerResult": {
+        "scenarioId": "motion-workbench-draw-solve-crank-repair",
+        "status": "succeeded",
+        "target": "preview"
+      },
+      "durationSeconds": 12.759,
+      "observations": [
+        {
+          "localLogTime": "22:32:02.701",
+          "observation": {
+            "step": "draw-close-solve",
+            "data": {
+              "revision": 2,
+              "inputHash": "fnv1a-976edc17",
+              "errorCm": 0.06698375952717169
+            }
+          }
+        },
+        {
+          "localLogTime": "22:32:04.429",
+          "observation": {
+            "step": "crank-and-ink",
+            "data": {
+              "phaseChange": 1.015473725492913,
+              "inputHash": "fnv1a-976edc17",
+              "inkPoints": 52
+            }
+          }
+        },
+        {
+          "localLogTime": "22:32:07.518",
+          "observation": {
+            "step": "contact-repair",
+            "data": {
+              "inputHash": "fnv1a-3049b059",
+              "oldCrankCm": 4,
+              "newCrankCm": 3.7667421307701603,
+              "errorCm": 0.24235331508098867,
+              "sampledMarginCm": 0.023257869229840494
+            }
+          }
+        },
+        {
+          "localLogTime": "22:32:07.519",
+          "observation": {
+            "step": "spatial-audio-scheduling",
+            "data": {
+              "tick": 3,
+              "contact": 1,
+              "clear": 3,
+              "failed": false,
+              "voiceCount": 3,
+              "configured": {
+                "tick": true,
+                "contact": true,
+                "clear": true
+              }
+            }
+          }
+        }
+      ],
+      "serializeWarnings": [],
+      "productAudioFailures": []
+    },
+    {
+      "sourceRecord": "motion-leaf-reach-03.json",
+      "sourceSha256": "5386bb44c33592698869c519e2ff73672f632810197003f1683f8ee6b98a18c8",
+      "runnerResult": {
+        "scenarioId": "motion-workbench-direct-reach-and-undo",
+        "status": "succeeded",
+        "target": "preview"
+      },
+      "durationSeconds": 22.531,
+      "observations": [
+        {
+          "localLogTime": "22:36:46.711",
+          "observation": {
+            "step": "direct-crank-reach",
+            "data": {
+              "diagnostics": "",
+              "inputHash": "fnv1a-a6497cdb"
+            }
+          }
+        },
+        {
+          "localLogTime": "22:36:46.712",
+          "observation": {
+            "step": "ik-disposed-before-shared-hand",
+            "data": {
+              "restoredParents": [
+                {
+                  "side": "left",
+                  "parent": "LeftHandModelOwner"
+                },
+                {
+                  "side": "right",
+                  "parent": "RightHandModelOwner"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "localLogTime": "22:36:51.896",
+          "observation": {
+            "step": "mount-edit-undo",
+            "data": {
+              "editedRevision": 2,
+              "restoredRevision": 1,
+              "inputHash": "fnv1a-a6497cdb"
+            }
+          }
+        }
+      ],
+      "serializeWarnings": [],
+      "productAudioFailures": []
+    },
+    {
+      "sourceRecord": "motion-reach-bare-03.json",
+      "sourceSha256": "dd4e7c49389c753a022b10bb1b443c6265b6ed69c63aca3f92af46d193d095a0",
+      "runnerResult": {
+        "scenarioId": "motion-workbench-direct-reach-and-undo",
+        "status": "succeeded",
+        "target": "preview"
+      },
+      "scope": "Supported IKBodyInteractor without optional camera-anchored Bitmoji visualizer; genuine SIK hand input and unchanged reach/cleanup/Undo assertions. Film excerpt is separately accepted and is not the full test."
+    }
+  ],
+  "rehearsal": "The separate paced main source is independently accepted; see native-tabletop-captures.json. Final edited film and fresh tag handoff remain separate."
+}

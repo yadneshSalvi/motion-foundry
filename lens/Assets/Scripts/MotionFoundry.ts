@@ -6,7 +6,7 @@ import {DragInteraction} from "./DragInteraction";
 import {Candidate,DesignInput,SolveResult,buildInputHash,makeDefaultInput,knownExampleParameters,verifyCandidate,makeContradictoryInput,solveDesign} from "./MotionDomain";
 type Snapshot={input:DesignInput;candidate:Candidate;candidates:Candidate[];receipt:string;source:string};
 const copy=<T>(value:T):T=>JSON.parse(JSON.stringify(value));
-/** Native study is physically twice the web fixture size; all serialized centimetre quantities scale together. */
+/** Retained Petal study scales all centimetre quantities together; Loop uses WorkbenchProfile. */
 function nativeInput(input:DesignInput):DesignInput {const x=copy(input);delete x.inputHash;x.fixedMounts.groundCm*=2;for(const key of ["crank","coupler","rocker"] as const)x.lengthBounds[key]=[x.lengthBounds[key][0]*2,x.lengthBounds[key][1]*2];x.linkRadiusCm*=2;x.clearanceCm*=2;x.tolerances.closureCm*=2;if(x.linkDepthCm!==undefined)x.linkDepthCm*=2;if(x.linkLayers)for(const key of ["crank","coupler","rocker","ground"] as const)x.linkLayers[key]*=2;x.obstacles.forEach(o=>{o.center.x*=2;o.center.y*=2;o.radiusCm*=2;if(o.layerZCm!==undefined)o.layerZCm*=2;if(o.depthCm!==undefined)o.depthCm*=2;});return x;}
 const nativeParameters={...knownExampleParameters,groundCm:16,crankCm:4,couplerCm:14,rockerCm:10};
 @component
@@ -17,24 +17,25 @@ export class MotionFoundry extends BaseScriptComponent {
   @input @hint("Light mint material for the actual trajectory.") mint!:Material;
   @input @hint("Light blue material for the desired pose handle.") sky!:Material;
   @input @hint("Coral material for the constraint obstacle.") coral!:Material;
+  @input @allowUndefined @hint("Original ratchet tick imported from lens-src/audio/crank-tick.wav.") crankTick:AudioTrackAsset;
+  @input @allowUndefined @hint("Original short contact cue.") contactCue:AudioTrackAsset;
+  @input @allowUndefined @hint("Original clear/loop-closed chime.") clearCue:AudioTrackAsset;
+  @input @allowUndefined @hint("Optional provided low container, 9 cm diameter × 4 cm tall, Y-up; follows the declared study keep-out.") measuredKeepOutProp:SceneObject;
+  @input @hint("Ask for one WorldQuery surface pinch at startup. False uses the authored, manually measured table pose.") placeOnSurface:boolean=false;
   private loop:LoopController;private petalRack:SceneObject;private productMode:"loop"|"petal"="loop";private modeInitialized=false;
   private internet:InternetModule=require("LensStudio:InternetModule");
   private input:DesignInput=nativeInput(makeDefaultInput());private candidate!:Candidate;private ui!:MotionWorkshopUI;private assembly!:MotionAssembly;
   private exportCard:MotionExportCard;private exportUrl="";private history:Snapshot[]=[];private candidates:Candidate[]=[];private receipt="";private source="Bundled example";private phase=0;private playing=true;private reveal=false;private mode="pose";private targetIndex=0;private generation=0;private solving=false;private message="Turn the crank. Reveal the mechanism.";private lastUi=0;
   onAwake(){
     if(!this.champagne||!this.porcelain||!this.mint||!this.sky||!this.coral){print("[MotionFoundry] Assign all five material inputs.");return;}
-    this.candidate={id:"bundled-petal-01",family:"four-bar",parameters:nativeParameters,verification:verifyCandidate(this.input,nativeParameters),score:0,label:"Petal study 01"};this.candidates=[this.candidate];
-    this.assembly=new MotionAssembly(this.sceneObject,this.champagne,this.porcelain,this.mint,this.sky,this.coral);this.exportCard=new MotionExportCard(this.sceneObject,this.porcelain);
-    const rack=global.scene.createSceneObject("Motion Foundry control rack");rack.setParent(this.sceneObject);rack.getTransform().setLocalPosition(new vec3(0,-13,10));rack.getTransform().setLocalScale(new vec3(1,1,1));this.petalRack=rack;this.ui=rack.createComponent(MotionWorkshopUI.getTypeName()) as MotionWorkshopUI;
-    this.ui.onAction.add(action=>this.action(action));this.ui.onPhase.add(value=>{this.playing=false;this.phase=value*Math.PI*2;this.refresh();});this.ui.onEdit.add(value=>this.edit(value));
-    const drag=this.assembly.targetHandle.createComponent(DragInteraction.getTypeName()) as DragInteraction;
-    let before:Snapshot|null=null;
-    drag.onDragStart.add(()=>{this.assembly.draggingTarget=true;before=this.snapshot();this.playing=false;this.mode="pose";this.generation++;this.solving=false;});
-    drag.onDragUpdate.add(world=>{const q=this.assembly.root.getTransform().getInvertedWorldTransform().multiplyPoint(world);const angle=Math.max(Math.PI/9,Math.min(17*Math.PI/18,Math.atan2(q.y,q.x-this.candidate.parameters.groundCm)));this.input.targetPoses[this.targetIndex].outputAngleRad=angle;this.message="Pose moved — solve this revision.";this.refresh();});
-    drag.onDragEnd.add(()=>{this.assembly.draggingTarget=false;if(before){this.history.push(before);this.input.revision++;before=null;}this.refresh();});
-    this.loop=new LoopController(this,this.sceneObject,this.champagne,this.porcelain,this.mint,this.sky,this.coral,this.internet,()=>this.backendUrl,()=>this.setProductMode("petal"));
-    this.createEvent("UpdateEvent").bind(()=>{if(!this.modeInitialized){this.modeInitialized=true;this.setProductMode("loop");}if(this.productMode==="loop"){this.loop.tick();return;}if(this.playing)this.phase=(this.phase+getDeltaTime()*.55)%(Math.PI*2);this.assembly.update(this.candidate.parameters,this.input,this.phase,this.reveal,this.targetIndex);if(getTime()-this.lastUi>.1){this.refresh();this.lastUi=getTime();}});
-    this.refresh();print("[MotionFoundry] Ready. Loop and Petal modes; centimetres, sampled verification.");
+    // Petal remains available in the companion and retained source. The native opening is one physical workbench.
+    this.loop=new LoopController(this,this.sceneObject,this.champagne,this.porcelain,this.mint,this.sky,this.coral,this.internet,()=>this.backendUrl,{
+      sounds:{tick:this.crankTick,contact:this.contactCue,clear:this.clearCue},
+      measuredKeepOutProp:this.measuredKeepOutProp,
+      placeOnStart:this.placeOnSurface,
+    });
+    this.createEvent("UpdateEvent").bind(()=>this.loop.tick());
+    print("[MotionFoundry] Tabletop workbench ready. True centimetres; independent sampled verification.");
   }
   private setProductMode(mode:"loop"|"petal"){this.productMode=mode;this.assembly.root.enabled=mode==="petal";this.petalRack.enabled=mode==="petal";this.loop.setEnabled(mode==="loop");this.exportCard.hide();this.exportUrl="";if(mode==="petal")this.refresh();}
   private snapshot():Snapshot{return{input:copy(this.input),candidate:copy(this.candidate),candidates:copy(this.candidates),receipt:this.receipt,source:this.source};}

@@ -1,0 +1,13 @@
+{
+  "sceneSha256": "4285705c5e0f5243d0ee1df2bfc27a36a45f1ba7f8f95c3748b1153c0f6b146c",
+  "remainingDiagnosticBindings": [],
+  "remainingDiagnosticPaths": [],
+  "typescript": "succeeded",
+  "runtimeStarted": true,
+  "productErrors": [],
+  "scope": "Release scene has no active diagnostic/test bridge. Native tests were performed before removing only those development bindings.",
+  "recorded": "2026-11-08",
+  "sourceRecord": "motion-release-cleanup.json",
+  "sourceSha256": "ecbefb9f156fe0c489e8ea5962d35d6d041c4f2d1e785f7398d11b2453096d9f",
+  "note": "Only development bindings were removed after native acceptance; canonical product and test source are retained."
+}

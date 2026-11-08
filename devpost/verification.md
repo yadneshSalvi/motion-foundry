@@ -1,12 +1,40 @@
 # Verification record
 
-Recorded November 7, 2026. Results below describe the actual test environment and keep local, hosted, and device evidence distinct.
+Updated November 8, 2026. Results below distinguish the current tabletop work from the accepted November 7 release and keep local, hosted, Preview and device evidence separate.
 
-## Current Loop release
+## Tabletop revision — acceptance in progress
+
+The source adds direct board drawing, a physical crank, kinematic ink, thicker verified rods, through-axles, contextual tools, on-geometry information, declared-prop repair, spatial cues, one-shot surface placement and a side QR tag. The numerical engines, verifier implementations, HTTPS contracts and signed export formats are unchanged.
+
+`npm run verify` passes **46 tests across five files**, all four fresh Petal fixtures and a production build. Nine new tests check the exact capsule mesh envelope/normals/winding, local ray-plane projection, crank seam/reversal, fit-dial bounds, physically evaluated ink, and the deliberately thicker native input. `npx tsc -p tsconfig.lens-source.json` passes against the installed Lens/SIK/UIKit/LEAF sources.
+
+The current provided low container has a 4.5 cm radius, 4 cm height and centre (−8.90, 0) cm at vertical centre 2 cm. The reference rod physically overlaps it by 0.050 cm; with the required separation its margin is −0.210 cm. A fresh local solve returns three valid alternatives while preserving the drawing, 16 cm mounts and 0.30 cm limit. The selected crank changes from 4.000 to 3.766742 cm, with 0.242353 cm maximum fitting error and +0.023258 cm sampled clearance margin. The nine focused native tests and native typecheck passed again after this fixture change. See the [exact numerical record](evidence/native-tabletop-numerical.json).
+
+### Clean native checks on the final container
+
+The actual native LEAF journey passed in **12.759 seconds** in Sunlit Room. A scripted SIK open stroke required explicit closure, then a fresh HTTPS solve produced **0.066984 cm** maximum fitting error at revision 2 / `fnv1a-976edc17`. A **1.01547-radian** SIK crank movement preserved the input and grew ink. The distinct provided-container Study then repaired at revision 3 / `fnv1a-3049b059`, changing the crank to **3.766742 cm** with **0.242353 cm** maximum error and **+0.023258 cm** sampled margin. Every Study input field stayed unchanged across that repair. Study loads its own reference drawing; it does not add an obstacle to the preceding drawn input.
+
+The final audio snapshot recorded **tick 3 / contact 1 / clear 3**, three configured voices and `failed=false`. These are successful scheduling counts, not acoustic or hardware measurements. The native runtime interval had no product/audio error; unrelated host authentication telemetry warnings remain outside that claim.
+
+A separate direct-reach/mount-edit/Undo run passed native runner and runtime checks in **22.53 seconds**. The target was required to route directly, with fail-fast IK diagnostics. Both hand meshes were confirmed restored to their original tracking parents before the shared right-hand driver was acquired. A real mount drag created one revision; no-motion input created none; Undo restored the exact prior input, mechanism and candidate state. There were no Serialize warnings or audio failures. The [sanitized native receipts](evidence/native-tabletop-leaf.json) retain observed values and source-record hashes.
+
+Earlier attempts remain failure history: the first geometry pass exposed an audio lifecycle error, and a later reach run passed assertions but failed cleanup because two test drivers simultaneously wrapped the same SIK hand. Fixed per-track audio voices and explicit public IK disposal resolved those issues. The earlier taller-prop repair numbers are superseded.
+
+The current native source captures are independently accepted: an **82.1-second uncut main sequence**, a native camera orbit, close reference detail and a real **SPECS Center** view. The main source clock slope is **0.999979**, with two complete physical cycles and 449-frame decoded cycle recurrence at 30 fps. The new drawn input, revision 2 / `fnv1a-3e15a867`, produced **0.064951 cm** maximum error. Its later visible Study is a separate reference input; the fixed Study repair still yields the exact r3 values above. [Capture measurements and gallery provenance](evidence/native-tabletop-captures.json) record the crops, source hashes and measured quantities.
+
+The main drawing is automated LEAF input through SIK using a supplied reference-path stroke; it is not human freehand. The separate accepted reach excerpt uses synthetic SIK hand meshes without the camera-filling avatar visualizer. Its full native test passed, but the film does not present its 0.02 cm mount nudge as a clearly visible interaction demonstration. Native microphone/system audio was not recorded. Scheduling evidence and any editorial replacement of the original cue assets remain separate.
+
+![Actual SPECS Center simulation retained separately from the four primary gallery frames](media/native-tabletop-center.png)
+
+The saved production scene was then cleaned of active diagnostic bindings, the scenario index and LEAF messaging bridge. Native compilation succeeded and a fresh runtime started with no product errors. The [clean-start record](evidence/native-tabletop-clean-start.json) binds that scene hash; test source and packages remain available for deliberate reproduction.
+
+The final product verification was repeated after adding the isolated export capture test: **46 tests across five files, typecheck, four example fixtures and the production build passed**. All **24** canonical product/test TypeScript files also compile against the installed native APIs. The fresh side-tag decode and actual companion match are accepted: decoded input and mechanism deeply equal the main Study, with a valid signature and 720 reverified samples. [Sanitized handoff receipt](evidence/native-tabletop-handoff.json). Optional explicit placement and the final edited film still have separate gates. The [tabletop record](native-tabletop.md) is the active checklist; earlier captures below remain historical.
+
+## Earlier accepted Loop release
 
 The primary Loop web/API release is **b74b35e**, deployed at [motion-foundry-nine.vercel.app](https://motion-foundry-nine.vercel.app). The native Loop workflow has also passed actual Interactive Preview acceptance against that production service. The earlier Petal native results are retained below and labeled separately.
 
-## Automated checks
+## November 7 automated checks
 
 `npm run typecheck` passed. `npm test` passed **37 tests across four files**: 13 Loop domain tests, seven Loop API/export tests, nine Petal domain tests and eight Petal API/export tests. All four fresh Petal fixtures and the optimized production build passed. All **ten native source mirrors** match their final recorded SHA256 hashes. Native compilation passed. The final product-runtime interval and fresh debugger-detached startup were clean; host cleanup warnings are recorded separately below.
 
@@ -43,9 +71,9 @@ The [sanitized production record](evidence/loop-web-production.json) contains th
 
 ![Actual deployed Loop workshop with its maximum-error witness](media/web-loop-workshop.png)
 
-## Native Loop acceptance
+## Earlier native Loop acceptance
 
-Environment: Lens Studio 5.23.2, SPECS 27, Interactive Plane Preview, SIK 0.18.0 MouseInteractor and UIKit. Actual injected mouse gestures drove the authored pen, buttons and sliders. Before/after runtime snapshots and physical transforms confirmed the effects; a successful input-injection call alone was not treated as proof. The saved root remains `(0, 0, -110)` cm with identity rotation/unit scale, the camera remains identity, and the production endpoint is retained.
+Environment: Lens Studio 5.23.2, SPECS 27, Interactive Plane Preview, SIK 0.18.0 MouseInteractor and UIKit. Actual injected mouse gestures drove the authored pen, buttons and sliders. Before/after runtime snapshots and physical transforms confirmed the effects; a successful input-injection call alone was not treated as proof. That accepted release used root `(0, 0, -110)` cm with identity rotation/unit scale and an identity camera. The current tabletop revision supersedes that placement; its production endpoint is unchanged.
 
 | Actual native interaction | Observed result |
 | --- | --- |
@@ -192,4 +220,4 @@ The [sanitized production evidence](evidence/native-production.json) retains par
 
 The verifier checks analytic full-rotation reachability and sampled geometric clearance. It does not prove collision freedom between samples. Adjacent pivot neighborhoods are exempt; decorative surfaces, inter-layer axles, forces, bearings, fabrication, and physical manufacturability are excluded.
 
-No physical glasses, hand tracking, reach comfort, device performance, or LEAF test results are claimed. A public demo video and Devpost submission remain separate publication steps.
+No physical glasses, hardware hand tracking, reach comfort or device-performance result is claimed. The new LEAF journey and its outstanding native gates are described separately above. A public demo video and Devpost submission remain separate publication steps.

@@ -1,0 +1,556 @@
+{
+  "recorded": "2026-11-08",
+  "kind": "Local numerical verification of native tabletop input; not a Preview interaction result",
+  "units": "centimetres and radians",
+  "fixture": "Provided low cylindrical container, 9 cm diameter by 4 cm high; manually aligned, no detection",
+  "referencePhysicalOverlapCm": 0.04999999999999982,
+  "input": {
+    "schemaVersion": "loop-1.0",
+    "kind": "coupler-loop",
+    "designId": "provided-container-study",
+    "revision": 0,
+    "searchSeed": 42,
+    "stroke": [
+      {
+        "x": 7.257,
+        "y": 9.472
+      },
+      {
+        "x": 7.336,
+        "y": 9.777
+      },
+      {
+        "x": 7.325,
+        "y": 10.091
+      },
+      {
+        "x": 7.196,
+        "y": 10.377
+      },
+      {
+        "x": 6.97,
+        "y": 10.595
+      },
+      {
+        "x": 6.691,
+        "y": 10.742
+      },
+      {
+        "x": 6.388,
+        "y": 10.831
+      },
+      {
+        "x": 6.076,
+        "y": 10.875
+      },
+      {
+        "x": 5.76,
+        "y": 10.883
+      },
+      {
+        "x": 5.445,
+        "y": 10.861
+      },
+      {
+        "x": 5.133,
+        "y": 10.813
+      },
+      {
+        "x": 4.825,
+        "y": 10.742
+      },
+      {
+        "x": 4.523,
+        "y": 10.651
+      },
+      {
+        "x": 4.226,
+        "y": 10.541
+      },
+      {
+        "x": 3.937,
+        "y": 10.415
+      },
+      {
+        "x": 3.655,
+        "y": 10.272
+      },
+      {
+        "x": 3.381,
+        "y": 10.115
+      },
+      {
+        "x": 3.115,
+        "y": 9.944
+      },
+      {
+        "x": 2.858,
+        "y": 9.761
+      },
+      {
+        "x": 2.609,
+        "y": 9.566
+      },
+      {
+        "x": 2.371,
+        "y": 9.359
+      },
+      {
+        "x": 2.141,
+        "y": 9.142
+      },
+      {
+        "x": 1.922,
+        "y": 8.915
+      },
+      {
+        "x": 1.713,
+        "y": 8.678
+      },
+      {
+        "x": 1.514,
+        "y": 8.432
+      },
+      {
+        "x": 1.327,
+        "y": 8.178
+      },
+      {
+        "x": 1.152,
+        "y": 7.915
+      },
+      {
+        "x": 0.989,
+        "y": 7.644
+      },
+      {
+        "x": 0.84,
+        "y": 7.366
+      },
+      {
+        "x": 0.705,
+        "y": 7.08
+      },
+      {
+        "x": 0.587,
+        "y": 6.787
+      },
+      {
+        "x": 0.489,
+        "y": 6.487
+      },
+      {
+        "x": 0.414,
+        "y": 6.18
+      },
+      {
+        "x": 0.367,
+        "y": 5.868
+      },
+      {
+        "x": 0.359,
+        "y": 5.552
+      },
+      {
+        "x": 0.402,
+        "y": 5.24
+      },
+      {
+        "x": 0.518,
+        "y": 4.947
+      },
+      {
+        "x": 0.725,
+        "y": 4.711
+      },
+      {
+        "x": 1.008,
+        "y": 4.575
+      },
+      {
+        "x": 1.321,
+        "y": 4.541
+      },
+      {
+        "x": 1.634,
+        "y": 4.581
+      },
+      {
+        "x": 1.937,
+        "y": 4.67
+      },
+      {
+        "x": 2.229,
+        "y": 4.79
+      },
+      {
+        "x": 2.51,
+        "y": 4.933
+      },
+      {
+        "x": 2.783,
+        "y": 5.092
+      },
+      {
+        "x": 3.049,
+        "y": 5.264
+      },
+      {
+        "x": 3.308,
+        "y": 5.444
+      },
+      {
+        "x": 3.562,
+        "y": 5.632
+      },
+      {
+        "x": 3.812,
+        "y": 5.825
+      },
+      {
+        "x": 4.058,
+        "y": 6.023
+      },
+      {
+        "x": 4.301,
+        "y": 6.225
+      },
+      {
+        "x": 4.541,
+        "y": 6.43
+      },
+      {
+        "x": 4.779,
+        "y": 6.639
+      },
+      {
+        "x": 5.014,
+        "y": 6.85
+      },
+      {
+        "x": 5.246,
+        "y": 7.064
+      },
+      {
+        "x": 5.477,
+        "y": 7.28
+      },
+      {
+        "x": 5.704,
+        "y": 7.499
+      },
+      {
+        "x": 5.929,
+        "y": 7.722
+      },
+      {
+        "x": 6.149,
+        "y": 7.948
+      },
+      {
+        "x": 6.364,
+        "y": 8.179
+      },
+      {
+        "x": 6.573,
+        "y": 8.416
+      },
+      {
+        "x": 6.772,
+        "y": 8.662
+      },
+      {
+        "x": 6.958,
+        "y": 8.917
+      },
+      {
+        "x": 7.124,
+        "y": 9.186
+      }
+    ],
+    "fixedMounts": {
+      "groundCm": 16
+    },
+    "lengthBounds": {
+      "crank": [
+        2,
+        6.6
+      ],
+      "coupler": [
+        11,
+        18
+      ],
+      "rocker": [
+        7,
+        14
+      ]
+    },
+    "attachmentBounds": {
+      "alongCm": [
+        0,
+        18
+      ],
+      "acrossCm": [
+        -8,
+        8
+      ]
+    },
+    "obstacles": [
+      {
+        "id": "provided-container",
+        "center": {
+          "x": -8.9,
+          "y": 0
+        },
+        "radiusCm": 4.5,
+        "layerZCm": 2,
+        "depthCm": 4
+      }
+    ],
+    "clearanceCm": 0.16,
+    "linkRadiusCm": 0.45,
+    "linkDepthCm": 0.7,
+    "linkLayers": {
+      "ground": 0.6,
+      "crank": 1.8,
+      "rocker": 3,
+      "coupler": 4.2
+    },
+    "tolerances": {
+      "fitCm": 0.3,
+      "closureCm": 0.002,
+      "samples": 720
+    }
+  },
+  "reference": {
+    "parameters": {
+      "groundCm": 16,
+      "crankCm": 4,
+      "couplerCm": 14,
+      "rockerCm": 10,
+      "branch": 1,
+      "attachmentAlongCm": 7.6,
+      "attachmentAcrossCm": 4.2,
+      "startingPhaseRad": 0.4,
+      "driveDirection": 1
+    },
+    "verification": {
+      "valid": false,
+      "failures": [
+        "Obstacle capsule collision",
+        "Attachment obstacle capsule collision"
+      ],
+      "maxFitErrorCm": 0.0170963177871694,
+      "rmsFitErrorCm": 0.005647612999883593,
+      "maxClosureErrorCm": 8.881784197001252e-15,
+      "minClearanceCm": -0.20999999999999966,
+      "sampleCount": 720,
+      "scope": "sampled",
+      "limitations": [
+        "Clearance checked only at reported phase samples; collisions between samples are not excluded.",
+        "Adjacent pivot neighborhoods (3 link radii plus clearance) are exempt. Capsule endpoints model joint radii; inter-layer axles are not modeled.",
+        "No load, bearing, fabrication or physical manufacturability validation.",
+        "Fit compares ordered closed arc-length correspondence, with the first drawn point anchored to startingPhaseRad. Crank speed remains uniform during playback.",
+        "Attachment triangle rods B→point and C→point are checked against obstacles and other links with the same declared layer and pivot exemptions. Contacts within the rigid attachment/coupler triangle, inter-layer axles and pen hardware are excluded."
+      ],
+      "inputHash": "fnv1a-4667af6a",
+      "verifierVersion": "coupler-loop-1.0",
+      "fitWitness": {
+        "phaseRad": 0.748977640722652,
+        "desired": {
+          "x": 7.259267084601687,
+          "y": 10.236733440340446
+        },
+        "actual": {
+          "x": 7.275862625976361,
+          "y": 10.24084100511308
+        },
+        "errorCm": 0.0170963177871694,
+        "sampleIndex": 5
+      },
+      "collisionWitness": {
+        "phaseRad": 3.141592653589793,
+        "geometry": "crank",
+        "obstacleId": "provided-container",
+        "location": {
+          "x": -4,
+          "y": 4.898587196589413e-16
+        },
+        "marginCm": -0.20999999999999966
+      }
+    }
+  },
+  "freshSolve": {
+    "status": "succeeded",
+    "inputHash": "fnv1a-4667af6a",
+    "candidates": [
+      {
+        "id": "fnv1a-4667af6a-loop-1",
+        "family": "four-bar-coupler",
+        "parameters": {
+          "groundCm": 16,
+          "crankCm": 3.7667421307701603,
+          "couplerCm": 14.446692177549375,
+          "rockerCm": 8.770614008476006,
+          "branch": 1,
+          "attachmentAlongCm": 7.167382789600269,
+          "attachmentAcrossCm": 4.888334437088381,
+          "startingPhaseRad": 0.41703572688279433,
+          "driveDirection": 1
+        },
+        "verification": {
+          "valid": true,
+          "failures": [],
+          "maxFitErrorCm": 0.24235331508098867,
+          "rmsFitErrorCm": 0.13067554513388727,
+          "maxClosureErrorCm": 8.881784197001252e-15,
+          "minClearanceCm": 0.023257869229840494,
+          "sampleCount": 720,
+          "scope": "sampled",
+          "limitations": [
+            "Clearance checked only at reported phase samples; collisions between samples are not excluded.",
+            "Adjacent pivot neighborhoods (3 link radii plus clearance) are exempt. Capsule endpoints model joint radii; inter-layer axles are not modeled.",
+            "No load, bearing, fabrication or physical manufacturability validation.",
+            "Fit compares ordered closed arc-length correspondence, with the first drawn point anchored to startingPhaseRad. Crank speed remains uniform during playback.",
+            "Attachment triangle rods B→point and C→point are checked against obstacles and other links with the same declared layer and pivot exemptions. Contacts within the rigid attachment/coupler triangle, inter-layer axles and pen hardware are excluded."
+          ],
+          "inputHash": "fnv1a-4667af6a",
+          "verifierVersion": "coupler-loop-1.0",
+          "fitWitness": {
+            "phaseRad": 0.9768722129036347,
+            "desired": {
+              "x": 6.9650485266802,
+              "y": 10.597608840781401
+            },
+            "actual": {
+              "x": 6.804041411706171,
+              "y": 10.416468458043358
+            },
+            "errorCm": 0.24235331508098867,
+            "sampleIndex": 8
+          }
+        },
+        "score": 0.13067554513388727,
+        "label": "Verified coupler assembly 1"
+      },
+      {
+        "id": "fnv1a-4667af6a-loop-2",
+        "family": "four-bar-coupler",
+        "parameters": {
+          "groundCm": 16,
+          "crankCm": 3.7659664817336087,
+          "couplerCm": 14.446270697144303,
+          "rockerCm": 8.776867808439896,
+          "branch": 1,
+          "attachmentAlongCm": 7.170183673317339,
+          "attachmentAcrossCm": 4.8849675044482055,
+          "startingPhaseRad": 0.4167207663464742,
+          "driveDirection": 1
+        },
+        "verification": {
+          "valid": true,
+          "failures": [],
+          "maxFitErrorCm": 0.24266273713407713,
+          "rmsFitErrorCm": 0.13113319182414712,
+          "maxClosureErrorCm": 8.881784197001252e-15,
+          "minClearanceCm": 0.02403351826639208,
+          "sampleCount": 720,
+          "scope": "sampled",
+          "limitations": [
+            "Clearance checked only at reported phase samples; collisions between samples are not excluded.",
+            "Adjacent pivot neighborhoods (3 link radii plus clearance) are exempt. Capsule endpoints model joint radii; inter-layer axles are not modeled.",
+            "No load, bearing, fabrication or physical manufacturability validation.",
+            "Fit compares ordered closed arc-length correspondence, with the first drawn point anchored to startingPhaseRad. Crank speed remains uniform during playback.",
+            "Attachment triangle rods B→point and C→point are checked against obstacles and other links with the same declared layer and pivot exemptions. Contacts within the rigid attachment/coupler triangle, inter-layer axles and pen hardware are excluded."
+          ],
+          "inputHash": "fnv1a-4667af6a",
+          "verifierVersion": "coupler-loop-1.0",
+          "fitWitness": {
+            "phaseRad": 0.9766473886210183,
+            "desired": {
+              "x": 6.9650485266802,
+              "y": 10.597608840781401
+            },
+            "actual": {
+              "x": 6.804180277573273,
+              "y": 10.415931625857036
+            },
+            "errorCm": 0.24266273713407713,
+            "sampleIndex": 8
+          }
+        },
+        "score": 0.13113319182414712,
+        "label": "Verified coupler assembly 2"
+      },
+      {
+        "id": "fnv1a-4667af6a-loop-3",
+        "family": "four-bar-coupler",
+        "parameters": {
+          "groundCm": 16,
+          "crankCm": 3.7659664817336087,
+          "couplerCm": 14.445351864911032,
+          "rockerCm": 8.775948976206625,
+          "branch": 1,
+          "attachmentAlongCm": 7.170183673317339,
+          "attachmentAcrossCm": 4.8849675044482055,
+          "startingPhaseRad": 0.4167207663464742,
+          "driveDirection": 1
+        },
+        "verification": {
+          "valid": true,
+          "failures": [],
+          "maxFitErrorCm": 0.2426051837134724,
+          "rmsFitErrorCm": 0.13113264523833382,
+          "maxClosureErrorCm": 8.881784197001252e-15,
+          "minClearanceCm": 0.02403351826639208,
+          "sampleCount": 720,
+          "scope": "sampled",
+          "limitations": [
+            "Clearance checked only at reported phase samples; collisions between samples are not excluded.",
+            "Adjacent pivot neighborhoods (3 link radii plus clearance) are exempt. Capsule endpoints model joint radii; inter-layer axles are not modeled.",
+            "No load, bearing, fabrication or physical manufacturability validation.",
+            "Fit compares ordered closed arc-length correspondence, with the first drawn point anchored to startingPhaseRad. Crank speed remains uniform during playback.",
+            "Attachment triangle rods B→point and C→point are checked against obstacles and other links with the same declared layer and pivot exemptions. Contacts within the rigid attachment/coupler triangle, inter-layer axles and pen hardware are excluded."
+          ],
+          "inputHash": "fnv1a-4667af6a",
+          "verifierVersion": "coupler-loop-1.0",
+          "fitWitness": {
+            "phaseRad": 0.9766546995155676,
+            "desired": {
+              "x": 6.9650485266802,
+              "y": 10.597608840781401
+            },
+            "actual": {
+              "x": 6.8044968498134315,
+              "y": 10.415728566370138
+            },
+            "errorCm": 0.2426051837134724,
+            "sampleIndex": 8
+          }
+        },
+        "score": 0.13113264523833382,
+        "label": "Verified coupler assembly 3"
+      }
+    ]
+  },
+  "decorativeFixtureReview": {
+    "scope": "Separate conservative bounding-volume spot check for this fixture and its three candidates only; not part of the solver or a general hardware guarantee",
+    "samplesPerCandidate": 721,
+    "providedContainerTopCm": 4,
+    "gripBottomCm": 4.95,
+    "minimumSeparationCm": {
+      "axle-shaft": 0.41325786922984054,
+      "axle-cap": 0.6905861521618027,
+      "crank-post": 0.3532578692298405,
+      "grip-conservative-cylinder": 0.9500000000000002,
+      "grip-inset": 4.320328274637809,
+      "pen-tip-conservative-cylinder": 5.916564487513621,
+      "pen-stem": 6.096564487513621,
+      "attachment-cap": 5.83289463799099,
+      "fixed-clamp-conservative-cylinder": 2.5000000000000004,
+      "moving-clamp-conservative-cylinder": 18.5,
+      "fit-dial": 23.922011845673016
+    }
+  },
+  "scope": "Unchanged numerical engine. Capsule rods and declared layers/obstacles are sampled; axles, clamps, crank grip and decorative pen remain excluded from the verifier."
+}

@@ -5,8 +5,10 @@ Motion Foundry combines original application, solver, verifier, procedural geome
 ## Lens resources
 
 - The SPECS base project, Spectacles Interaction Kit, Spectacles UIKit, Icons, and Motion packages are supplied through Lens Studio. Their package metadata and notices are retained in the native project. The base template also supplies its camera/render setup and Echopark environment asset. These resources retain their own terms; this repository does not relicense them.
+- **LEAF 2.0.2** and **Bitmoji 3D 10.0.1** are retained official Lens Studio package dependencies for reproducing the authored native tests. Original package metadata and terms remain intact. The production scene has no active `LeafIndex`, LEAF messaging bridge or inspection handler. The main product does not instantiate a Bitmoji avatar; the accepted reach test uses the supported IK driver and synthetic SIK hand visuals without its optional avatar visualizer. These packages are not relicensed as original Motion Foundry code.
+- **Sunlit Room** and the SPECS Center simulation shown in the current gallery and native footage are built-in Lens Studio Preview resources. Their original terms apply. The room is rendered by Preview with the actual Lens; it is not a stock background composited behind a reconstructed interface.
 - `lens-src/DragInteraction.ts`, mirrored in the Lens's Assets/Scripts directory, comes from the CLAD `specs-interaction-recipes` reference scripts. Its **Copyright 2026 Specs Inc.** and **Apache-2.0** header are retained. The license is included in [licenses/Apache-2.0.txt](licenses/Apache-2.0.txt), from the [Apache Software Foundation](https://www.apache.org/licenses/LICENSE-2.0.txt).
-- Other native application scripts and the sculpture's procedural petal/link meshes were authored for Motion Foundry. The Preview image in `devpost/media/` is a capture of this project, not a stock image or hardware capture.
+- Other native application scripts and the sculpture's procedural petal/link meshes were authored for Motion Foundry. The Preview images in `devpost/media/` are actual project captures, not stock imagery or hardware captures.
 
 ## Web dependencies
 

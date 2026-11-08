@@ -1,0 +1,158 @@
+{
+  "recorded": "2026-11-08",
+  "environment": "Actual Lens Studio Preview in Sunlit Room",
+  "scope": "Accepted native source captures, exact current side-tag/companion handoff and gallery crops; final edited film has a separate encoded acceptance gate",
+  "inputDisclosure": "Main gesture is automated LEAF input through SIK using a supplied reference-path stroke. No human freehand, physical-glasses or hardware-tracking claim.",
+  "mainProof": {
+    "sourceSha256": "0601889b51084c1022c2dc80a448cdd6c0849e186420a88791685a6229b397e8",
+    "inSeconds": 11,
+    "outSeconds": 93.1,
+    "durationSeconds": 82.1,
+    "sourceFrames": [
+      330,
+      2793
+    ],
+    "clockSlope": 0.9999787584137544,
+    "decodedPhysicalCycleFrames": [
+      449,
+      449
+    ],
+    "sourcePlaybackRate": 1,
+    "sameStudyInputDeepEqual": true,
+    "studyStrokeDiffersFromDrawnInput": true,
+    "measuredValues": {
+      "main_input_hash": "fnv1a-3e15a867",
+      "study_input_hash": "fnv1a-3049b059",
+      "main_max_fit_error_cm": 0.06495078572177448,
+      "main_max_fit_error_mm": 0.6495078572177448,
+      "study_repair_max_fit_error_cm": 0.24235331508098867,
+      "study_repair_max_fit_error_mm": 2.4235331508098867,
+      "requested_fit_limit_cm": 0.3,
+      "requested_clearance_cm": 0.16,
+      "study_collision_signed_margin_cm": -0.20999999999999966,
+      "repaired_sampled_extra_clearance_cm": 0.023257869229840494,
+      "blocked_crank_cm": 4,
+      "repaired_crank_cm": 3.7667421307701603,
+      "mount_spacing_cm": 16,
+      "rod_radius_cm": 0.45,
+      "rod_depth_cm": 0.7,
+      "link_layers_cm": {
+        "ground": 0.6,
+        "crank": 1.8,
+        "rocker": 3,
+        "coupler": 4.2
+      },
+      "container": {
+        "id": "provided-container",
+        "center": {
+          "x": -8.9,
+          "y": 0
+        },
+        "radiusCm": 4.5,
+        "layerZCm": 2,
+        "depthCm": 4
+      },
+      "sample_count": 720
+    }
+  },
+  "audio": {
+    "nativeRecording": false,
+    "runtimeSchedulingFailed": false,
+    "scope": "Scheduled cues are not acoustic evidence; any film cue replacement is separately disclosed."
+  },
+  "gallery": [
+    {
+      "image": "media/native-tabletop-overview.png",
+      "imageSha256": "f33e346eaa074ffabab5d3a17f95a9bbb562dc423d3357689c9255ffd3c9d4d5",
+      "sourceCapture": "motion-main-take01.mp4",
+      "sourceSha256": "0601889b51084c1022c2dc80a448cdd6c0849e186420a88791685a6229b397e8",
+      "sourceFrame": 1863,
+      "sourceFps": 30,
+      "approvedCropXYWH": [
+        264,
+        330,
+        2176,
+        1216
+      ],
+      "decodedFrameSha256": "47aac74ada388b708ab1aa801dd196f159fb6fc1f69c68e5933e7db1efa9d48b",
+      "captureAcceptanceSha256": "3047e45ab85398c9eff0b822b9515a02777eb08e39370e9fe3546fe6e1560f56",
+      "processing": "Fixed accepted crop only; no retouch, labels, composited background or scaling",
+      "caption": "New drawn input: completed physical ink cycle before the separate Study."
+    },
+    {
+      "image": "media/native-tabletop-contact.png",
+      "imageSha256": "b6124c7cbeaad29c03447ab9dcc23adc68f1c8783a1d369b2c76792f439692b0",
+      "sourceCapture": "motion-main-take01.mp4",
+      "sourceSha256": "0601889b51084c1022c2dc80a448cdd6c0849e186420a88791685a6229b397e8",
+      "sourceFrame": 2010,
+      "sourceFps": 30,
+      "approvedCropXYWH": [
+        264,
+        330,
+        2176,
+        1216
+      ],
+      "decodedFrameSha256": "176fc7630ca49b7838919f57a2b02ede2e802268afd7262c56af2609895f1089",
+      "captureAcceptanceSha256": "3047e45ab85398c9eff0b822b9515a02777eb08e39370e9fe3546fe6e1560f56",
+      "processing": "Fixed accepted crop only; no retouch, labels, composited background or scaling",
+      "caption": "Separate provided-container reference Study; actual crank contact before repair."
+    },
+    {
+      "image": "media/native-tabletop-repaired.png",
+      "imageSha256": "1f4514dc3034d5a342f72d01ed95204f5bcf9e608f6c2bb84b76835a9773541d",
+      "sourceCapture": "motion-main-take01.mp4",
+      "sourceSha256": "0601889b51084c1022c2dc80a448cdd6c0849e186420a88791685a6229b397e8",
+      "sourceFrame": 2637,
+      "sourceFps": 30,
+      "approvedCropXYWH": [
+        264,
+        330,
+        2176,
+        1216
+      ],
+      "decodedFrameSha256": "8c1e8e48ee5918b1b1badccc0f9cf596ffa0ce2619e34fecb1ee9ae2a86cb936",
+      "captureAcceptanceSha256": "3047e45ab85398c9eff0b822b9515a02777eb08e39370e9fe3546fe6e1560f56",
+      "processing": "Fixed accepted crop only; no retouch, labels, composited background or scaling",
+      "caption": "The same Study after a fresh HTTPS repair and completed physical cycle."
+    },
+    {
+      "image": "media/native-tabletop-depth.png",
+      "imageSha256": "33f356034796c7fa3eae9334a83983734d2d8fe45051462e41a4de0e8824be8b",
+      "sourceCapture": "motion-orbit-take01.mp4",
+      "sourceSha256": "68ed0410b09708fcc2316dfc47d403dd1e05cc40f8e71fd81731fb6c35d9f9f8",
+      "sourceFrame": 360,
+      "sourceFps": 30,
+      "approvedCropXYWH": [
+        264,
+        330,
+        2176,
+        1216
+      ],
+      "decodedFrameSha256": "828e0704cc71a71b207a37bcc63d8299ff610b8dc977d69cf9604ef07867b144",
+      "captureAcceptanceSha256": "13199c42b6bd2da3a71749f7432beae1cf852eb84e97a31e9f29841518f85f37",
+      "processing": "Fixed accepted crop only; no retouch, labels, composited background or scaling",
+      "caption": "Actual native camera orbit around the repaired Study; visible rod layers and table context."
+    }
+  ],
+  "verificationImages": [
+    {
+      "image": "media/native-tabletop-center.png",
+      "imageSha256": "e31c423a0206fa1aac3254e4e8d7611de09ff5e3d58934823c7fbfc1d7a6abce",
+      "sourceCapture": "motion-center-take01.mp4",
+      "sourceSha256": "54316869bc44f6fa8140623dba2271469f8a470751df40c5b6e88b282cba7c0d",
+      "sourceFrame": 150,
+      "sourceFps": 30,
+      "approvedCropXYWH": [
+        10,
+        326,
+        2684,
+        1224
+      ],
+      "decodedFrameSha256": "a8e2b9247cb8de50abb71e433492ba09c475f77c9d714f46ce67cc3c85de958b",
+      "captureAcceptanceSha256": "a028bd179ce453d15beb6650d6f7235f6b3fcd871c71059e9717c0f08cdfad02",
+      "processing": "Fixed accepted crop only; no retouch, labels, composited background or scaling",
+      "caption": "Actual SPECS Center simulation of the repaired Study; no physical-glasses recording."
+    }
+  ],
+  "handoffReceipt": "native-tabletop-handoff.json"
+}

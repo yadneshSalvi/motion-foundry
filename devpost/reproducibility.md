@@ -13,7 +13,7 @@ npm run verify
 npm run dev
 ```
 
-Open `http://localhost:3101`. `verify` runs typechecking, the 37-test suite, fresh Petal fixtures and a production build. For the built application, stop the development server and run `npm run start`.
+Open `http://localhost:3101`. `verify` runs typechecking, the 46-test suite, fresh Petal fixtures and a production build. For the built application, stop the development server and run `npm run start`.
 
 Manual design, deterministic synthesis and downloads need no model key. Production signing requires `MOTION_SIGNING_SECRET` with at least 32 random characters. Development uses an explicitly development-only key if none is configured. Set `BACKEND_BASE_URL` only to the actual deployment origin. Keep the signing key stable to preserve links. Request limits are per-instance best-effort guards, not a distributed quota or account authentication.
 
@@ -33,31 +33,58 @@ Capture establishes 64 ordered samples in 0.001 cm increments (0.01 mm) before h
 
 Cyclic ordered arc-length correspondence allows the start of a closed drawing to vary while preserving traversal order. It does not reproduce the speed of the hand stroke. Playback uses a uniformly advancing physical crank, so the tracing point changes speed naturally. Self-intersections are supported when a mechanism can reproduce their ordered traversal.
 
-## Native project and controls
+## Native tabletop project
 
-Open `lens/MotionFoundry.esproj` in Lens Studio 5.23.2. Use SPECS 27, Interactive Preview and a suitable background. Focus Preview before interacting. The supplied scene includes SIK, UIKit, camera/render setup and the authored component. The saved root is `(0, 0, -110)` cm with identity rotation and unit scale; the camera is unchanged. Five material inputs are already wired.
+Open `lens/MotionFoundry.esproj` in Lens Studio 5.23.2. Select SPECS 27, Interactive Preview and **Sunlit Room** for the current staging. The saved project supplies SIK, UIKit, camera/render setup and the authored component. For Horizontal Preview, use the explicit SPECS Device Override; that configuration was observed to retain working SIK input. Use the actual native Preview window for visual review: a diagnostic MCP screenshot path was observed to stretch the viewport vertically, while the native window kept correct proportions.
 
-The component's `backendUrl` is `https://motion-foundry-nine.vercel.app`. No provider or signing keys belong in the Lens. Native Loop searches use HTTPS so Preview remains responsive. Clearing the endpoint leaves the bundled mechanism and drafting usable, but fresh Loop synthesis and sharing require a connection. Petal alone retains a portable local solve with an empty endpoint.
+The current saved table-frame contract is position `(−30, −142.4, −474)` cm, yaw 0° and unit scale, with the board centred internally on the Sunlit Room sideboard. The earlier Colorful Home pose is retained in the revision record as historical setup evidence. The current composition has accepted native front/orbit and Spectacles Center source captures; repeat those views after changing placement or geometry. A separately recorded direct-reach camera is `(-30, -100, -438)` cm looking at `(-30, -139, -474)`; a passing far-field gesture does not prove direct reach.
 
-The native Loop workflow below passed actual Preview gestures and production handoff. The [verification record](verification.md) includes the exact drawing/repair results, full-frame QR decoding and the separate supplemental delayed-response checks.
+The `MotionFoundry` component uses `https://motion-foundry-nine.vercel.app` as its backend. Provider and signing secrets stay on the server. Five material inputs, the three original cue WAVs and a camera AudioListener are wired through native editor tools. The optional provided cylinder must measure **9 cm in diameter × 4 cm high**, Y-up. Its declared centre is `(−8.90, 0, 2)` in the board's x/y/height frame; the runtime positions it from that exact input. It is a manually aligned fixture, not a detected object. For the bundled cylinder mesh with unit AABB approximately `0.999332 × 1 × 0.999332`, use scale approximately `9.006016 × 4 × 9.006016` cm to obtain the intended envelope.
 
-1. Begin in Loop. Play/pause and the crank slider expose physical motion; Reveal toggles construction and tracing views.
-2. Open Draw. **Place** moves the pen before capture. **Draw** records the next standard SIK drag on the planar board. A large open stroke requires **Close** or **Clear**. The completed stroke becomes one input revision.
-3. Controls offers **Point**, **Mount**, **Space** and fit-limit editing. Point selects an ordered handle; the pen drag changes its two coordinates. Press **Solve** for a fresh HTTPS result and **Undo** to restore prior work.
-4. Checks offers **Next**, **Fit error**, **Contact**, **Study** and **Save**. Study adds the reference crank obstruction, and a new solve must preserve its drawing and stated constraints.
-5. Save a verified reference or solved candidate, open the rendered QR/link on another screen and compare its exact JSON with the native input and parameters. QR image decoding in Preview does not establish physical camera scanning.
-6. Switch to Petal to inspect the retained angular-target experience. The modes keep separate designs and saved-state keys.
+Native rods have 0.45 cm radius, 0.70 cm depth and layer centres 0.6/1.8/3.0/4.2 cm. The reference has 16 cm mounts, 4/14/10 cm moving rods and a 0.30 cm fit limit. These are explicit native inputs; do not describe them as uniformly doubling every web quantity. The engines and exported contracts are unchanged.
 
-The native reference consistently doubles all physical quantities from the web study: 16 cm mounts, 4/14/10 cm moving lengths and a 0.30 cm fit limit. This is physical geometry, not a cosmetic rendering scale.
+## Native journey
 
-Authored scripts are in `lens-src/`; the numerical sources of truth are `src/domain/index.ts` and `src/domain/loop.ts`. Outside an active editor test, synchronize and check the ten native source mirrors with:
+1. At idle, turn the large crank grip or select **Draw**. Standard SIK near/far input drives the physical targets; Preview input simulates the interaction.
+2. Pinch-drag directly on the board. Releasing within 0.9 cm of the start closes it; a larger gap remains open until **Done** explicitly adds the final segment. **Clear** restarts the drawing.
+3. Select **Make it**. Wait for the actual HTTPS response and independent local verification. The linkage's pen traces only physical coupler poses. Turning the grip changes phase without editing the drawing or its revision.
+4. Approach the largest-error rings, or reach **More → Tools → More → Error**. The witness shows desired and actual positions at a physical crank phase. The fit dial changes the declared limit; it does not visually improve a prior result.
+5. Select **More → Study** to load the separate provided-container case. The old crank meets the container. Select **Make it again**; require a fresh result with every input field unchanged and a positive sampled rod-clearance margin. Record the actual run's values, not an earlier fixture's numbers.
+6. Drag the movable mount or container. One nonzero completed drag creates one edit; a no-motion grab creates none. Undo restores the exact prior input, selected candidate, alternatives and receipt. A failed or timed-out solve retains the prior mechanism without treating it as current.
+7. Choose **Keep**. The side tag must show the exact new signed URL without covering the assembly. Decode a fresh full Preview frame, open that URL, and compare the downloaded input and selected mechanism with the native snapshot. The earlier large-card QR test does not validate this smaller tag.
+8. For explicit placement, use **More → Tools → More → Place**. An upward WorldQuery hit and a standard SIK pinch place the owner once; cancel keeps the authored fallback. Record the real native outcome before claiming placement acceptance.
+
+The active status is in [native-tabletop.md](native-tabletop.md). Native UI has at most three primary contextual tools per state. Petal is hidden in this native journey but remains available in the companion and retained source.
+
+## Native source and LEAF
+
+Authored scripts are in `lens-src/`; numerical sources of truth are `src/domain/index.ts` and `src/domain/loop.ts`. Outside an active native test, the editor owner synchronizes the **16 product and eight LEAF source files**:
 
 ```sh
 npm run lens:sync
 npm run lens:check
+npx tsc -p tsconfig.lens-source.json --pretty false
 ```
 
-These commands copy/check sources only. Recompile and exercise Preview afterward; a matching mirror does not prove runtime behavior.
+Sync copies source only. Compile and exercise Preview afterward; matching mirrors do not prove runtime behavior. Scene, package and asset edits use Lens Studio MCP. Never modify generated Cache files.
+
+The production scene starts without an active scenario index, LEAF messaging bridge or inspection helper. The retained test dependencies are **LEAF 2.0.2** and **Bitmoji 3D 10.0.1**, alongside the existing SpectaclesInteractionKit package. They support deliberate testing; the main workbench does not instantiate a Bitmoji avatar.
+
+To re-enable testing, use a working copy of the scene and native Lens Studio editor tools:
+
+1. Create a temporary `LeafIndex` SceneObject and attach `Assets/Scripts/leaf/LeafIndex.ts`. Its imported capture index also registers the isolated export scenario; do not attach individual scenario classes.
+2. Open the installed **LEAF** panel intentionally. The official panel creates its temporary `LEAF Plugin Bridge` using `Leaf.lspkg/Scenarios/scenario/MessagingBridge.ts`. Let the panel own that component; adding a second bridge can run a scenario twice.
+3. Compile, select **Preview** as the LEAF target, wait for registration and list the scenarios. Use the matching documented viewpoint, fresh Preview when required, fail-fast diagnostics, and the actual scene controls.
+4. After the run, retain its report and matching runtime interval. Close the LEAF panel (its teardown removes its bridge), remove the temporary index attachment and any inspection helper, then restart Preview and save the clean production scene.
+
+Run these primary scenarios:
+
+- `motion-workbench-draw-solve-crank-repair` uses real SIK target routes for an open stroke, explicit closure, fresh HTTPS solve, crank/ink motion and same-input repair. It also records all three configured cue scheduling counters and rejects an audio exception.
+- `motion-workbench-direct-reach-and-undo` requires actual direct routing with fail-fast IK diagnostics, then tests a mount drag, no-motion input and exact Undo.
+
+The separate `motion-workbench-film-rehearsal` has a [paced Preview contract](../lens-src/leaf/FILM_REHEARSAL.md), real full-cycle checks and explicit scripted-input disclosure. It is not either primary acceptance test. Its accepted continuous main source contains the complete drawing and separate Study repair with both actual cycles. The separate `motion-workbench-export-film` capture test requires a fresh Preview at revision 0; it uses real controls to reconstruct r3 Study, checks the exact accepted input/mechanism, and opens Keep after a 3-second readiness lead-in. The returned QR is held for 8 seconds.
+
+The [scenario source guide](../lens-src/leaf/README.md) gives the scene snapshot and test contract. These are simulated native inputs, not human performance or physical hand tracking. Preserve the actual scenario report and matching runtime interval, including warnings. The shipped demonstration scene keeps the scenario index and bridge absent; merely retaining their source and package dependencies does not activate a test.
 
 ## Existing Petal examples
 
