@@ -21,7 +21,7 @@ This record describes actual changes and checks, not an inferred user study. The
 | Short test pacing did not let a viewer follow the cause and effect. | Add a separate paced Preview rehearsal with real SIK input, backend waits and two whole physical cycles. | Independently decoded source accepts 82.1 seconds uncut, with a 0.999979 wall/media clock slope. The distinct Study transition stays explicit. |
 | Moving a QR off the mechanism changes its readability. | Put Keep's signed tag beside the machine. | The fresh full recorded frame decodes the exact signed URL; its input/mechanism and production re-verification match the main Study. The earlier large-card result is not reused. |
 
-The [tabletop record](native-tabletop.md) holds the current contract and acceptance state. The README and [gallery](gallery.md) now use fixed crops from independently accepted native source frames. Earlier film and images remain preserved as historical evidence. The fresh side-tag handoff is accepted. The final r002 film and optional explicit placement have their own remaining gates; no hardware result is inferred from Preview.
+The [tabletop record](native-tabletop.md) holds the current contract and acceptance state. The README and [gallery](gallery.md) now use fixed crops from independently accepted native source frames. Earlier film and images remain preserved as historical evidence. The fresh side-tag handoff is accepted. The [r002 film](film-review.md) passed independent encoded QA and complete browser playback. User approval is pending and optional explicit placement remains unverified; no hardware result is inferred from Preview.
 
 ## November 7 — original Petal release
 

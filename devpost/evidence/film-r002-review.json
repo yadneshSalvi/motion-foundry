@@ -1,0 +1,84 @@
+{
+  "artifact": "Motion-Foundry-r002.mp4",
+  "sha256": "8a70033901f178bb2368ba946071880bf3636e9cda8ae264a6c0943608c83ac4",
+  "durationSeconds": 156.1,
+  "frames": 4683,
+  "dimensions": [
+    1920,
+    1080
+  ],
+  "fps": 30,
+  "fullDecodePassed": true,
+  "protectedSourceCheck": {
+    "film_frames": [
+      450,
+      2913
+    ],
+    "source_frames": [
+      330,
+      2793
+    ],
+    "frames_checked": 2463,
+    "playback_rate": 1,
+    "fixed_crop": [
+      264,
+      330,
+      2176,
+      1216
+    ],
+    "comparison": "480x270 grayscale, declared active overlay pixels excluded; lossy compression/resampling tolerated",
+    "maximum_frame_mae": 2.0657764408085404,
+    "maximum_p99_absolute_difference": 4,
+    "maximum_fraction_difference_over_20": 0,
+    "result": "Every protected mapped frame matches the accepted native picture within compression tolerance; no added hold, interior cut, missing cycle or retime found."
+  },
+  "qr": {
+    "exact_url_characters": 1655,
+    "decoded_exact_full_frames": [
+      4098,
+      4172,
+      4202
+    ],
+    "no_crop_resize_threshold_or_resynthesis": true
+  },
+  "phoneVisualReview": {
+    "width_px": 360,
+    "burned_caption_midpoints": 63,
+    "sidecar_captions": 65,
+    "label_midpoints": 6,
+    "shot_seam_samples": 47,
+    "result": "PASS; no clipping or model/control occlusion; merged short connectors closed; actual Center view and four-second companion still retain their declared roles."
+  },
+  "encodedAudio": {
+    "integrated_lufs": -15.63,
+    "true_peak_dbtp": -1.74,
+    "sample_rate": 48000,
+    "channels": 2,
+    "codec": "AAC",
+    "full_master_provenance_verified": true,
+    "native_audio_recorded": false,
+    "editorial_product_cues": 3,
+    "all_cues_exact_event_frames": true,
+    "voice_speed_factor": 1,
+    "score_speed_factor": 1,
+    "human_listening_claimed": false,
+    "AI_whole_master_audition": "PASS for exact master50726758e017147f9cbd17be6d2fe8c359581a906dc50841293411a21a6648a5"
+  },
+  "browserPlayback": {
+    "status": "PASS",
+    "durationSeconds": 156.1,
+    "wallDurationSeconds": 156.177,
+    "progressSamples": 588,
+    "videoQuality": {
+      "totalVideoFrames": 4683,
+      "droppedVideoFrames": 0,
+      "corruptedVideoFrames": 0
+    },
+    "failures": []
+  },
+  "status": "Independent encoded G3 and complete browser playback passed; user G4 review pending",
+  "userApproved": false,
+  "published": false,
+  "physicalGlassesTested": false,
+  "scope": "Actual Lens Studio Preview with automated SIK input; no human listening claim."
+}
