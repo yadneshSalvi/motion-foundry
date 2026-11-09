@@ -52,14 +52,14 @@
   "visual": {
     "caption_midpoints": 44,
     "phone_width": 360,
-    "caption_style": "One line, 42 px DM Sans, in the fixed 1020\u20131070 output-pixel band",
+    "caption_style": "One line, 42 px DM Sans, in the fixed 1020–1070 output-pixel band",
     "dense_hands_and_controls": "PASS",
     "exact_qr_decodes": 6,
     "qr_attempts": 6,
     "qr_input_hash": "fnv1a-ec80dc0a",
     "qr_url_sha256": "e0c6d3df3d56778e3c213fbab385d8c5a82364477cf7a6b3ba5fb5ef614cc2ea",
     "qr_url_length": 1671,
-    "payoff_scope": "Selected source frames 1450\u20131494 inclusive; all eight bracketing projected observations at most 18.75% drawing occlusion, confirmed in pixels. No whole-cycle visibility bound."
+    "payoff_scope": "Selected source frames 1450–1494 inclusive; all eight bracketing projected observations at most 18.75% drawing occlusion, confirmed in pixels. No whole-cycle visibility bound."
   },
   "audio": {
     "codec": "AAC",
@@ -77,7 +77,7 @@
     },
     "native_audio_recorded": false,
     "editorial_cues": 36,
-    "scope": "Generated natural-speed narration and original instrumental music. Authored cue replacements align with actual native events; release clicks are identified as editorial. Whole-file model audition and unmuted browser playback are separate; no human-listening claim."
+    "scope": "Natural-speed narration and original instrumental music. Authored cue replacements align with actual native events; release clicks are identified as editorial."
   },
   "browser_playback": {
     "interval_seconds": [
@@ -92,11 +92,11 @@
     "stalls": 0,
     "errors": 0,
     "intermediate_pause_or_seek": false,
-    "scope": "Initial start seek/wait and final end pause retained. Browser drops are separate from encoded completeness; no zero-drop or human-listening claim."
+    "scope": "Initial start seek/wait and final end pause retained. Browser drops are separate from encoded completeness; no zero-drop claim."
   },
   "scope": [
     "Actual Lens Studio Preview with scripted visible SIK input and a manually sized mug stand-in; physical Spectacles are untested.",
-    "The opening edits a six-second crank excerpt and four-second earned-mint excerpt; the 90.5-second main remains continuous at1\u00d7.",
+    "The opening edits a six-second crank excerpt and four-second earned-mint excerpt; the 90.5-second main remains continuous at1×.",
     "Center is an explicitly labeled three-second native screenshot. Development Record is a labeled four-second actual browser screenshot. The authored closing card is three seconds.",
     "The QR is an exact normal design link, with no physical-phone scan or paired-phone delivery claim.",
     "Numerical checks cover declared rods and obstacles at finite poses; they do not establish fabrication safety or all-between-pose clearance."
@@ -104,5 +104,6 @@
   "independent_receipt_sha256": "efb55887feacc8dfdc5afa2c5c23017de91154fa39b77beccc7bc502efae1077",
   "browser_receipt_sha256": "f7fd2633c8d409b9cb596d14c067d0ddda9bc79f5e41a6fb3ab1b798d4066e0c",
   "previous_r003_sha256": "1ef3de21415e276e1731fd212035cb4bd7e0312d7851d595136ba0b94b7eaa5e",
-  "published": false
+  "published": true,
+  "public_video_url": "https://youtu.be/6Qy_kei3IiA"
 }

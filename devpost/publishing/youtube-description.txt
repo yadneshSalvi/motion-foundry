@@ -1,0 +1,9 @@
+Want a machine to draw your shape? Motion Foundry helps makers and kinetic artists explore the movement before building it.
+
+Draw a curve, turn the crank, and watch the rods carry the pen. Add a mug stand-in to reveal a collision, then find a new mechanism while keeping the drawing and mounts fixed.
+
+A SPECS Lens demonstrated in Lens Studio Preview.
+
+Try the companion: https://motion-foundry-nine.vercel.app
+Source code: https://github.com/yadneshSalvi/motion-foundry
+Learn AR with SPECS: https://learn-specs.devpost.com/

@@ -25,4 +25,4 @@ Typography uses DM Sans, Manrope, and Instrument Serif through `next/font`. Each
 
 Four-bar linkage closure, circle intersection, the law of cosines, and Freudenstein's relation are established kinematic methods. This project implements its own deterministic search, verifier, schema, examples, and export flow; it does not claim those mathematical methods as novel.
 
-OpenAI and Gemini are optional external model services used only for structured motion proposals. Vercel hosts the companion application. These services are identified as infrastructure, not as authors of a verified mechanical result. No AI-generated imagery is required by the sculpture or interface.
+OpenAI and Gemini are optional external model services used only for structured motion proposals. Vercel hosts the companion application. These services are identified as infrastructure, not as authors of a verified mechanical result.

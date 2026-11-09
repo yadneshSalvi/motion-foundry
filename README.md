@@ -2,9 +2,9 @@
 
 Draw a curve on your workbench, find a machine that draws it back, and turn its crank by hand.
 
-**Demo film: Motion Foundry** · [Preview gallery](devpost/gallery.md)
+[Watch Motion Foundry](https://youtu.be/6Qy_kei3IiA) · [Preview gallery](devpost/gallery.md)
 
-![Motion Foundry running on a table in Lens Studio Preview](devpost/media/native-workbench-hero.png)
+[![Watch Motion Foundry](devpost/media/youtube-thumbnail-r004.jpg)](https://youtu.be/6Qy_kei3IiA)
 
 Motion Foundry is a SPECS Lens for people designing moving sculptures and small mechanisms. Sketch at true scale on the bench where you would build, turn the links by hand, and see where they meet your mug—without carrying a second screen.
 

@@ -1,6 +1,6 @@
 # Motion Foundry documentation
 
-Start with the [Lens overview](../README.md) and [Preview gallery](gallery.md). The demo film is titled **Motion Foundry**; its public link will be added after publication.
+Start with the [Lens overview](../README.md) and [Preview gallery](gallery.md). [Watch Motion Foundry](https://youtu.be/6Qy_kei3IiA).
 
 - [Design brief](design-brief.md): who the workbench serves, the plan-lens decisions, four glasses habits and complete interaction.
 - [Submission description](submission-draft.md): a concise product story and what we learned.

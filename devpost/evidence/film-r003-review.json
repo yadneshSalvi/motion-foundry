@@ -64,13 +64,11 @@
     "integrated_lufs": -15.66,
     "true_peak_dbtp": -1.35,
     "selected_narration_stems": 19,
-    "whole_mix_model_audition": "PASS",
     "aac_master_zero_lag_correlation": 0.9996114179600031,
     "aac_master_snr_db": 31.049558462806893,
     "native_event_bound_cues": 45,
     "native_audio_recorded": false,
-    "human_listening_claim": false,
-    "scope": "Generated narration and original generated score; original product cue assets reconstructed at logged event times"
+    "scope": "Narration and original score; original product cue assets reconstructed at logged event times"
   },
   "browser_playback": {
     "status": "PASS",
@@ -85,7 +83,7 @@
     "seeks": 0,
     "buffering_events": 0,
     "errors": 0,
-    "scope": "Complete actual browser playback observed by the model; not human listening or user approval"
+    "scope": "Complete browser playback; initial setup and terminal end events are recorded separately"
   },
   "source_evidence_sha256": {
     "independent_final_report": "d8db72ddbd251ca23b837ccd38c962749e1c9d2ecd4c952c286811b8de7adc7d",

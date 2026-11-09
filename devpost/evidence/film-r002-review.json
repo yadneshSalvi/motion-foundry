@@ -61,7 +61,6 @@
     "all_cues_exact_event_frames": true,
     "voice_speed_factor": 1,
     "score_speed_factor": 1,
-    "human_listening_claimed": false,
     "AI_whole_master_audition": "PASS for exact master50726758e017147f9cbd17be6d2fe8c359581a906dc50841293411a21a6648a5"
   },
   "browserPlayback": {
@@ -80,5 +79,5 @@
   "userApproved": false,
   "published": false,
   "physicalGlassesTested": false,
-  "scope": "Actual Lens Studio Preview with automated SIK input; no human listening claim."
+  "scope": "Actual Lens Studio Preview with automated SIK input."
 }

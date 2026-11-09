@@ -1,0 +1,38 @@
+{
+  "project": "motion-foundry",
+  "published_at_ist": "2026-11-10T01:26:17.853771+05:30",
+  "video_url": "https://youtu.be/6Qy_kei3IiA",
+  "watch_url": "https://www.youtube.com/watch?v=6Qy_kei3IiA",
+  "channel": "@YadneshSalvi-k8q",
+  "channel_id": "UCcnzM3CV0BpoFiUL2C4ZIfg",
+  "title": "Motion Foundry | Draw a Shape. Find the Machine That Draws It. | Learn AR with SPECS",
+  "visibility": "public",
+  "youtube_checks": "No issues found",
+  "captions": "English, uploaded reviewed SRT",
+  "thumbnail": "custom thumbnail uploaded",
+  "playback": "1920x1080, normal speed, English captions, no media error; browser playback spot check",
+  "anonymous_access": "YouTube oEmbed returned exact title and intended channel without credentials",
+  "artifacts": {
+    "video": {
+      "name": "motion-foundry-r004.mp4",
+      "bytes": 32095785,
+      "sha256": "6fdb5037d5526124c4e0db5e32e2e4bd8a62e8d0c2c6240752d32dcbecade921"
+    },
+    "captions": {
+      "name": "motion-foundry-r004.srt",
+      "bytes": 3002,
+      "sha256": "1748f575fbd3685b49cd4df964497af62c81b6cb6d31f77c61886802147f3a75"
+    },
+    "thumbnail": {
+      "name": "thumbnail-r004.jpg",
+      "bytes": 212554,
+      "sha256": "c4d7ba7bbf550c27872109de26f36c2287021084050be04b283eea0f92890f8e"
+    },
+    "description": {
+      "name": "youtube-description.txt",
+      "bytes": 525,
+      "sha256": "6ac214f3375d78cfe9ee9ede03e2dbb849ed9e920b2434ebaf9db7a6d04c8cfb"
+    }
+  },
+  "scope": "Publication receipt; exact original delivery bytes preserved."
+}
