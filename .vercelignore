@@ -4,6 +4,7 @@ plans/
 .env.*
 lens/
 lens-src/
+tests/
 artifacts/raw/
 .local-setup/
 node_modules/
