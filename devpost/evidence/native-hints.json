@@ -1,0 +1,57 @@
+{
+  "schema": "motion-foundry/native-hint-review@1",
+  "date": "2026-11-09",
+  "status": "PASS",
+  "scope": "Final hint lifetime check in Lens Studio Preview. This is separate from the earlier recorded film and does not establish physical Spectacles testing.",
+  "source": {
+    "file": "lens-src/WorkbenchHints.ts",
+    "sha256": "1d9e44f4688e3416adba3583f2f9190fb118b179eca3e598437cc7be526c6077",
+    "native_mirror_matches": true,
+    "official_package": "3D Hints 2.0.0"
+  },
+  "policy": {
+    "animation": "Once per relevant visible encounter",
+    "after_animation": "Retain the visible pose until the target leaves the encounter or the gesture succeeds",
+    "permanent_dismissal": "Actual successful gesture only",
+    "package_source_modified": false
+  },
+  "observed": {
+    "visible_past_original_timeout_seconds": 13.144811667007161,
+    "hidden_on_field_of_view_exit": true,
+    "reoffered_on_reentry_seconds": 24.304669250006555,
+    "static_pose": {
+      "time": 3.2178549766540527,
+      "fromElapsed": 5.090260208002292,
+      "toElapsed": 12.193865374982124,
+      "observations": 8
+    },
+    "clip": {
+      "duration_seconds": 4,
+      "begin_seconds": 0,
+      "end_seconds": 4,
+      "playback_mode": "Single"
+    },
+    "actual_sik_crank_success": true,
+    "dismissed_after_success": true,
+    "input_hash_after_success": "fnv1a-b67d169e",
+    "input_unchanged": true,
+    "diagnostic_limit": "The native getClipIsPlaying flag remains true for the retained Single pose. The snapshot holding flag is not proof of motion; the stationary clip clock and visible mesh establish the hold."
+  },
+  "validation": {
+    "focused_policy_tests": 4,
+    "full_suite_tests": 63,
+    "test_files": 8,
+    "native_typecheck": "PASS",
+    "native_compile": "PASS",
+    "fresh_product_startup": "PASS",
+    "temporary_probe_removed": true,
+    "scene_sha256": "a99a467d2fb694655a6286a56b16d7991e9f653844ea0153c55640fcbf1be5ef",
+    "host_warning": "The host logged an authentication transport warning during startup. No product runtime error or test-runner startup remained."
+  },
+  "source_record_sha256": {
+    "mf-hint-native-01.json": "9c3465455fa3658965357e72c3a6eac5c444d7a9c59aff6269b3dbe4efe64953",
+    "mf-hint-native-02.json": "4ee073d49c65358f871168a36b9a128c429381feacc24cbdbe7400ceb65b6868",
+    "motion-foundry-shipping-startup-hint09.json": "213e268ccf840d453bb6466c96a5c5f25112f44f8044fc06885759ce8954dc6d"
+  },
+  "hardware_tested": false
+}

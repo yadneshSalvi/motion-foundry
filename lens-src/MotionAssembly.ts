@@ -1,3 +1,4 @@
+/** Retained Petal sculpture. The shipping native workbench instantiates LoopAssembly instead. */
 import {evaluateMechanism, MechanismParameters, DesignInput, Vec2} from "./MotionDomain";
 /** Every decorative blade is rigidly attached to the computed output rocker. */
 export class MotionAssembly {

@@ -1,0 +1,84 @@
+{
+  "schema": "motion-foundry-gallery/v1",
+  "captured_date": "2026-11-09",
+  "environment": "Lens Studio Preview, Sunlit Room",
+  "images": [
+    {
+      "file": "media/native-workbench-hero.png",
+      "sha256": "9e40e2e39a4159ea3cf63738295307ab532a5c32e200f1ee7274e5ef43b1fdf5",
+      "source_sha256": "794b3cbc9fa1189676c87c3a824bc3a63ae4fb21e0ba48138ebb1e2bf07b4fef",
+      "source_frame": 2104,
+      "source_seconds": 70.13333333333334,
+      "fixed_crop": [
+        390,
+        386,
+        1920,
+        1080
+      ],
+      "output_dimensions": [
+        1920,
+        1080
+      ],
+      "description": "Fresh captured drawing and the returned mechanism",
+      "processing": "Exact accepted native crop; no resizing, repainting, background replacement or compositing"
+    },
+    {
+      "file": "media/native-workbench-draw.png",
+      "sha256": "20ec4ca70fddf91cfe27370fa7a8b76b28278d3174b197cdb3073d8b2f842abd",
+      "source_sha256": "794b3cbc9fa1189676c87c3a824bc3a63ae4fb21e0ba48138ebb1e2bf07b4fef",
+      "source_frame": 990,
+      "source_seconds": 33.0,
+      "fixed_crop": [
+        390,
+        386,
+        1920,
+        1080
+      ],
+      "output_dimensions": [
+        1920,
+        1080
+      ],
+      "description": "Actual scripted SIK pinch and drawing nib",
+      "processing": "Exact accepted native crop; no resizing, repainting, background replacement or compositing"
+    },
+    {
+      "file": "media/native-workbench-repair.png",
+      "sha256": "d5d0bb83a719f23d41a8424f6e1316841ff9daab01069ac75fa094e8d9d8ec47",
+      "source_sha256": "794b3cbc9fa1189676c87c3a824bc3a63ae4fb21e0ba48138ebb1e2bf07b4fef",
+      "source_frame": 3114,
+      "source_seconds": 103.8,
+      "fixed_crop": [
+        390,
+        386,
+        1920,
+        1080
+      ],
+      "output_dimensions": [
+        1920,
+        1080
+      ],
+      "description": "Full repaired cycle with the same drawing and mug",
+      "processing": "Exact accepted native crop; no resizing, repainting, background replacement or compositing"
+    },
+    {
+      "file": "media/native-workbench-center.png",
+      "sha256": "05b747f8c0757272cc4a829b8481ab73096f43624841c82b51a0dc21f5c00dfd",
+      "source_sha256": "794b3cbc9fa1189676c87c3a824bc3a63ae4fb21e0ba48138ebb1e2bf07b4fef",
+      "source_frame": 6030,
+      "source_seconds": 201.0,
+      "fixed_crop": [
+        390,
+        386,
+        1920,
+        1080
+      ],
+      "output_dimensions": [
+        1920,
+        1080
+      ],
+      "description": "Actual additive Center simulation",
+      "processing": "Exact accepted native crop; no resizing, repainting, background replacement or compositing"
+    }
+  ],
+  "scope": "Scripted visible SIK hands and an actual native room simulation. No physical Spectacles or phone camera capture. Mug is a manually sized stand-in."
+}

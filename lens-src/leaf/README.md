@@ -1,41 +1,30 @@
-# Native workbench scenarios
+# Native workbench LEAF scenarios
 
-These sources target the installed **LEAF 2.0.2** runtime and the project's existing Spectacles Interaction Kit. They typecheck against the installed package sources. **Authoring and compilation are not a recorded scenario pass.** The editor owner must register, run, and retain the actual Preview report.
+These test-only scripts use installed LEAF and SIK. Root owns synchronization, editor, camera and capture; the registry is imported through the existing LeafIndex component.
 
-The test-only path interactor extends LEAF's `DefaultLeafInteractor` and supplies a sequence of standard SIK ray-pinch positions. It never calls product action handlers, mutates product input, installs a cached result, or replaces a network response. This is simulated test input, not evidence of physical hand tracking.
+- `motion-workbench-draw-solve-crank-repair`: start a fresh Preview. A visible synthetic right hand draws a reference-derived stroke translated +0.06 cm, closes by the product's endpoint snap, obtains a real HTTPS result, turns the crank, touches the empty mug outline, turns to actual contact, and requests a fresh same-input repair. Assertions require physical overlap before repair, exact stroke/mount/fit/constraint preservation, a visible contact ring, scheduled contact audio, and independent local acceptance of the real result.
+- `motion-workbench-direct-reach-and-undo`: fresh Preview at the near working pose. Existing IK direct crank reach runs without an avatar visualizer, disposes its wrapper, then the shared hand edits the mount. More → Tools → Undo restores the snapshot. It does not fall back to indirect reach.
+- `motion-workbench-film-rehearsal`: fresh Preview with WARN logging and no diagnostic cameras. See FILM_REHEARSAL.md.
+- `motion-workbench-export-film`: continue a valid HTTPS mug-repair result from the journey/rehearsal. Save uses a visible synthetic hand; the actual returned QR and URL must preserve that current design. See EXPORT_FILM.md.
 
-## Source-confirmed scene snapshot
+The first three scenarios explicitly reject modified Preview state. They never install a fixture or replace user work to reset. Tools navigation exposes Undo when its on-object chip has expired.
 
-| Object | Component or role | Expected relationship |
-| --- | --- | --- |
-| `Motion Foundry workbench` | Runtime product root | Parent contains the `MotionFoundry` component and public state snapshot. |
-| `Tabletop linkage` | Board coordinate frame | One local unit is one centimetre; world transform includes table yaw and the flat-plane rotation. |
-| `Workbench drawing surface` | `PlanarInteraction` / SIK Interactable | Active in drawing state; an open stroke awaits Done. |
-| `Workbench crank knob` | `PlanarInteraction` / SIK Interactable | Drag changes physical crank phase, not input revision/hash. |
-| `Workbench movable mount` | `PlanarInteraction` / SIK Interactable | One completed nonzero drag creates one revision; no-motion input creates none. |
-| `Workbench action left` | UIKit Button subtree | First action in two/three-action states. |
-| `Workbench action middle` | UIKit Button subtree | Sole action, or second action in two/three-action states. |
-| `Workbench action right` | UIKit Button subtree | Third action in three-action states. |
+WorkbenchPathInteractor gets the official shared right hand. The visible SIK mesh is oriented with the reviewed relaxed hand basis toward (−0.55, −0.10, −0.83), so fingers point left and away and the wrist enters from the lower right. Gestures use 120 ms and rotations 150 ms; rotation/gesture animations never use zero duration. Every sample measures wrist minus the actual index/thumb midpoint and places that midpoint at the intended Direct anchor. The Direct test channel uses that anchor and a tiny direction parallel to the posed fingers. Trigger, hover and drag all use this posed route rather than the SDK's unrotated constant offset. Every release retreats for 350 ms and hides the hand during playback/solve.
 
-Names are read from the canonical authored source. Each active lookup also checks the actual runtime object, hierarchy, collider and current action. No object was renamed to satisfy a test.
+Continuous paths bridge only installed BaseLeafInteractor's protected test-input fields, with public startSelecting/stopSelecting; no product method, result callback or collision callback is invoked. Genuine SIK trigger start/end observations have bounded waits. Default Direct targeting is retained. This is scripted synthetic input, not physical hand recognition or a freehand drawing claim.
 
-## Registered scenarios
+Additional takes in WorkbenchControlsFilm (WARN, 150-second runner deadline):
 
-- `motion-workbench-draw-solve-crank-repair`: navigate through real controls to Reference; draw an open path; explicitly close it; await a new HTTPS result and local verification; turn the physical crank; check growing kinematic ink; load the declared keep-out study; prove the old crank physically meets the provided low container and the new result preserves every input field while clearing the sampled constraint. The final audio snapshot must report no failure; when all cues are configured, tick/contact/clear must each have been scheduled at least once. This checks scheduling, not microphone output.
-- `motion-workbench-direct-reach-and-undo`: reset through controls; require the crank to route directly at the chosen seated/near camera pose; use the supported `IKBodyInteractor` with diagnostic policy **fail-fast**, without the optional camera-anchored avatar visualizer; then use the shared right-hand interactor for a mount drag, no-motion grab/release, and exact Undo.
+- `motion-workbench-controls-film`: fit 3→2→3 mm, mug radius 4.5→5→4.5 cm, mount +1 cm and its actual Undo chip, then fresh HTTPS solve of the final exact input.
+- `motion-workbench-fit-film`: only the fit dial action, followed by a fresh HTTPS solve.
+- `motion-workbench-mug-film`: only the rim sizing action, followed by a fresh HTTPS solve. Touches the actual empty ring first if no mug has been added.
+- `motion-workbench-mount-film`: mount +1 cm and Undo. Asserts exact original input and mechanism restoration; it makes no new HTTPS receipt claim.
+- `motion-workbench-placement-film`: More → Place, wait at most 20 seconds for an actual WorldQuery hit, then the hand pinches Place here. Root must aim the camera at a real Preview table. No hit or placement pose is injected. Placement must preserve the exact design input and increment the real placement commit count.
+- `motion-workbench-opening-film`: a visible hand turns the actual crank, then retreats while the real ink continues. Requires a currently verified machine, and preserves the exact input/candidate.
 
-A separate [exact-design export capture test](EXPORT_FILM.md) reconstructs the accepted Study through real controls and opens its actual share tag. It has its own capture registry and requires fresh Preview revision 0.
+Controls take preconditions: finish any active edit/draw/solve/share first; fit starts at 3 mm and mug at radius 4.5 cm. These takes can start after a repaired main rehearsal; standalone fit/mug takes also support the original starter. A direct edit invalidates freshness even when final dimensions return, so fit/mug/combined takes require their own new HTTPS result. Receipts print current input hashes and exact snapshots; no previous observed hash or mechanism is hard-coded. Root owns framing and capture for every take.
 
-A third, separate [film rehearsal](FILM_REHEARSAL.md) uses the same SIK dispatch with deliberate pacing, real backend waits and two complete physical cycles. It is Preview-only, has no hand mesh, and explicitly distinguishes the second Study case from the preceding drawing. It does not replace either acceptance scenario.
+Native Preview execution and screenshots remain required; local numeric feasibility and TypeScript checks do not prove rendering or physical device behavior.
 
-The open path uses 59 points from the current reference stroke translated by 0.06 cm. The offline numerical probe found a 1.8842 cm endpoint gap and a fresh fit below 0.30 cm after explicit closure. The scenario still requires a fresh service response; it cannot pass from that offline result. Assertions use the before/after revision, full input, candidate, alternatives and receipt state, rather than assuming an absolute starting revision.
 
-The direct-reach test releases its IK driver through the supported `destroy()` API before acquiring the shared right-hand driver. Both original tracking parents must be restored first; this prevents overlapping wrappers from corrupting teardown. An indirect route, convergence error or unreachable target fails the direct-reach gate. A useful far-field interaction must not be reported as a direct-reach pass. Any loading failure or diagnostic warning must remain in the report. No result here establishes hardware comfort or tracking accuracy.
-
-## Editor integration
-
-1. Outside an active native test, run `npm run lens:sync`. It mirrors this directory to `lens/Assets/Scripts/leaf/` along with product source.
-2. In a test working copy, use native Lens Studio MCP to create a temporary `LeafIndex` SceneObject and attach the `leaf/LeafIndex.ts` script asset. Do not attach the scenario classes directly. The production scene intentionally has no active index.
-3. Open the installed LEAF panel. It creates the temporary `LEAF Plugin Bridge` with `Leaf.lspkg/Scenarios/scenario/MessagingBridge.ts`; do not add a duplicate bridge. Compile, select Preview as LEAF's target, wait for scenario registration, and run the journey at the accepted table viewpoint. Record its report and runtime interval.
-4. Move to the intended direct-reach viewpoint and run the reach scenario. Preserve diagnostic failures; adjust the product placement only if a real interaction finding warrants it.
-5. Close the LEAF panel so its bridge is torn down, remove the temporary index attachment and inspection helpers, restart Preview and save the clean production scene. Keep source and reports for reproduction. Retained LEAF 2.0.2 and Bitmoji 3D 10.0.1 packages are test dependencies; no Bitmoji avatar is part of the product.
+Film audio receipts: the rehearsal, every controls mode and export bind one read-only UpdateEvent observer while running. `product-audio-cue` records deltas in tick/contact/clear counters, cumulative counts and wall/Lens clocks within the take's runId/eventNumber stream. Multiple cues in one frame can be coalesced into one delta receipt. These are product sound-scheduling observations for video-only capture, not recorded sound. The observer never schedules audio and removes both its update and destroy events on completion, failure or destruction.

@@ -1,29 +1,31 @@
-# Motion Foundry — actual Preview gallery
+# Motion Foundry in Preview
 
-These are fixed crops of independently accepted Lens Studio Preview frames in Sunlit Room. No room background, product UI or mechanism was added in post-production. The [capture record](evidence/native-tabletop-captures.json) binds every image to its source frame, hash and approved crop.
+A closed drawing becomes a moving linkage on the workbench. These four images show the actual Lens running in Sunlit Room.
 
-## Draw a machine
+## The workbench
 
-![The new computed linkage after completing its physical ink cycle](media/native-tabletop-overview.png)
+![Returned mechanism on the workbench](media/native-workbench-hero.png)
 
-The captured drawing produced a new linkage with 0.064951 cm maximum error under a 0.30 cm limit. This take used an automated SIK gesture following a supplied reference-path stroke. The ink comes from actual linkage poses; it is not target interpolation or human freehand footage.
+Turn the crank to move the links and trace the drawing. The fit dial and mount are physical controls beside the parts.
 
-## A separate reference study
+## Drawing by hand
 
-![The reference crank contacting the provided low container](media/native-tabletop-contact.png)
+![Visible scripted hand drawing on the board](media/native-workbench-draw.png)
 
-Study loads its own reference drawing and the provided 9 cm diameter × 4 cm high container. The original crank physically overlaps the declared envelope by 0.050 cm. Including the requested separation, the signed margin is −0.210 cm. The native contact label is partly occluded at this pose; the red rod and container are the visible witness.
+The nib follows the pinch point. Returning close enough to the start snaps the loop closed; the actual captured points become the next request.
 
-![The repaired Study after its complete physical cycle](media/native-tabletop-repaired.png)
+## Clearing the mug
 
-Fresh HTTPS synthesis keeps every Study input unchanged and replaces the mechanism. The selected crank is 3.766742 cm, maximum error is 0.242353 cm, and sampled margin after required separation is +0.023258 cm. These are sampled rod checks, not a fabrication or continuous-collision guarantee.
+![Repaired mechanism tracing the same drawing beside the mug](media/native-workbench-repair.png)
 
-## Inspect it in space
+The new crank completes its turn beside the mug while the drawing, mounts and allowed gap stay fixed. The magenta trace comes from the moving mechanism.
 
-![Actual native orbit showing rod layers and table placement](media/native-tabletop-depth.png)
+## Glasses simulation
 
-The camera moves in the native Preview room. Rod layers and through-axles provide depth cues. Axles, clamps, the large grip and pen hardware remain outside the solver's declared rod-clearance scope.
+![Motion Foundry in the actual additive Center simulation](media/native-workbench-center.png)
 
-The actual SPECS Center capture is retained as a separate [verification image](media/native-tabletop-center.png), not a primary gallery frame. It preserves the native tint and wider view and makes no physical-glasses or comfort claim.
+Bright rods, ink and control rims remain distinct in the additive Preview mode.
 
-The revised side-tag and exact companion handoff are being captured separately. Earlier large-card or different-geometry exports are not reused as proof of this revised design.
+## Scope
+
+These are native Preview images with scripted SIK input, not physical glasses photographs. The mug is a manually sized stand-in; there is no automatic object recognition or measurement. Numerical checks cover the modeled rods and obstacle. See [Scope](../README.md#scope), [verification](verification.md) and the [image provenance](evidence/native-workbench-gallery.json).

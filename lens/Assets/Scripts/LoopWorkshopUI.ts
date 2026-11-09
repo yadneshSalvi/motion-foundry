@@ -2,75 +2,86 @@ import {FlexLayout} from "SpectaclesUIKit.lspkg/Scripts/Components/Layout2D/Flex
 import {FlexItem} from "SpectaclesUIKit.lspkg/Scripts/Components/Layout2D/Flex/FlexItem";
 import {FlexAlign,FlexDirection,FlexJustify} from "SpectaclesUIKit.lspkg/Scripts/Components/Layout2D/Flex/FlexTypes";
 import {Button} from "SpectaclesUIKit.lspkg/Scripts/Components/Button/Button";
-import {Slider} from "SpectaclesUIKit.lspkg/Scripts/Components/Slider/Slider";
 import Event from "SpectaclesInteractionKit.lspkg/Utils/Event";
+import {applyWorkbenchText,styleWorkbenchButton,setWorkbenchOpacity} from "./WorkbenchStyle";
+export {WORKBENCH_TYPE} from "./WorkbenchStyle";
 
-export const WORKBENCH_TYPE={button:{size:34,weight:600},label:{size:29,weight:500},detail:{size:29,weight:500}};
 export type WorkbenchAction={id:string;label:string};
-export type LoopUiState={page:string;actions:WorkbenchAction[];phase?:number;showPhase?:boolean};
+export type LoopUiState={page:string;actions:WorkbenchAction[];undo?:{position:vec3;rotation:quat}};
+type Tool={root:SceneObject;label:Text;button:Button;action:string;pressed:string};
 
-type Tool={root:SceneObject;label:Text;action:string;pressed:string};
-
-/** Three persistent UIKit tools, with no dashboard or mode tabs. */
+/** Three persistent UIKit slots. A contextual Undo chip uses one of the same budget. */
 @component
 export class LoopWorkshopUI extends BaseScriptComponent {
   public readonly onAction=new Event<string>();
-  public readonly onPhase=new Event<number>();
+  public readonly onEngaged=new Event<void>();
   private tools:Tool[]=[];
+  private undo:Tool;
   private row:SceneObject;
-  private sliderRoot:SceneObject;
-  private slider:Slider;
   private page="idle";
-  private updating=false;
   private state:LoopUiState={page:"idle",actions:[{id:"draw",label:"Draw"}]};
   private started=false;
+  private opacity=1;
 
   onAwake(){
     this.sceneObject.createComponent("Component.Canvas");
     this.row=this.object(this.sceneObject,"Workbench contextual tools");
     const flex=this.row.createComponent(FlexLayout.getTypeName()) as FlexLayout;
     flex.autoDiscoverItemsOnStart=false;
-    flex.onInitialized.add(()=>{flex.direction=FlexDirection.Row;flex.width=30.4;flex.height=5;flex.columnGap=1.4;flex.rowGap=1.4;flex.alignItems=FlexAlign.Center;flex.justifyContent=FlexJustify.Center;});
+    flex.onInitialized.add(()=>{flex.direction=FlexDirection.Row;flex.width=31.6;flex.height=5;flex.columnGap=2;flex.rowGap=2;flex.alignItems=FlexAlign.Center;flex.justifyContent=FlexJustify.Center;});
     for(const name of ["left","middle","right"]){
       const item=this.object(this.row,"Workbench tool slot "+name),layout=item.createComponent(FlexItem.getTypeName()) as FlexItem;
       layout.overrideWidth=9.2;layout.overrideHeight=5;layout.flexShrink=0;flex.addItems([layout]);
-      const root=this.object(item,"Workbench action "+name),button=root.createComponent(Button.getTypeName()) as Button;
-      button.playAudio=true;button.onInitialized.add(()=>button.size=new vec3(9.2,5,1));
-      const label=this.label(root,"",8.6,4.3),tool:Tool={root,label,action:"",pressed:""};this.tools.push(tool);
-      button.onTriggerDown.add(()=>tool.pressed=tool.action);
-      button.onTriggerUp.add(()=>{const action=tool.pressed;tool.pressed="";if(action&&action===tool.action)this.onAction.invoke(action);});
+      this.tools.push(this.tool(item,"Workbench action "+name,9.2,5));
     }
-    this.sliderRoot=this.object(this.sceneObject,"Workbench optional phase control");
-    this.sliderRoot.getTransform().setLocalPosition(new vec3(0,3.6,0));
-    this.slider=this.sliderRoot.createComponent(Slider.getTypeName()) as Slider;
-    this.slider.size=new vec3(27,3.8,1);this.slider.currentValue=0;this.slider.playAudio=true;
-    this.slider.onValueChange.add(value=>{if(!this.updating&&this.state.showPhase)this.onPhase.invoke(value);});
+    this.undo=this.tool(this.sceneObject,"Workbench undo chip",6.2,4);
+    this.undo.action="undo";this.undo.label.text="Undo";
     this.createEvent("UpdateEvent").bind(()=>{if(!this.started){this.started=true;this.apply();}});
   }
   public setState(state:LoopUiState){
-    if(state.actions.length+(state.showPhase?1:0)>3)throw Error("Workbench states may contain at most three primary targets");
+    if(state.actions.length+(state.undo?1:0)>3)throw Error("Workbench UI may contain at most three buttons, including Undo and Back");
     this.state=state;this.page=state.page;if(this.started)this.apply();
+  }
+  public setOpacity(value:number){
+    this.opacity=Math.max(0,Math.min(1,value));
+    if(!this.started)return;
+    for(const tool of [...this.tools,this.undo]){
+      setWorkbenchOpacity(tool.button,this.opacity);
+      tool.label.textFill.color=new vec4(1,1,1,this.opacity);
+      if(tool.button.initialized)tool.button.inactive=this.opacity<.2;
+    }
   }
   public getPage(){return this.page;}
   public getActions(){return this.state.actions.map(a=>({...a}));}
+  public undoVisible(){return!!this.state.undo;}
   private apply(){
     const active=this.state.actions,indices=active.length===1?[1]:active.length===2?[0,1]:[0,1,2];
-    const t=this.row.getTransform();t.setLocalPosition(new vec3(active.length===2?5.3:0,this.state.showPhase?-2.5:0,0));
+    this.row.getTransform().setLocalPosition(new vec3(active.length===2?5.6:0,0,0));
     this.tools.forEach((tool,index)=>{
       const position=indices.indexOf(index),action=position>=0?active[position]:undefined;
       tool.action=action?.id||"";
       if(action&&tool.label.text!==action.label)tool.label.text=action.label;
       if(tool.root.enabled!==!!action)tool.root.enabled=!!action;
     });
-    if(this.sliderRoot.enabled!==!!this.state.showPhase)this.sliderRoot.enabled=!!this.state.showPhase;
-    this.updating=true;if(this.state.phase!==undefined)this.slider.currentValue=this.state.phase;this.updating=false;
+    const undo=this.state.undo;
+    if(this.undo.root.enabled!==!!undo)this.undo.root.enabled=!!undo;
+    if(undo){this.undo.root.getTransform().setWorldPosition(undo.position);this.undo.root.getTransform().setWorldRotation(undo.rotation);}
+    this.setOpacity(this.opacity);
+  }
+  private tool(parent:SceneObject,name:string,width:number,height:number):Tool{
+    const root=this.object(parent,name),button=root.createComponent(Button.getTypeName()) as Button;
+    const face=styleWorkbenchButton(button,new vec3(width,height,1));
+    const label=this.label(face,"",width-.8,height-.5),tool:Tool={root,label,button,action:"",pressed:""};
+    button.onHoverEnter.add(()=>this.onEngaged.invoke());
+    button.onTriggerDown.add(()=>{tool.pressed=tool.action;this.onEngaged.invoke();});
+    button.onTriggerUp.add(()=>{const action=tool.pressed;tool.pressed="";if(action&&action===tool.action)this.onAction.invoke(action);});
+    return tool;
   }
   private object(parent:SceneObject,name:string){const o=global.scene.createSceneObject(name);o.setParent(parent);return o;}
   private label(parent:SceneObject,value:string,w:number,h:number){
-    const o=this.object(parent,"Tool label");o.getTransform().setLocalPosition(new vec3(0,0,.12));
-    const t=o.createComponent("Component.Text") as Text;t.text=value;t.depthTest=true;t.size=WORKBENCH_TYPE.button.size;
-    (t as Text&{weight?:number}).weight=WORKBENCH_TYPE.button.weight;
-    t.textFill.color=new vec4(.93,.98,.92,1);t.horizontalAlignment=HorizontalAlignment.Center;t.verticalAlignment=VerticalAlignment.Center;
+    const o=this.object(parent,"Tool label");o.getTransform().setLocalPosition(new vec3(0,0,.16));
+    const t=o.createComponent("Component.Text") as Text;t.text=value;applyWorkbenchText(t,"button");
+    t.horizontalAlignment=HorizontalAlignment.Center;t.verticalAlignment=VerticalAlignment.Center;
     t.horizontalOverflow=HorizontalOverflow.Wrap;t.verticalOverflow=VerticalOverflow.Overflow;t.layoutRect=Rect.create(-w/2,w/2,-h/2,h/2);return t;
   }
 }

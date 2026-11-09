@@ -1,0 +1,491 @@
+{
+  "schema": "motion-foundry-public-native-gestures/v1",
+  "date": "2026-11-09",
+  "environment": "Lens Studio 5.23.2, Sunlit Room, SPECS device override, SIK, UIKit and LEAF 2.0.2",
+  "method": "Actual synthetic-hand SIK interactions, real HTTPS synthesis, independent local verification and native runtime assertions. Drawing is a scripted reference-derived stroke, not a person performing freehand.",
+  "scope": "Interaction tests, separate from source-clock and encoded-film review. Audio values are scheduling counters, not an acoustic recording.",
+  "records": [
+    {
+      "scenario": "draw-crank-repair",
+      "sourceRecordSha256": "f88daa5e32f088c589363814c7e218f06d375fe097aa6f7bc429c764d8b162a0",
+      "observations": [
+        {
+          "event": "draw-close-solve",
+          "data": {
+            "revision": 1,
+            "inputHash": "fnv1a-954c01b8",
+            "errorCm": 0.05498574053619036
+          }
+        },
+        {
+          "event": "crank-and-ink",
+          "data": {
+            "phaseChange": 1.5369304929989838,
+            "inputHash": "fnv1a-954c01b8",
+            "inkPoints": 209
+          }
+        },
+        {
+          "event": "physical-mug-contact-visible",
+          "data": {
+            "phase": 3.1415911913467136,
+            "audio": {
+              "tick": 6,
+              "contact": 1,
+              "clear": 2,
+              "failed": false,
+              "voiceCount": 3,
+              "configured": {
+                "tick": true,
+                "contact": true,
+                "clear": true
+              }
+            },
+            "verification": {
+              "valid": false,
+              "failures": [
+                "Obstacle capsule collision",
+                "Attachment obstacle capsule collision"
+              ],
+              "maxFitErrorCm": 0.05498574053619036,
+              "rmsFitErrorCm": 0.01621776350742732,
+              "maxClosureErrorCm": 8.881784197001252e-15,
+              "minClearanceCm": -0.21456879508090113,
+              "sampleCount": 720,
+              "scope": "sampled",
+              "limitations": [
+                "Clearance checked only at reported phase samples; collisions between samples are not excluded.",
+                "Adjacent pivot neighborhoods (3 link radii plus clearance) are exempt. Capsule endpoints model joint radii; inter-layer axles are not modeled.",
+                "No load, bearing, fabrication or physical manufacturability validation.",
+                "Fit compares ordered closed arc-length correspondence, with the first drawn point anchored to startingPhaseRad. Crank speed remains uniform during playback.",
+                "Attachment triangle rods B\u2192point and C\u2192point are checked against obstacles and other links with the same declared layer and pivot exemptions. Contacts within the rigid attachment/coupler triangle, inter-layer axles and pen hardware are excluded."
+              ],
+              "inputHash": "fnv1a-7170849c",
+              "verifierVersion": "coupler-loop-1.0",
+              "fitWitness": {
+                "phaseRad": 6.47800454037851,
+                "desired": {
+                  "x": 6.96011964125634,
+                  "y": 8.952173780595801
+                },
+                "actual": {
+                  "x": 7.0063003432926685,
+                  "y": 8.922327936299734
+                },
+                "errorCm": 0.05498574053619036,
+                "sampleIndex": 124
+              },
+              "collisionWitness": {
+                "phaseRad": 3.141592653589793,
+                "geometry": "crank",
+                "obstacleId": "provided-container",
+                "location": {
+                  "x": -4.0045687950809015,
+                  "y": 4.904182356861199e-16
+                },
+                "marginCm": -0.21456879508090113
+              }
+            }
+          }
+        },
+        {
+          "event": "contact-repair",
+          "data": {
+            "inputHash": "fnv1a-7170849c",
+            "oldCrankCm": 4.0045687950809015,
+            "newCrankCm": 3.766752083631774,
+            "errorCm": 0.2517224292406452,
+            "sampledMarginCm": 0.023247916368226512
+          }
+        },
+        {
+          "event": "spatial-audio-scheduling",
+          "data": {
+            "tick": 6,
+            "contact": 1,
+            "clear": 3,
+            "failed": false,
+            "voiceCount": 3,
+            "configured": {
+              "tick": true,
+              "contact": true,
+              "clear": true
+            }
+          }
+        }
+      ],
+      "runtimePassed": true
+    },
+    {
+      "scenario": "direct-reach-and-undo",
+      "sourceRecordSha256": "9ef6d23c2876091acf10be103fcc177dcc8410637a7458d08a26a4b53cbb0f64",
+      "observations": [
+        {
+          "event": "direct-crank-reach",
+          "data": {
+            "diagnostics": "",
+            "inputHash": "fnv1a-b67d169e"
+          }
+        },
+        {
+          "event": "ik-disposed-before-shared-hand",
+          "data": {
+            "restoredParents": [
+              {
+                "side": "left",
+                "parent": "LeftHandModelOwner"
+              },
+              {
+                "side": "right",
+                "parent": "RightHandModelOwner"
+              }
+            ]
+          }
+        },
+        {
+          "event": "mount-edit-undo",
+          "data": {
+            "editedRevision": 1,
+            "restoredRevision": 0,
+            "inputHash": "fnv1a-b67d169e"
+          }
+        }
+      ],
+      "runtimePassed": true
+    },
+    {
+      "scenario": "physical-controls",
+      "sourceRecordSha256": "cbedd3ecdb66945a1a0b125bc5fee8c2a84d571c405065f1d849d41d5451fb45",
+      "observations": [
+        {
+          "event": "initial",
+          "data": {
+            "inputHash": "fnv1a-b67d169e",
+            "fitCm": 0.3,
+            "mountsCm": 16,
+            "obstacles": [],
+            "verifiedForCurrentInput": true,
+            "sampleCount": 720,
+            "maxFitErrorCm": 0.0170963177871694,
+            "minClearanceCm": 10000,
+            "audio": {
+              "tick": 0,
+              "contact": 0,
+              "clear": 0,
+              "failed": false,
+              "voiceCount": 3,
+              "configured": {
+                "tick": true,
+                "contact": true,
+                "clear": true
+              }
+            }
+          }
+        },
+        {
+          "event": "gesture-end:Workbench fit dial",
+          "data": {
+            "inputHash": "fnv1a-ba6b9438",
+            "fitCm": 0.2,
+            "mountsCm": 16,
+            "obstacles": [],
+            "verifiedForCurrentInput": false,
+            "sampleCount": 720,
+            "maxFitErrorCm": 0.0170963177871694,
+            "minClearanceCm": 10000,
+            "audio": {
+              "tick": 1,
+              "contact": 0,
+              "clear": 0,
+              "failed": false,
+              "voiceCount": 3,
+              "configured": {
+                "tick": true,
+                "contact": true,
+                "clear": true
+              }
+            }
+          }
+        },
+        {
+          "event": "gesture-end:Workbench fit dial",
+          "data": {
+            "inputHash": "fnv1a-19b79970",
+            "fitCm": 0.3,
+            "mountsCm": 16,
+            "obstacles": [],
+            "verifiedForCurrentInput": false,
+            "sampleCount": 720,
+            "maxFitErrorCm": 0.0170963177871694,
+            "minClearanceCm": 10000,
+            "audio": {
+              "tick": 2,
+              "contact": 0,
+              "clear": 0,
+              "failed": false,
+              "voiceCount": 3,
+              "configured": {
+                "tick": true,
+                "contact": true,
+                "clear": true
+              }
+            }
+          }
+        },
+        {
+          "event": "mug-add-end",
+          "data": {
+            "inputHash": "fnv1a-4caab73a",
+            "fitCm": 0.3,
+            "mountsCm": 16,
+            "obstacles": [
+              {
+                "id": "provided-container",
+                "center": {
+                  "x": -8.9,
+                  "y": 0
+                },
+                "radiusCm": 4.5,
+                "layerZCm": 2,
+                "depthCm": 4
+              }
+            ],
+            "verifiedForCurrentInput": false,
+            "sampleCount": 720,
+            "maxFitErrorCm": 0.0170963177871694,
+            "minClearanceCm": -0.20999999999999966,
+            "audio": {
+              "tick": 3,
+              "contact": 0,
+              "clear": 0,
+              "failed": false,
+              "voiceCount": 3,
+              "configured": {
+                "tick": true,
+                "contact": true,
+                "clear": true
+              }
+            }
+          }
+        },
+        {
+          "event": "gesture-end:Workbench mug size handle",
+          "data": {
+            "inputHash": "fnv1a-a2ebb0e7",
+            "fitCm": 0.3,
+            "mountsCm": 16,
+            "obstacles": [
+              {
+                "id": "provided-container",
+                "center": {
+                  "x": -8.9,
+                  "y": 0
+                },
+                "radiusCm": 5,
+                "layerZCm": 2,
+                "depthCm": 4
+              }
+            ],
+            "verifiedForCurrentInput": false,
+            "sampleCount": 720,
+            "maxFitErrorCm": 0.0170963177871694,
+            "minClearanceCm": -0.7099999999999996,
+            "audio": {
+              "tick": 4,
+              "contact": 0,
+              "clear": 0,
+              "failed": false,
+              "voiceCount": 3,
+              "configured": {
+                "tick": true,
+                "contact": true,
+                "clear": true
+              }
+            }
+          }
+        },
+        {
+          "event": "gesture-end:Workbench mug size handle",
+          "data": {
+            "inputHash": "fnv1a-94574ea8",
+            "fitCm": 0.3,
+            "mountsCm": 16,
+            "obstacles": [
+              {
+                "id": "provided-container",
+                "center": {
+                  "x": -8.9,
+                  "y": 0
+                },
+                "radiusCm": 4.5,
+                "layerZCm": 2,
+                "depthCm": 4
+              }
+            ],
+            "verifiedForCurrentInput": false,
+            "sampleCount": 720,
+            "maxFitErrorCm": 0.0170963177871694,
+            "minClearanceCm": -0.20999999999999966,
+            "audio": {
+              "tick": 5,
+              "contact": 0,
+              "clear": 0,
+              "failed": false,
+              "voiceCount": 3,
+              "configured": {
+                "tick": true,
+                "contact": true,
+                "clear": true
+              }
+            }
+          }
+        },
+        {
+          "event": "gesture-end:Workbench movable mount",
+          "data": {
+            "inputHash": "fnv1a-91394702",
+            "fitCm": 0.3,
+            "mountsCm": 17,
+            "obstacles": [
+              {
+                "id": "provided-container",
+                "center": {
+                  "x": -8.9,
+                  "y": 0
+                },
+                "radiusCm": 4.5,
+                "layerZCm": 2,
+                "depthCm": 4
+              }
+            ],
+            "verifiedForCurrentInput": false,
+            "sampleCount": 720,
+            "maxFitErrorCm": 10000,
+            "minClearanceCm": -10000,
+            "audio": {
+              "tick": 6,
+              "contact": 0,
+              "clear": 0,
+              "failed": false,
+              "voiceCount": 3,
+              "configured": {
+                "tick": true,
+                "contact": true,
+                "clear": true
+              }
+            }
+          }
+        },
+        {
+          "event": "undo-chip-end",
+          "data": {
+            "inputHash": "fnv1a-94574ea8",
+            "fitCm": 0.3,
+            "mountsCm": 16,
+            "obstacles": [
+              {
+                "id": "provided-container",
+                "center": {
+                  "x": -8.9,
+                  "y": 0
+                },
+                "radiusCm": 4.5,
+                "layerZCm": 2,
+                "depthCm": 4
+              }
+            ],
+            "verifiedForCurrentInput": false,
+            "sampleCount": 720,
+            "maxFitErrorCm": 0.0170963177871694,
+            "minClearanceCm": -0.20999999999999966,
+            "audio": {
+              "tick": 6,
+              "contact": 0,
+              "clear": 0,
+              "failed": false,
+              "voiceCount": 3,
+              "configured": {
+                "tick": true,
+                "contact": true,
+                "clear": true
+              }
+            }
+          }
+        },
+        {
+          "event": "real-https-solve-complete",
+          "data": {
+            "inputHash": "fnv1a-94574ea8",
+            "fitCm": 0.3,
+            "mountsCm": 16,
+            "obstacles": [
+              {
+                "id": "provided-container",
+                "center": {
+                  "x": -8.9,
+                  "y": 0
+                },
+                "radiusCm": 4.5,
+                "layerZCm": 2,
+                "depthCm": 4
+              }
+            ],
+            "verifiedForCurrentInput": true,
+            "sampleCount": 720,
+            "maxFitErrorCm": 0.24235331508098867,
+            "minClearanceCm": 0.023257869229840494,
+            "audio": {
+              "tick": 6,
+              "contact": 0,
+              "clear": 1,
+              "failed": false,
+              "voiceCount": 3,
+              "configured": {
+                "tick": true,
+                "contact": true,
+                "clear": true
+              }
+            }
+          }
+        },
+        {
+          "event": "complete",
+          "data": {
+            "inputHash": "fnv1a-94574ea8",
+            "fitCm": 0.3,
+            "mountsCm": 16,
+            "obstacles": [
+              {
+                "id": "provided-container",
+                "center": {
+                  "x": -8.9,
+                  "y": 0
+                },
+                "radiusCm": 4.5,
+                "layerZCm": 2,
+                "depthCm": 4
+              }
+            ],
+            "verifiedForCurrentInput": true,
+            "sampleCount": 720,
+            "maxFitErrorCm": 0.24235331508098867,
+            "minClearanceCm": 0.023257869229840494,
+            "audio": {
+              "tick": 6,
+              "contact": 0,
+              "clear": 1,
+              "failed": false,
+              "voiceCount": 3,
+              "configured": {
+                "tick": true,
+                "contact": true,
+                "clear": true
+              }
+            }
+          }
+        }
+      ],
+      "runtimePassed": true
+    }
+  ]
+}

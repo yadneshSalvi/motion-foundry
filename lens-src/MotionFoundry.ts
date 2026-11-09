@@ -20,8 +20,8 @@ export class MotionFoundry extends BaseScriptComponent {
   @input @allowUndefined @hint("Original ratchet tick imported from lens-src/audio/crank-tick.wav.") crankTick:AudioTrackAsset;
   @input @allowUndefined @hint("Original short contact cue.") contactCue:AudioTrackAsset;
   @input @allowUndefined @hint("Original clear/loop-closed chime.") clearCue:AudioTrackAsset;
-  @input @allowUndefined @hint("Optional provided low container, 9 cm diameter × 4 cm tall, Y-up; follows the declared study keep-out.") measuredKeepOutProp:SceneObject;
-  @input @hint("Ask for one WorldQuery surface pinch at startup. False uses the authored, manually measured table pose.") placeOnSurface:boolean=false;
+  @input @allowUndefined @hint("Legacy scene cylinder. The workbench disables it and renders its bounded mug stand-in in Preview only.") measuredKeepOutProp:SceneObject;
+  @input @hint("Preview only: ask for a real WorldQuery surface at startup. Devices always require placement; Preview otherwise uses the saved spot.") placeOnSurface:boolean=false;
   private loop:LoopController;private petalRack:SceneObject;private productMode:"loop"|"petal"="loop";private modeInitialized=false;
   private internet:InternetModule=require("LensStudio:InternetModule");
   private input:DesignInput=nativeInput(makeDefaultInput());private candidate!:Candidate;private ui!:MotionWorkshopUI;private assembly!:MotionAssembly;
@@ -37,6 +37,8 @@ export class MotionFoundry extends BaseScriptComponent {
     this.createEvent("UpdateEvent").bind(()=>this.loop.tick());
     print("[MotionFoundry] Tabletop workbench ready. True centimetres; independent sampled verification.");
   }
+  // Retained Petal handlers below are not reachable from the shipping native UI.
+  // Keep them with the compatible Petal domain/companion; onAwake creates Loop only.
   private setProductMode(mode:"loop"|"petal"){this.productMode=mode;this.assembly.root.enabled=mode==="petal";this.petalRack.enabled=mode==="petal";this.loop.setEnabled(mode==="loop");this.exportCard.hide();this.exportUrl="";if(mode==="petal")this.refresh();}
   private snapshot():Snapshot{return{input:copy(this.input),candidate:copy(this.candidate),candidates:copy(this.candidates),receipt:this.receipt,source:this.source};}
   private checkpoint(){this.history.push(this.snapshot());if(this.history.length>32)this.history.shift();this.generation++;this.solving=false;delete this.input.inputHash;this.input=copy(this.input);this.input.revision++;}

@@ -1,50 +1,61 @@
 # Motion Foundry — design brief
 
-Motion Foundry is a SPECS workbench for kinetic makers exploring how rods and pivots could reproduce a desired motion. Draw a closed loop on a table, synthesize a four-bar linkage, and turn its crank to watch a rigidly attached pen trace the computed path.
+A maker draws the motion they want on a tabletop board. Motion Foundry finds a four-bar linkage and a fixed pen attachment that approximate that path. Turning the crank reveals exactly what the machine draws, including its changing pen speed.
 
-## The spatial moment
+## Why glasses
 
-The maker draws directly on the tabletop board. Make it searches for a mechanism while preserving the drawing, mount spacing, scale, tolerance and obstacles. New rods appear at their declared dimensions. Turning the large crank grows ink from actual coupler positions, including their natural changes in speed.
+Sketch at true scale on the bench where you would build, turn the links by hand, and see where they meet your mug—without carrying a second screen. The drawing, machine and obstacle share one coordinate frame. Walking around reveals the rod layers; approaching reveals the lengths and fitting gap.
 
-A small ring and connector locate the largest fitting error. Approach or inspect the machine to reveal the relevant detail. In the separate provided-container study, the original crank overlaps the declared obstacle; Make it again must find new dimensions without moving the obstacle or loosening the fit limit.
+The native experience concentrates on this single Loop journey. Petal remains available in the companion for angular-motion studies.
 
-This belongs in space because the drawing, layered rods, hand controls and keep-out occupy one work surface. The complete action is visible where the maker is already looking. Native focuses on Loop. Petal remains in the companion and retained code with its existing angular-target designs.
+## Applying plan-lens
 
-## Four glasses design habits
+We used the [plan-lens design framework from the Devpost Learn skill pack](https://github.com/challengepost/learn-specs/tree/main/skills/plan-lens) to develop this brief from the chosen concept. Its world-space design habits and Preview limits led to three concrete changes:
+
+| Earlier design | Decision in this Lens |
+| --- | --- |
+| A floating mechanism with a persistent control rack | Put the board on a table; attach the crank, fit dial and mount control to the parts they change. |
+| A technical error report away from the motion | Put the fitting gap at the pen's actual pose, and mark the particular rod meeting the obstacle. |
+| A separate prepared obstacle study | Add and size a recognizable mug stand-in around the maker's current drawing; preserve that drawing and all constraints during repair. |
+
+CLAD's interaction, UI, audio and LEAF guidance informed the native implementation. Lens Studio MCP handled scene integration and Preview inspection. Installed package types were checked before using their APIs.
+
+## Four glasses habits
 
 | Habit | Product decision |
 | --- | --- |
-| Put information on the thing it concerns | Fit rings belong to the drawing; contact belongs to the offending rod; dimensions and detailed scope remain in the kept design. |
-| Show it when needed | Labels respond to proximity, hover or brief events. Drawing, solving and keeping have separate contextual tools. |
-| Use a few big targets | At most three primary UI targets per state; a 3.6 cm crank grip, physical mount and fit dial use standard SIK interaction. |
-| Keep it where the person is looking | Place the flat workbench on a table below eye level, with the tool tray and QR beside the active geometry. |
+| Put information on the thing | The fit dial shows its current millimetres; contact belongs to the rod; lengths sit beside the links. |
+| Show detail when needed | Far view has one status mark; the working view has a small dock; the near view exposes fit and dimensions. |
+| Keep choices few and graspable | At most three dock targets, including navigation. A 4.2 cm grip, 4.5 cm mount target, visible rim handle and first-use hand hints make the object actions discoverable. |
+| Stay where the person is looking | The board remains on its surface. Placement controls follow near the user, then return to the bench edge; saved-design tags stay beside the assembly. |
 
-The Devpost Learn planning guidance shaped the bounded mechanism family and complete Preview workflow. Applying it again to the first release led to table placement, direct crank action and removal of the persistent dashboard. [The iteration record](iteration-log.md) separates those decisions from measured acceptance.
+## The complete action
 
-## Physical placement and input
+1. Place the board, or use Preview's saved tabletop position. The first-use hand demonstrates the crank.
+2. Draw with a pinch on the board. A visible nib follows the input. Returning within 1.5 cm of the starting ring snaps a sufficiently long loop closed; an open stroke remains editable.
+3. Turn the fit dial from 1 to 5 mm, and choose **Make it**. The previous machine and a clearly pending pulse remain while the real search runs. New rods appear only after a returned result passes independent checks.
+4. Turn or flick the crank. Saturated ink grows from actual linkage poses over the thin dashed drawing. Recent parts within the selected fit limit turn green.
+5. Lean closer to inspect fitting gaps and actual rod lengths. Labels choose clear positions around the hardware.
+6. Move and size the mug ring. If a rod meets it, contact is shown on that rod. A fresh search keeps the same drawing, mounts, fit limit and obstacle while finding different geometry.
+7. Undo a direct edit, try another checked mechanism, or save the selected one. A failed or cancelled search keeps the previous geometry and prevents a stale export.
 
-The current saved Sunlit Room setup uses table owner pose `(−30, −142.4, −474)` cm, yaw 0° and unit scale. Internal centering places the 30 × 24 cm board about that owner. The scene is spatially anchored; it does not follow the head. Manual placement is the fallback. An explicit Place action starts WorldQuery, accepts an upward horizontal hit on a standard SIK pinch, sets the owner once and ends the session.
+Menus are two levels deep at most. **Place** is on the first More page, each secondary page has Back, and a short-lived Undo chip appears by an edited object. Longer recovery remains available in Tools.
 
-Native rods use a 0.45 cm capsule radius, 0.70 cm depth and layer centres of 0.6, 1.8, 3.0 and 4.2 cm. These deliberate input changes are independently reverified; the visual mesh has the same envelope. The native reference retains 16 cm mounts, moving links of 4/14/10 cm and a 0.30 cm fit limit. The web fixture is unchanged. This is not a uniform scaling claim across all physical quantities.
+## Geometry and state
 
-SIK ray input intersects the board in local centimetres. Direct input uses the SDK's hand anchor projected into that plane, with relative offsets for a stable grip. A release near the start closes a drawing; a larger gap needs the explicit Done action. Capture fixes 64 ordered points in 0.001 cm increments before hashing or solving. That is representational precision, not measurement accuracy.
+The board is 30 × 24 cm. Native defaults are 16 cm mounts, moving links of 4/14/10 cm, a 3 mm fit limit, 0.45 cm rod radius and 0.70 cm depth. Ground, crank, rocker and coupler centres sit at 0.6, 1.8, 3.0 and 4.2 cm. The rendered rod envelopes match these inputs.
 
-The crank changes only physical phase. Mount, keep-out or fit-limit edits invalidate the prior result; one completed nonzero drag creates one revision. A no-motion grab creates none. Undo restores input, selected mechanism, alternatives and receipt together. Search and share requests have independent generation guards so late responses cannot replace newer work.
+The pen is fixed to the coupler by two rods. Its pose always comes from linkage kinematics. The drawing supplies the fitting objective; it never supplies playback coordinates. Ordered cyclic correspondence preserves traversal through a crossing without pretending to reproduce the hand's speed.
 
-## What is computed
+A completed nonzero edit creates one history entry. A no-motion grab creates none. Undo restores input, selected mechanism, alternatives and receipt together. Bounded requests use separate solve/share generation guards, so cancelled, timed-out or older responses cannot install a result.
 
-The solver searches moving-link lengths, the tracing point's along/across coordinates, starting phase, branch and crank direction. Ordered closed arc-length correspondence preserves traversal through crossings. It does not prescribe the speed of a hand-drawn stroke.
+## Done criteria
 
-A seeded bounded search includes obstacle penalties and feasible-candidate retention. Separate law-of-cosines pose math verifies each accepted candidate. Full-turn reachability is analytic; fit and capsule clearance are sampled, using 720 poses by default. Search exhaustion means no acceptable result was found within the budget, not that no mechanism can exist.
+- Real SIK drawing changes the input and produces a fresh checked mechanism or an honest no-result state.
+- Cranking changes only physical phase, with ink from the computed pen.
+- The fit dial, movable mount and obstacle rim respond directly and show their actual values.
+- Repair preserves the freshly drawn loop and every constraint; the obstacle is not silently moved or replaced.
+- The working, side, near and Center views keep controls, ink and useful labels readable.
+- Save's signed design rechecks and preserves the exact drawing, selected mechanism and constraints.
 
-The rigid attachment is represented by rods B→P and C→P, with a decorative pen at P. Ink is evaluated from crank poses; desired coordinates never drive the assembly. The low container is a declared, manually aligned keep-out, 9 cm in diameter and 4 cm high. It is not recognized scenery. Fresh repair results and exact constraints are recorded in [native-tabletop.md](native-tabletop.md).
-
-## A useful handoff
-
-Keep displays a signed QR tag beside the workbench. The server rechecks the selected candidate and preserves exact drawing coordinates and dimensions. The companion presents the assembly SVG, obstacles and fitting/clearance result, plus JSON for an independent copy. Existing Petal shares remain compatible.
-
-## Boundaries and acceptance
-
-The product supports one planar four-bar family with a rigid coupler attachment. Axles, clamps, the grip, pen hardware and attachment-internal contacts are outside the rod-clearance model. Through-axles explain the visible layers; they are not fabrication-verified parts. Forces, bearings, loads, recognition and manufacturing are not claimed.
-
-The web and earlier Plane Preview release passed their recorded checks. The current tabletop revision has local numerical, mesh, interaction-math and native compilation evidence, plus clean native LEAF drawing/repair and direct-reach/Undo runs. Sound scheduling passed. Independently accepted native source includes the complete drawing/repair sequence, room orbit and SPECS Center view; the fresh side-tag/companion handoff now matches the exact main Study input and mechanism. The [156.1-second edited film](film-review.md) passed independent encoded QA and complete browser playback; user approval remains pending. Optional explicit placement remains unverified. See [verification.md](verification.md) for the precise current status. No physical glasses, tracking-accuracy, comfort or device-performance result is claimed.
+[Verification](verification.md) records the measured outcomes. [Scope](../README.md#scope) defines the Preview, handoff and mechanical limits.

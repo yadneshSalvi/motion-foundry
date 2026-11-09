@@ -6,7 +6,7 @@ import {IKBodyInteractor} from "Leaf.lspkg/Interactors/interactor/ik/IKBodyInter
 import {DiagnosticRecorder} from "Leaf.lspkg/Diagnostic/DiagnosticRecorder";
 import {LeafHandInteractor} from "Leaf.lspkg/Interactors/interactor/LeafTwoHandInteractor";
 import {SIK} from "SpectaclesInteractionKit.lspkg/SIK";
-import {actionTarget,boardPoint,evidence,namedTarget,reference,snapshot} from "./WorkbenchScenarioTools";
+import {boardPoint,evidence,namedTarget,reference,snapshot,undo} from "./WorkbenchScenarioTools";
 
 /** Direct crank reach and a shared SIK hand mount edit with exact Undo. No IK fallback pass. */
 @component
@@ -48,7 +48,7 @@ export class WorkbenchReach extends Scenario {
       await hand.drag(mount,worldDelta,500);await sleep(150);
       const edited=snapshot();expect(edited.revision).toBe(beforeEdit.revision+1);expect(edited.verifiedForCurrentRevision).toBe(false);
       const beforeTap=edited.revision;await hand.trigger(mount);await sleep(120);expect(snapshot().revision,"No-motion trigger must not make another revision").toBe(beforeTap);
-      await navigation.trigger(actionTarget("undo"));await sleep(180);
+      await undo(navigation);await sleep(180);
       const restored=snapshot();expect(restored.input).toEqual(beforeEdit.input);expect(restored.parameters).toEqual(beforeEdit.parameters);
       expect(restored.candidateCount).toBe(beforeEdit.candidateCount);expect(restored.hasReceipt).toBe(beforeEdit.hasReceipt);
       evidence("mount-edit-undo",{editedRevision:edited.revision,restoredRevision:restored.revision,inputHash:restored.inputHash});

@@ -1,12 +1,15 @@
-# Motion Foundry r002 film review
+# Motion Foundry r003 demo record
 
-The 156.1-second, 1920 × 1080, 30 fps review cut passed independent encoded QA and complete browser playback. Its SHA-256 is `8a70033901f178bb2368ba946071880bf3636e9cda8ae264a6c0943608c83ac4`. [Sanitized measurements](evidence/film-r002-review.json) bind these results to that exact file.
+The current **2:23.9** film records the tabletop Lens in Lens Studio Preview. Its 83.6-second main interaction stays continuous at normal speed: draw a new closed path, receive a real solve, turn the crank through a complete ink cycle, add a mug stand-in, then solve and watch another whole cycle while preserving the same drawing and constraints.
 
-- Full video/audio decode passed. Every one of the 2,463 frames in the 82.1-second main demonstration matches the accepted source within compression tolerance, at normal speed and a fixed crop.
-- All caption and disclosure midpoints and shot seams were reviewed at 360-pixel width. The encoded QR matches the accepted 1,655-character design URL at three full-resolution frames.
-- Encoded audio measures −15.63 LUFS and −1.74 dBTP. The complete master has an AI audio review; this is not human listening.
-- Browser playback ran from start to finish, unmuted at 1×, with 4,683 frames, no dropped or corrupted frames, and no seeking, buffering or errors.
+The final file is 1920 × 1080, 30 fps, with SHA-256 `1ef3de21415e276e1731fd212035cb4bd7e0312d7851d595136ba0b94b7eaa5e`. [Source-bound measurements](evidence/film-r003-review.json) identify the exact reviewed bytes.
 
-The main recording uses automated SIK and a supplied reference-path stroke. The container Study loads a separate drawing; unchanged-input repair applies within that Study. The Center view is an actual Preview simulation, and the companion insert is a four-second actual page still. No physical-glasses, scanning or fabrication result is claimed.
+- Full video and audio decode passed. All 4,227 native picture frames match the accepted source maps within compression tolerance, including all 2,508 frames of the continuous main interaction. Source crops and playback rate remain fixed.
+- All 30 caption midpoints, cut seams and caption boundaries passed model review at phone width. The continuous approach and side inspection remain wordless.
+- The encoded QR decoded to the exact current 1,662-character design URL in three untouched full-resolution frames. The linked design preserves the drawing and mechanism; no physical-phone scan is claimed.
+- Encoded audio measures −15.66 LUFS and −1.35 dBTP. Selected narration and the complete mix passed model audio review. The source recorder captured video only; original product cue assets were placed at actual logged event times.
+- Complete browser playback ran unmuted at 1×: 4,317 frames, zero dropped or corrupted frames, and no intermediate pause, seek, buffering or error.
 
-The user must still watch and approve both exact films under review gate G4 before publication. Earlier films remain preserved; this record is not upload or submission authorization.
+The film explicitly identifies scripted SIK hand input and says the Lens has not been tested on Spectacles. Its drawing is a translated reference-derived path delivered through genuine hand interactions. The mug is a manually sized virtual stand-in, including its handle; there is no object-recognition claim. Later fit, size and mount controls are introduced as another loop. The Center view is the actual Preview simulation. [Mechanical and hardware scope](../README.md#scope) applies throughout.
+
+The film and editable project are prepared locally; nothing has been uploaded or published. The [previous film record](archive/film-r002.md) remains archived.

@@ -1,0 +1,128 @@
+{
+  "schema": "motion-foundry/film-review@3",
+  "status": "PASS",
+  "artifact": {
+    "file": "motion-foundry-r003.mp4",
+    "sha256": "1ef3de21415e276e1731fd212035cb4bd7e0312d7851d595136ba0b94b7eaa5e",
+    "bytes": 31814116,
+    "duration_seconds": 143.9,
+    "frames": 4317,
+    "dimensions": [
+      1920,
+      1080
+    ],
+    "frames_per_second": 30,
+    "video_codec": "H.264",
+    "audio_codec": "AAC",
+    "sample_rate_hz": 48000,
+    "audio_channels": 2
+  },
+  "picture": {
+    "native_seconds": 140.9,
+    "native_frames_compared": 4227,
+    "main_continuous_seconds": 83.6,
+    "main_frames_compared": 2508,
+    "main_film_frame_range_exclusive": [
+      471,
+      2979
+    ],
+    "main_source_frame_range_exclusive": [
+      744,
+      3252
+    ],
+    "fixed_native_source_crop": [
+      390,
+      386,
+      1920,
+      1080
+    ],
+    "rate": 1,
+    "source_comparison": "All accepted native frames match the corresponding original cropped frame within encoded compression tolerance; no failed frame threshold",
+    "full_decode": "PASS"
+  },
+  "caption_review": {
+    "midpoints": 30,
+    "phone_width_pixels": 360,
+    "seam_frames": 43,
+    "fractional_boundary_presence_checks": 123,
+    "status": "PASS",
+    "scope": "Independent model visual and measured encoded-frame review"
+  },
+  "qr": {
+    "exact_match": true,
+    "untouched_full_resolution_frames": [
+      4137,
+      4196,
+      4226
+    ],
+    "url_length": 1662,
+    "url_sha256": "f0b3569941d146a48c9382f97f4b8ed376becb3908587922e2dae2bd4d4f02e5",
+    "input_hash": "fnv1a-5521d0f8",
+    "hardware_scan": false
+  },
+  "audio": {
+    "integrated_lufs": -15.66,
+    "true_peak_dbtp": -1.35,
+    "selected_narration_stems": 19,
+    "whole_mix_model_audition": "PASS",
+    "aac_master_zero_lag_correlation": 0.9996114179600031,
+    "aac_master_snr_db": 31.049558462806893,
+    "native_event_bound_cues": 45,
+    "native_audio_recorded": false,
+    "human_listening_claim": false,
+    "scope": "Generated narration and original generated score; original product cue assets reconstructed at logged event times"
+  },
+  "browser_playback": {
+    "status": "PASS",
+    "rate": 1,
+    "unmuted": true,
+    "wall_seconds": 143.964,
+    "progress_samples_checked": 543,
+    "frames": 4317,
+    "dropped_frames": 0,
+    "corrupted_frames": 0,
+    "intermediate_pauses": 0,
+    "seeks": 0,
+    "buffering_events": 0,
+    "errors": 0,
+    "scope": "Complete actual browser playback observed by the model; not human listening or user approval"
+  },
+  "source_evidence_sha256": {
+    "independent_final_report": "d8db72ddbd251ca23b837ccd38c962749e1c9d2ecd4c952c286811b8de7adc7d",
+    "root_browser_receipt": "16dff82e192a56a833d4df326d2a45c207eafc8ed83745217da9c6fe1767fb9b",
+    "own_encoded_acceptance": "63c5a43f7d96f158c3570f3f930c59b4a43d759954a28448f2356de1aea7811a",
+    "full_mix_audition": "187b28ae673b9d9f0f0bbb00d63b5a0111754e1548c9ac76f237e9484b360887",
+    "opening_acceptance_addendum": "1e55f4b76a77069e24ea70de5e2cdc6dec953cd65a8ade7ab996fdce99b0504b"
+  },
+  "truth_scope": {
+    "environment": "Lens Studio Preview simulated room, including actual Center mode",
+    "input": "Visible scripted SIK hand input following a translated reference-derived drawing path",
+    "repair": "The fresh drawn path, mounts and tolerance remain unchanged across the same-input mug repair",
+    "feature_inserts": "Later dial, mug-sizing and mount/Undo inserts use another reference loop",
+    "mug": "Manually sized virtual stand-in with body, handle and rim inside the declared cylindrical envelope",
+    "hardware_test": false,
+    "object_recognition": false,
+    "fabrication_guarantee": false,
+    "scope_document": "README.md#scope"
+  },
+  "publication": {
+    "uploaded": false,
+    "authorized": false,
+    "user_review": "pending"
+  },
+  "revision": {
+    "opening_source_frames": [
+      6776,
+      7076
+    ],
+    "opening_output_frames": 300,
+    "all_later_picture_shots_equal_to_candidate01": true,
+    "opening_native_event_cues_shift_frames": -2,
+    "number_of_shifted_cues": 11,
+    "narration_music_caption_and_later_event_clocks_unchanged": true,
+    "master_gain_delta_db": 0.010000000000001563,
+    "scope": "New independent all-frame compare and exact-new-master/audio checks, not a reused candidate01 pass"
+  },
+  "picture_plan_sha256": "b60c269d6ca49ec41f962ae72eb079d174f477c78ce3e3fd9b48335a119035c4",
+  "capture_manifest_sha256": "d9d09f76878e6b34c19aa1fb0bfa4f8326feadd185637c7fe8021dd5c267023c"
+}

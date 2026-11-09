@@ -48,8 +48,8 @@ describe('board-space physical interaction',()=>{
     close(nearestPhase(.2,4*Math.PI+.1),4*Math.PI+.2);
   });
   it('keeps the physical fit dial monotonic with exact end stops',()=>{
-    close(fitFromDialAngle(-Math.PI),.05);close(fitFromDialAngle(Math.PI),1.2);
-    for(const value of [.05,.3,.75,1.2])close(fitFromDialAngle(dialAngleFromFit(value)),value);
+    close(fitFromDialAngle(-Math.PI),.1);close(fitFromDialAngle(Math.PI),.5);
+    for(const value of [.1,.2,.3,.4,.5])close(fitFromDialAngle(dialAngleFromFit(value)),value);
   });
   it('generates ink only from evaluated crank poses, including a reverse sweep',()=>{
     const {candidate}=makeWorkbenchReference(),p=candidate.parameters,from=1.2,to=.4,points=kinematicInkSegment(p,from,to);

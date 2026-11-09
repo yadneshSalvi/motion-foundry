@@ -1,6 +1,8 @@
 // Copyright 2026 Specs Inc.
 // SPDX-License-Identifier: Apache-2.0
 
+// Retained for the earlier Petal sculpture. Active Loop controls use PlanarInteraction.
+
 import { Interactable } from "SpectaclesInteractionKit.lspkg/Components/Interaction/Interactable/Interactable";
 import { InteractableManipulation } from "SpectaclesInteractionKit.lspkg/Components/Interaction/InteractableManipulation/InteractableManipulation";
 import Event from "SpectaclesInteractionKit.lspkg/Utils/Event";

@@ -1,50 +1,16 @@
 import {Scenario} from "Leaf.lspkg/Scenarios/scenario/Scenario";
 import {ScenarioConfig} from "Leaf.lspkg/Scenarios/scenario/ScenarioConfig";
 import {expect} from "Leaf.lspkg/Utils/common/Expect";
-import {findSceneObjectByName,nextFrame,sleep} from "Leaf.lspkg/Utils/common/Utils";
+import {findSceneObjectByName,sleep} from "Leaf.lspkg/Utils/common/Utils";
 import {Interactable} from "SpectaclesInteractionKit.lspkg/Components/Interaction/Interactable/Interactable";
-import {InteractorTriggerType} from "SpectaclesInteractionKit.lspkg/Core/Interactor/Interactor";
-import WorldCameraFinderProvider from "SpectaclesInteractionKit.lspkg/Providers/CameraProvider/WorldCameraFinderProvider";
 import {WorkbenchPathInteractor} from "./WorkbenchPathInteractor";
-import {actionTarget,boardPoint,namedTarget,reference,snapshot,WorkbenchSnapshot} from "./WorkbenchScenarioTools";
+import {actionTarget,boardPoint,namedTarget,reference,snapshot,WorkbenchSnapshot,observeProductAudio} from "./WorkbenchScenarioTools";
 
 const TAU=Math.PI*2;
 
-/** Same LEAF→SIK input route as QA, paced in real runtime seconds. No product handlers. */
-class RehearsalInput extends WorkbenchPathInteractor {
-  async followTimedPath(target:Interactable,points:vec3[],durationMs:number,alive:()=>void){
-    if(points.length<2||durationMs<1000)throw Error("Rehearsal path needs points and a deliberate duration");
-    const distances=[0];
-    for(let i=1;i<points.length;i++)distances.push(distances[i-1]+points[i].distance(points[i-1]));
-    const length=distances[distances.length-1];if(!(length>0))throw Error("Rehearsal path has no length");
-    await this.enterHover(target);alive();
-    this.startPoint=WorldCameraFinderProvider.getInstance().getWorldPosition();
-    this.endPoint=points[0];await nextFrame();await nextFrame();alive();
-    this.setTriggerType(InteractorTriggerType.Select);await nextFrame();await nextFrame();alive();
-    const start=getTime(),end=start+durationMs/1000;
-    let segment=1,previous=points[0];
-    try{
-      while(true){
-        alive();const fraction=Math.min(1,(getTime()-start)/(end-start)),distance=fraction*length;
-        while(segment<points.length-1&&distances[segment]<distance)segment++;
-        const span=distances[segment]-distances[segment-1];
-        const t=span>0?(distance-distances[segment-1])/span:1;
-        const point=points[segment-1].add(points[segment].sub(points[segment-1]).uniformScale(t));
-        this.overrideDragVector=point.sub(previous);this.endPoint=point;previous=point;
-        await nextFrame();
-        if(fraction>=1)break;
-      }
-    }finally{
-      this.setTriggerType(InteractorTriggerType.None);await nextFrame();await nextFrame();
-      this.overrideDragVector=undefined;this.overrideInteractable=undefined;this.resetStartEndPoint();await nextFrame();
-    }
-  }
-}
+import {assertObstacleOnly,inspectContact} from "./WorkbenchJourney";
 
-/**
- * Preview-only automated rehearsal. The second Study loads its own reference drawing;
- * unchanged-input repair applies ONLY from that blocked Study to its fresh result.
- */
+/** Continuous Preview rehearsal with visible synthetic SIK hands and live results. */
 @component
 export class WorkbenchFilmRehearsal extends Scenario {
   private runId="";
@@ -67,8 +33,10 @@ export class WorkbenchFilmRehearsal extends Scenario {
       const object=findSceneObjectByName(name);
       if(object?.isEnabledInHierarchy)throw Error("Restart Preview before rehearsal: active LEAF overlay "+name);
     }
-    const input=new RehearsalInput("Motion filmed SIK rehearsal input");
-    this.stamp("run-start",{disclosure:"Automated Preview SIK CustomController input; no rendered hands or physical tracking",leadInMs,contactHoldMs,endingMs});
+    const input=new WorkbenchPathInteractor("Motion filmed SIK rehearsal input");
+    const stopAudio=observeProductAudio(this,(event,detail)=>this.stamp(event,detail));
+    this.stamp("run-start",{disclosure:"Lens Studio Preview · scripted synthetic SIK hand input · not yet tested on Spectacles",leadInMs,contactHoldMs,endingMs});
+    try{
     await reference(input);this.alive();
     const baseline=snapshot();expect(baseline.verification.valid).toBe(true);
     this.takeWallMs=Date.now();this.receipt("take-start-reference",baseline);
@@ -77,23 +45,20 @@ export class WorkbenchFilmRehearsal extends Scenario {
     await this.click(input,"draw");
     await this.hold("drawing-surface-ready",800,false);
     // A declared scripted gesture derived from the reference, not a human freehand take.
-    const stroke=baseline.input.stroke.slice(0,59).map(p=>boardPoint(p.x+.06,p.y));
-    this.stamp("scripted-stroke-start",{source:"59 ordered reference points translated +0.06 cm in x; final gap deliberately open",durationMs:10000});
+    const stroke=baseline.input.stroke.map(p=>boardPoint(p.x+.06,p.y));
+    stroke.push(stroke[0]);
+    this.stamp("scripted-stroke-start",{source:"64 ordered reference-derived points translated +0.06 cm in x, full closure; automated input",durationMs:10000});
     await this.path(input,namedTarget("Workbench drawing surface"),stroke,10000,"draw");
-    const open=snapshot();expect(open.drawMode).toBe("open");
-    this.stamp("open-stroke-visible",{rawPointCount:open.draftPointCount});
-    await this.hold("inspect-open-endpoints",1400,false);
-    await this.click(input,"done");
+    expect(snapshot().drawMode).toBe("none");expect(snapshot().snapClosed).toBe(true);
     const drawn=snapshot();expect(drawn.revision).toBe(baseline.revision+1);
     expect(drawn.inputHash).not.toBe(baseline.inputHash);expect(drawn.verifiedForCurrentRevision).toBe(false);
-    this.receipt("explicit-close-committed",drawn);
-    await this.hold("inspect-explicit-closure",1500,false);
+    this.receipt("snap-close-committed",drawn);
+    await this.hold("inspect-snap-closure",1500,false);
     await this.click(input,"solve");
     const first=await this.awaitSolve("drawn-loop",drawn);
     await this.hold("inspect-new-machine",2400,true);
 
     const crank=namedTarget("Workbench crank knob");
-    await input.hover(crank,650);this.alive();
     const gripStart=snapshot(),height=crank.getTransform().getLocalPosition().z;
     const crankPath=Array.from({length:97},(_,i)=>{
       const angle=gripStart.phase+gripStart.driveDirection*2.6*i/96;
@@ -106,20 +71,19 @@ export class WorkbenchFilmRehearsal extends Scenario {
     await this.fullCycle("drawn-loop-full-ink-cycle",turned);
     await this.hold("drawn-loop-moving-payoff",2000,true);
 
-    this.stamp("second-case-navigation-start",{instruction:"Study loads a separate supplied reference drawing; this is not an obstacle added to the preceding drawn input",drawnInputHash:first.inputHash});
-    await this.click(input,"more");await this.click(input,"study");
-    const blocked=snapshot();
-    expect(JSON.stringify(blocked.input.stroke)).not.toBe(JSON.stringify(first.input.stroke));
+    this.stamp("same-drawing-mug-addition",{drawnInputHash:first.inputHash});
+    await input.trigger(namedTarget("Workbench measured keep-out"));await sleep(200);
+    const blocked=snapshot();assertObstacleOnly(first,blocked);
     expect(blocked.verification.valid).toBe(false);expect(blocked.verification.collisionWitness?.geometry).toBe("crank");
-    expect(blocked.verification.collisionWitness!.marginCm+blocked.input.clearanceCm,"Study must physically overlap, not merely miss a requested gap").toBeLessThan(0);
-    expect(blocked.input.obstacles[0].depthCm).toBe(4);expect(blocked.input.obstacles[0].radiusCm).toBe(4.5);
-    this.receipt("second-case-provided-container-contact",blocked);
-    await this.hold("inspect-provided-container-contact",contactHoldMs,false);
+    expect(blocked.verification.collisionWitness!.marginCm+blocked.input.clearanceCm).toBeLessThan(0);
+    await inspectContact(input,blocked,5000,()=>this.alive(),contactHoldMs);
+    this.receipt("same-drawing-mug-contact",snapshot());
+
     await this.click(input,"solve");
-    const repaired=await this.awaitSolve("provided-container-repair",blocked);
+    const repaired=await this.awaitSolve("same-drawing-mug-repair",blocked);
     expect(repaired.parameters.crankCm).toBeLessThan(blocked.parameters.crankCm);
     expect(repaired.verification.minClearanceCm).toBeGreaterThan(0);
-    this.stamp("same-study-input-repaired",{blockedInputHash:blocked.inputHash,repairedInputHash:repaired.inputHash,oldCrankCm:blocked.parameters.crankCm,newCrankCm:repaired.parameters.crankCm});
+    this.stamp("same-drawing-input-repaired",{blockedInputHash:blocked.inputHash,repairedInputHash:repaired.inputHash,oldCrankCm:blocked.parameters.crankCm,newCrankCm:repaired.parameters.crankCm});
     await this.fullCycle("repaired-full-clear-cycle",repaired);
     await this.hold("repaired-moving-ending",endingMs,true);
 
@@ -129,7 +93,8 @@ export class WorkbenchFilmRehearsal extends Scenario {
       expect(audio.voiceCount).toBe(3);expect(audio.tick).toBeGreaterThan(0);expect(audio.contact).toBeGreaterThan(0);expect(audio.clear).toBeGreaterThan(0);
     }
     const duration=(Date.now()-this.takeWallMs)/1000;
-    this.stamp("take-complete",{durationSeconds:duration,targetSeconds:[65,80],withinTimingTarget:duration>=65&&duration<=80,audio,source:"Live HTTPS results and independent local verification",disclosure:"Automated Preview rehearsal; scheduled audio is not an acoustic measurement"});
+    this.stamp("take-complete",{durationSeconds:duration,targetSeconds:[70,90],withinTimingTarget:duration>=70&&duration<=90,audio,source:"Live HTTPS results and independent local verification",disclosure:"Automated Preview rehearsal; scheduled audio is not an acoustic measurement"});
+    }finally{try{await input.teardown();}finally{stopAudio();}}
   }
 
   private alive(){if(this.stopped)throw Error("Rehearsal stopped");}
@@ -159,14 +124,14 @@ export class WorkbenchFilmRehearsal extends Scenario {
     ];
     return()=>off.forEach(unsubscribe=>unsubscribe());
   }
-  private async click(input:RehearsalInput,id:string){
+  private async click(input:WorkbenchPathInteractor,id:string){
     this.alive();const target=actionTarget(id),unwatch=this.watch(target,id);
     this.stamp("action-intent",{action:id,label:snapshot().actions.find(a=>a.id===id)?.label});
-    try{await input.hover(target,650);this.alive();await input.trigger(target);await sleep(180);this.alive();}
+    try{await input.trigger(target);await sleep(180);this.alive();}
     finally{unwatch();}
     this.stamp("action-observed",{action:id,revision:snapshot().revision,inputHash:snapshot().inputHash,solving:snapshot().solving});
   }
-  private async path(input:RehearsalInput,target:Interactable,points:vec3[],durationMs:number,label:string){
+  private async path(input:WorkbenchPathInteractor,target:Interactable,points:vec3[],durationMs:number,label:string){
     const unwatch=this.watch(target,label);this.stamp("input-path-intent",{action:label,requestedDurationMs:durationMs});
     try{await input.followTimedPath(target,points,durationMs,()=>this.alive());}
     finally{unwatch();}

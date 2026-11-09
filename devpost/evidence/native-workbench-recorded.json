@@ -1,0 +1,182 @@
+{
+  "schema": "motion-foundry-native-recorded-checks/v1",
+  "date": "2026-11-09",
+  "environment": "Lens Studio 5.23.2, Sunlit Room, SPECS override, actual SIK input with visible synthetic hand",
+  "source_sha256": "794b3cbc9fa1189676c87c3a824bc3a63ae4fb21e0ba48138ebb1e2bf07b4fef",
+  "native_log_sha256": "7b0f7bdf4e8c46d70366f2fe27aadb4d6ea9ec8cff43ca9397e49bdb8d9ed758",
+  "observations": {
+    "drawn-loop:live-result": {
+      "source": "HTTPS solve",
+      "revision": 1,
+      "inputHash": "fnv1a-0928ec60",
+      "candidateId": "fnv1a-0928ec60-loop-1",
+      "serverReceiptPresent": true,
+      "phase": 0.42320250460347164,
+      "driveDirection": 1,
+      "playing": true,
+      "inkPoints": 3
+    },
+    "drawn-loop:live-result:mechanism": {
+      "groundCm": 16,
+      "crankCm": 4.003601687602578,
+      "couplerCm": 13.996042938456224,
+      "rockerCm": 10.103733941266011,
+      "branch": 1,
+      "attachmentAlongCm": 7.678401535762892,
+      "attachmentAcrossCm": 4.106377656519561,
+      "startingPhaseRad": 0.39854416474809407,
+      "driveDirection": 1
+    },
+    "drawn-loop:live-result:verification": {
+      "valid": true,
+      "failures": [],
+      "maxFitErrorCm": 0.05752132951792252,
+      "rmsFitErrorCm": 0.01627150164430591,
+      "maxClosureErrorCm": 8.881784197001252e-15,
+      "minClearanceCm": 10000,
+      "sampleCount": 720,
+      "scope": "sampled",
+      "inputHash": "fnv1a-0928ec60",
+      "verifierVersion": "coupler-loop-1.0"
+    },
+    "drawn-loop-full-ink-cycle:complete": {
+      "durationMs": 14936,
+      "startPhase": 4.766438863287455,
+      "endPhase": 11.05529163368029,
+      "advanceRad": 6.288852770392836,
+      "inkPoints": 1018
+    },
+    "same-drawing-mug-contact:verification": {
+      "valid": false,
+      "failures": [
+        "Obstacle capsule collision",
+        "Attachment obstacle capsule collision"
+      ],
+      "maxFitErrorCm": 0.05752132951792252,
+      "rmsFitErrorCm": 0.01627150164430591,
+      "maxClosureErrorCm": 8.881784197001252e-15,
+      "minClearanceCm": -0.21360168760257783,
+      "sampleCount": 720,
+      "scope": "sampled",
+      "inputHash": "fnv1a-5a34a9e4",
+      "verifierVersion": "coupler-loop-1.0"
+    },
+    "same-drawing-mug-repair:live-result": {
+      "source": "HTTPS solve",
+      "revision": 2,
+      "inputHash": "fnv1a-5a34a9e4",
+      "candidateId": "fnv1a-5a34a9e4-loop-1",
+      "serverReceiptPresent": true,
+      "phase": 0.4609355016466313,
+      "driveDirection": 1,
+      "playing": true,
+      "inkPoints": 4
+    },
+    "same-drawing-mug-repair:live-result:mechanism": {
+      "groundCm": 16,
+      "crankCm": 3.7667826371226845,
+      "couplerCm": 14.421576997878235,
+      "rockerCm": 8.579120136327932,
+      "branch": 1,
+      "attachmentAlongCm": 7.141871500945112,
+      "attachmentAcrossCm": 4.962116174714451,
+      "startingPhaseRad": 0.41591874664128653,
+      "driveDirection": 1
+    },
+    "same-drawing-mug-repair:live-result:verification": {
+      "valid": true,
+      "failures": [],
+      "maxFitErrorCm": 0.25165858071813896,
+      "rmsFitErrorCm": 0.13581962188665936,
+      "maxClosureErrorCm": 8.881784197001252e-15,
+      "minClearanceCm": 0.023217362877315878,
+      "sampleCount": 720,
+      "scope": "sampled",
+      "inputHash": "fnv1a-5a34a9e4",
+      "verifierVersion": "coupler-loop-1.0"
+    },
+    "same-drawing-input-repaired": {
+      "blockedInputHash": "fnv1a-5a34a9e4",
+      "repairedInputHash": "fnv1a-5a34a9e4",
+      "oldCrankCm": 4.003601687602578,
+      "newCrankCm": 3.7667826371226845
+    },
+    "repaired-full-clear-cycle:complete": {
+      "durationMs": 15011,
+      "startPhase": 0.4609355016466313,
+      "endPhase": 6.766367781645999,
+      "advanceRad": 6.305432279999368,
+      "inkPoints": 671
+    },
+    "take-complete": {
+      "durationSeconds": 82.547,
+      "targetSeconds": [
+        70,
+        90
+      ],
+      "withinTimingTarget": true,
+      "audio": {
+        "tick": 22,
+        "contact": 1,
+        "clear": 3,
+        "failed": false,
+        "voiceCount": 3,
+        "configured": {
+          "tick": true,
+          "contact": true,
+          "clear": true
+        }
+      },
+      "source": "Live HTTPS results and independent local verification",
+      "disclosure": "Automated Preview rehearsal; scheduled audio is not an acoustic measurement"
+    }
+  },
+  "input_continuity": {
+    "every_blocked_input_field_equal": {
+      "schemaVersion": true,
+      "kind": true,
+      "designId": true,
+      "revision": true,
+      "searchSeed": true,
+      "stroke": true,
+      "fixedMounts": true,
+      "lengthBounds": true,
+      "attachmentBounds": true,
+      "obstacles": true,
+      "clearanceCm": true,
+      "linkRadiusCm": true,
+      "linkDepthCm": true,
+      "linkLayers": true,
+      "tolerances": true
+    },
+    "fresh_drawing_preserved_after_mug_addition": true,
+    "mounts_preserved": true,
+    "fit_preserved": true,
+    "main_repair_input_hash": "fnv1a-5a34a9e4"
+  },
+  "placement": {
+    "source_sha256": "a1de5b540b13a0123331c3eaef8a06d37a7e29fc744783e2144580016cb9d643",
+    "log_sha256": "3ec73c581dcf2cab0b7af711dc18d86dfe2570af95506f3d2384c7ff1a062196",
+    "placement_hit_cm": [
+      -30.000003814697266,
+      -142.05105590820312,
+      -472.9885559082031
+    ],
+    "placement_normal": [
+      2.6700958186408634e-15,
+      1,
+      -8.155096363413363e-23
+    ],
+    "placement_commits": 1,
+    "placement_fallback": false,
+    "input_unchanged_by_placement": true,
+    "final_input_hash": "fnv1a-94574ea8",
+    "scope": "Separate default/reference feature run, not core04 fresh-drawing continuity; Preview only."
+  },
+  "scope": [
+    "Scripted Preview interaction; no physical Spectacles test.",
+    "Clearance is checked at 720 phase samples, with the mechanical exclusions in README Scope.",
+    "Audio fields prove scheduling, not recorded sound.",
+    "The placement/control run begins with another loop and is separate from the newly drawn repair sequence."
+  ]
+}

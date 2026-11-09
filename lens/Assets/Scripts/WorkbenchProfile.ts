@@ -12,7 +12,7 @@ export const WORKBENCH_PROFILE = {
   samples: 720,
   strokeSamples: 64,
   captureGridCm: .001,
-  closeDistanceCm: .9,
+  closeDistanceCm: 1.5,
   bounds: {minX: -7, maxX: 23, minY: -7, maxY: 17},
 } as const;
 
