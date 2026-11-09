@@ -1,0 +1,108 @@
+{
+  "schema": "motion-foundry-film-r004-review/v1",
+  "status": "PASS WITH STATED FILM SCOPE AND ADAPTATIONS",
+  "film": "motion-foundry-r004.mp4",
+  "sha256": "6fdb5037d5526124c4e0db5e32e2e4bd8a62e8d0c2c6240752d32dcbecade921",
+  "bytes": 32095785,
+  "duration_seconds": 162.5,
+  "video": {
+    "codec": "H264",
+    "dimensions": [
+      1920,
+      1080
+    ],
+    "fps": 30,
+    "decoded_frames": 4875,
+    "decode_errors": 0,
+    "actual_pts_error_max": 3.333333467026023e-07
+  },
+  "source": {
+    "native_video_frames_compared": 4575,
+    "protected_main_frames": 2715,
+    "protected_main_seconds": 90.5,
+    "main_source_frames": [
+      402,
+      3117
+    ],
+    "main_film_frames": [
+      300,
+      3015
+    ],
+    "source_sha256": "26abeef7ab2fc9ac3a1b2585c016cfdafbdfda133138304baac9aeb8bc84de3a",
+    "rate": 1,
+    "method": "Sequential decoded-frame comparison with the declared source crops and bounded editorial crop curves, outside actual captions and scope labels. Encoded H.264 is lossy.",
+    "caption_boundary_exception": {
+      "status": "EXPLAINED OVERLAY BOUNDARY; NO NATIVE FRAME DEFECT",
+      "film_frame": 929,
+      "source_frame": 1031,
+      "caption": "v05-c2",
+      "declared_start_seconds": 30.966966666666668,
+      "frame_pts_seconds": 30.966666666666665,
+      "caption_early_seconds": 0.00030000000000285354,
+      "observation": "Correct complete caption is visible at929 under sub-millisecond scheduling tolerance. No collision/flashword. Actual caption rectangle excluded for this comparison only.",
+      "uncorrected_mae": 6.066605091094971,
+      "with_actual_caption_region_excluded": {
+        "mae": 3.4747597124626446,
+        "p99": 13.0,
+        "fraction_over20": 0.004474598174622406
+      },
+      "scope": "Original metrics retained; explicit additive mask review, no source/video change."
+    }
+  },
+  "visual": {
+    "caption_midpoints": 44,
+    "phone_width": 360,
+    "caption_style": "One line, 42 px DM Sans, in the fixed 1020\u20131070 output-pixel band",
+    "dense_hands_and_controls": "PASS",
+    "exact_qr_decodes": 6,
+    "qr_attempts": 6,
+    "qr_input_hash": "fnv1a-ec80dc0a",
+    "qr_url_sha256": "e0c6d3df3d56778e3c213fbab385d8c5a82364477cf7a6b3ba5fb5ef614cc2ea",
+    "qr_url_length": 1671,
+    "payoff_scope": "Selected source frames 1450\u20131494 inclusive; all eight bracketing projected observations at most 18.75% drawing occlusion, confirmed in pixels. No whole-cycle visibility bound."
+  },
+  "audio": {
+    "codec": "AAC",
+    "sample_rate": 48000,
+    "channels": 2,
+    "integrated_lufs": -15.54,
+    "true_peak_dbtp": -1.28,
+    "master_sha256": "c3fe3d6bf2bda6c249438ef1e8f53b2b3fb49a0780aa4c4a6da198c60748b951",
+    "correspondence": {
+      "best_lag_samples": 0,
+      "correlation": 0.9996502997567616,
+      "gain_difference_db": -0.0278654260956187,
+      "raw_error_snr_db": 31.514715073159376,
+      "compared_samples": 7800000
+    },
+    "native_audio_recorded": false,
+    "editorial_cues": 36,
+    "scope": "Generated natural-speed narration and original instrumental music. Authored cue replacements align with actual native events; release clicks are identified as editorial. Whole-file model audition and unmuted browser playback are separate; no human-listening claim."
+  },
+  "browser_playback": {
+    "interval_seconds": [
+      0,
+      162.5
+    ],
+    "rate": 1,
+    "unmuted": true,
+    "volume": 1,
+    "total_frames": 4875,
+    "browser_dropped_frames": 7,
+    "stalls": 0,
+    "errors": 0,
+    "intermediate_pause_or_seek": false,
+    "scope": "Initial start seek/wait and final end pause retained. Browser drops are separate from encoded completeness; no zero-drop or human-listening claim."
+  },
+  "scope": [
+    "Actual Lens Studio Preview with scripted visible SIK input and a manually sized mug stand-in; physical Spectacles are untested.",
+    "The opening edits a six-second crank excerpt and four-second earned-mint excerpt; the 90.5-second main remains continuous at1\u00d7.",
+    "Center is an explicitly labeled three-second native screenshot. Development Record is a labeled four-second actual browser screenshot. The authored closing card is three seconds.",
+    "The QR is an exact normal design link, with no physical-phone scan or paired-phone delivery claim.",
+    "Numerical checks cover declared rods and obstacles at finite poses; they do not establish fabrication safety or all-between-pose clearance."
+  ],
+  "independent_receipt_sha256": "efb55887feacc8dfdc5afa2c5c23017de91154fa39b77beccc7bc502efae1077",
+  "browser_receipt_sha256": "f7fd2633c8d409b9cb596d14c067d0ddda9bc79f5e41a6fb3ab1b798d4066e0c",
+  "previous_r003_sha256": "1ef3de21415e276e1731fd212035cb4bd7e0312d7851d595136ba0b94b7eaa5e",
+  "published": false
+}

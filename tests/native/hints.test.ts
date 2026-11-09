@@ -21,9 +21,9 @@ const code=transformNative(source.replace(/^import .*;$/gm,'')
 function fixture(){
   let now=0,inView=true,playing=false,start=()=>{};
   const calls:unknown[][]=[],removed:unknown[]=[],disabled:string[]=[];
-  const clips:Record<string,{playbackMode:number}>={};
-  const player={getClip:(name:string)=>clips[name]??=( {playbackMode:1}),
-    getClipIsPlaying:()=>playing,stopClip:()=>{playing=false;},
+  const clips:Record<string,{playbackMode:number;begin:number;end:number}>={};
+  const player={getClip:(name:string)=>clips[name]??=( {playbackMode:1,begin:0,end:4}),
+    getClipIsPlaying:()=>playing,getClipCurrentTime:()=>3.2,playClipAt:()=>{},pauseClip:()=>{playing=false;},forceUpdate:()=>{},stopClip:()=>{playing=false;},
     setClipEnabled:(name:string,enabled:boolean)=>{if(!enabled)disabled.push(name);},
     onEvent:{remove:(registration:unknown)=>removed.push(registration)}};
   const transform={setLocalScale:()=>{},setWorldPosition:()=>{},setWorldRotation:()=>{}};
@@ -52,28 +52,33 @@ describe('official hint encounter policy',()=>{
     const f=fixture();f.tick('crank');expect(f.calls).toHaveLength(0);
     f.start();f.setTime(1);f.tick('crank');expect(f.calls).toHaveLength(0);
     f.setTime(2);f.setVisible(false);f.tick('crank');expect(f.calls).toHaveLength(0);
-    f.setVisible(true);f.tick('crank');expect(f.calls).toHaveLength(1);
+    f.setVisible(true);f.tick('crank');expect(f.calls).toHaveLength(0);
+    f.setTime(2.6);f.tick('crank');expect(f.calls).toHaveLength(1);
     expect(f.hints.needs('crank')).toBe(true);expect(f.anchor.enabled).toBe(true);
   });
   it('holds the one-shot pose without a timed disappearance or animation loop',()=>{
-    const f=fixture();f.start();f.setTime(2);f.tick('fit');
+    const f=fixture();f.start();f.setTime(2);f.tick('fit');f.setTime(2.6);f.tick('fit');
     expect(f.clips.rotate.playbackMode).toBe(0);expect(f.removed).toEqual(['official-fade-handler']);
     f.finishAnimation();f.setTime(100);f.tick('fit');
-    expect(f.anchor.enabled).toBe(true);expect(f.hints.snapshot().holding).toBe(true);
+    expect(f.anchor.enabled).toBe(true);
     expect(f.calls).toHaveLength(1);expect(f.hints.needs('fit')).toBe(true);
     f.tick(null);expect(f.anchor.enabled).toBe(false);expect(f.disabled).toEqual(['rotate']);
-    f.tick('fit');expect(f.calls).toHaveLength(2);
+    f.tick('fit');f.setTime(100.6);f.tick('fit');expect(f.calls).toHaveLength(2);
   });
-  it('hides offscreen or on a changed target and re-offers an unfinished gesture',()=>{
-    const f=fixture();f.start();f.setTime(2);f.tick('draw');expect(f.calls).toHaveLength(1);
-    f.setVisible(false);f.tick('draw');expect(f.anchor.enabled).toBe(false);
-    f.setVisible(true);f.tick('draw');expect(f.calls).toHaveLength(2);
-    f.tick('mount');f.tick('draw');expect(f.calls).toHaveLength(4);
-    f.tick('draw');expect(f.calls).toHaveLength(4);
+  it('delays every encounter and caps animation at initial plus two replays',()=>{
+    const f=fixture();f.start();
+    for(let encounter=0;encounter<5;encounter++){
+      f.setTime(2+encounter*2);f.tick('draw');expect(f.anchor.enabled).toBe(false);
+      f.setTime(2.6+encounter*2);f.tick('draw');expect(f.anchor.enabled).toBe(true);
+      expect(f.calls).toHaveLength(Math.min(3,encounter+1));
+      f.setVisible(false);f.tick('draw');expect(f.anchor.enabled).toBe(false);f.setVisible(true);
+    }
+    expect(f.hints.needs('draw')).toBe(true);
+    expect(f.hints.snapshot().animationPlays.draw).toBe(3);
   });
   it('permanently dismisses only a completed gesture, for every supported verb',()=>{
     for(const kind of ['crank','draw','fit','mount','obstacle','obstacleSize']){
-      const f=fixture();f.start();f.setTime(2);f.tick(kind);expect(f.calls).toHaveLength(1);
+      const f=fixture();f.start();f.setTime(2);f.tick(kind);f.setTime(2.6);f.tick(kind);expect(f.calls).toHaveLength(1);
       f.hints.complete(kind);expect(f.anchor.enabled).toBe(false);expect(f.hints.needs(kind)).toBe(false);
       f.tick(null);f.setTime(100);f.tick(kind);f.setVisible(false);f.tick(kind);f.setVisible(true);f.tick(kind);
       expect(f.calls).toHaveLength(1);expect(f.hints.snapshot().completed).toContain(kind);

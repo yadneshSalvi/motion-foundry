@@ -1,0 +1,15 @@
+# Continuous rehearsal
+
+Run `motion-workbench-film-rehearsal` after a fresh Preview. Keep runner logging WARN, diagnostics duration zero, camera stationary during gestures, and cursor outside Preview. The operator controls the actual Preview camera and capture. No extra scene component is needed.
+
+The live sequence is starter motion → visible synthetic hand draws a full reference-derived +0.06 cm translated loop → endpoint snap → actual HTTPS solve → hand turns crank → complete real ink cycle → actual camera approaches to inspect rod lengths and the widest gap, then returns → hand adds and positions the mug with one actual outline pinch → physical crank path to the verifier's actual contact → held pinch with visible amber ring and scheduled clunk → actual HTTPS repair of the same drawing and constraints → complete clear cycle. No Study/Reference/Done controls or hidden fixture loads remain.
+
+A single opening disclosure should read “Lens Studio Preview · scripted hand input · glasses untested”. Label the stroke as automated and reference-derived in the film description; do not claim human freehand input. The mug is a Preview stand-in. No persistent debug panels or audit banners belong in the film.
+
+Runtime receipts record wall and Lens clocks, SIK events, actual full-cycle quarter milestones, exact requested inputs, real HTTPS/local verification results and audio scheduling counts. Contact is held by the hand at the computed phase; phase is never assigned. Every solve and cycle has a deadline. OnDestroy cancels ongoing timed paths and finally releases/hides the hand. The posed visible hand uses its actual measured fingertip midpoint; after every release it retreats 350 ms and hides so it does not cover playback or solve. Two real cycles, deliberate interactions and a meaningful near inspection must provide at least 83.6 seconds; a shorter take fails the timing requirement instead of adding idle padding. Completion reports measured timing and never fabricates motion. Network delays may exceed that target and must be reported honestly.
+
+`lead_in_ms`, `contact_inspect_ms` and `ending_motion_ms` are bounded observation parameters. An enabled LEAF diagnostic camera rejects the rehearsal instead of hiding framework UI. A modified user drawing rejects the scenario instead of being overwritten.
+
+The mug setup includes a real 0.06 cm inward drag. The scenario checks the current returned mechanism for physical overlap, not just a clearance-buffer violation, then obtains a fresh repair. It preserves the actually captured drawing and every blocked constraint across that solve. No precomputed input hash, fixture result or phase is installed.
+
+The15.5-second near-inspection window requires at least six seconds with two readable rod labels and the computed gap, while the exact verified input stays unchanged. Launch through the nonblocking LEAF panel for camera control during the run; a blocking MCP scenario call may queue camera commands until after completion. No script assigns the camera or forces a distance band.

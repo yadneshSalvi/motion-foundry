@@ -34,7 +34,6 @@
     contactCue: false
     coral: false
     crankTick: false
-    measuredKeepOutProp: false
     mint: false
     placeOnSurface: false
     porcelain: false
@@ -57,20 +56,18 @@
       crankTick: !<reference.AudioTrackAsset> 00000000-0000-0000-0000-000000000000
       contactCue: !<reference.AudioTrackAsset> 00000000-0000-0000-0000-000000000000
       clearCue: !<reference.AudioTrackAsset> 00000000-0000-0000-0000-000000000000
-      measuredKeepOutProp: !<reference.SceneObject> 00000000-0000-0000-0000-000000000000
       placeOnSurface: false
   ScriptTypes:
     -
       {}
   InputLines:
-    - '// @input string backendUrl {"hint":"HTTPS deployment URL of the companion API; no vendor secrets belong in the Lens."}'
-    - '// @input Asset.Material champagne {"hint":"Champagne metal material for verified links and the display base."}'
-    - '// @input Asset.Material porcelain {"hint":"Porcelain material with two-sided rendering for the thin decorative petals."}'
-    - '// @input Asset.Material mint {"hint":"Light mint material for the actual trajectory."}'
-    - '// @input Asset.Material sky {"hint":"Light blue material for the desired pose handle."}'
-    - '// @input Asset.Material coral {"hint":"Coral material for the constraint obstacle."}'
+    - '// @input string backendUrl {"hint":"HTTPS companion API. Vendor credentials never belong in the Lens."}'
+    - '// @input Asset.Material champagne {"hint":"Retained material binding for native hardware."}'
+    - '// @input Asset.Material porcelain {"hint":"Neutral material for the share tag."}'
+    - '// @input Asset.Material mint {"hint":"Unlit source material for the workbench palette."}'
+    - '// @input Asset.Material sky {"hint":"Retained light blue material binding."}'
+    - '// @input Asset.Material coral {"hint":"Retained constraint material binding."}'
     - '// @input Asset.AudioTrackAsset crankTick {"hint":"Original ratchet tick imported from lens-src/audio/crank-tick.wav."}'
     - '// @input Asset.AudioTrackAsset contactCue {"hint":"Original short contact cue."}'
-    - '// @input Asset.AudioTrackAsset clearCue {"hint":"Original clear/loop-closed chime."}'
-    - '// @input SceneObject measuredKeepOutProp {"hint":"Legacy scene cylinder. The workbench disables it and renders its bounded mug stand-in in Preview only."}'
-    - '// @input bool placeOnSurface {"hint":"Preview only: ask for a real WorldQuery surface at startup. Devices always require placement; Preview otherwise uses the saved spot."}'
+    - '// @input Asset.AudioTrackAsset clearCue {"hint":"Original drawing-closed chime."}'
+    - '// @input bool placeOnSurface {"hint":"Preview: ask for a WorldQuery surface at startup. Devices always require placement."}'

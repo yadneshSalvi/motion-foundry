@@ -1,53 +1,40 @@
-# Verification record
+# Verification
 
-Updated November 9, 2026. Motion Foundry combines independently checked linkage geometry with actual Lens Studio Preview interaction tests. The [technical reference](technical-reference.md) explains the computations; [Scope](../README.md#scope) states their practical limits.
+Updated 10 November 2026. These results separate numerical checks, actual Lens Studio Preview interactions and physical-device testing. The [technical reference](technical-reference.md) describes the model; [Scope](../README.md#scope) states its limits.
 
-## Numerical and build checks
+## Source and saved project
 
-`npm run verify` passed **63 tests across eight files**, the web typecheck, four freshly solved Petal examples and the production build. The native source also passes `npx tsc -p tsconfig.lens-source.json` against the installed Lens, SIK, UIKit, LEAF and 3D Hints APIs.
+The final check set passed **99 tests across 14 files**, three shipping-scene tests, web and native TypeScript, four freshly solved Petal examples, and the production build. The saved native mirrors pass `lens:check` across 38 files. The shipping check finds 144 scene entities, one product entry and 18 resolved optional test assets, with no active test registry or LEAF messaging bridge.
 
-The suite includes:
+The numerical tests cover ordered closed-curve fitting, both drive directions, full-turn reachability, capsule contact and height layers, bounded no-fit results, signed exports and stale-result rejection. Spatial tests cover live match segments, plane projection, gesture seams, placement gates, state restoration, hints, label placement and hit-target separation. Mocked SDK boundaries establish source behavior; the Preview runs below establish actual native interaction.
 
-- Held-out Loop mechanisms with different lengths, attachment coordinates and assembly branches; ordered cyclic and reversed-drive comparisons; physically generated crossing paths and incorrect traversal rejection.
-- Bounded no-fit behavior, obstacle-aware search, independent contact locations for every base and attachment rod, exact exports, signed shares and bounded decompression.
-- Exact rendered capsule bounds, normals and winding; world/local plane projection; crank seam/reversal; physical ink; the thicker native input and containment of the mug body, handle and rim.
-- Ordered green-match segments, dashed input, snap-close criteria, distance-band hysteresis, time-based crank friction, placement policy and same-drawing obstacle edits.
-- Hint eligibility, one animation per encounter, persistent poses, re-entry and success-only permanent dismissal across all six gesture types.
+After filming, the temporary registry, messaging bridge and frame sampler were removed through the editor. The project was saved, closed, reopened, compiled and started successfully. Its exact scene hash is in the [current native summary](evidence/native-r004.json). Optional scenarios remain in the clearly named Tests folders and are not attached to the shipping scene.
 
-The native checks are separate from the unchanged numerical engines. The script manifest covers **19 product/domain files and nine test files**. `npm run lens:check` compares their saved mirrors; it does not operate the editor or establish visual correctness.
+## Current Preview workflow
 
-## Actual Preview interactions
-
-Tests ran in Lens Studio 5.23.2 with Sunlit Room, the SPECS device override, SIK 2.0.0, UIKit 2.0.0, 3D Hints 2.0.0 and LEAF 2.0.2. The visible synthetic hand follows real SIK hover, pinch, drag and release paths. Returned geometry is solved over HTTPS and checked locally before installation. A successful input call alone is not counted as a completed action.
+The current recording uses Lens Studio 5.23.2, SPECS 27 Interactive Preview in Sunlit Room, SIK 2.0.0, UIKit 2.0.0, official 3D Hints 2.0.0 and LEAF 2.0.2. Visible synthetic hands use the actual SIK hover, pinch, drag and release paths. HTTPS synthesis is followed by independent local checking before installation.
 
 | Interaction | Observed result |
 | --- | --- |
-| New drawing, snap-close and Make it | The drawing committed as `fnv1a-0928ec60`; a fresh solve produced 0.057521 cm maximum ordered error under the 0.30 cm limit. |
-| Direct crank and ink | After the real hand turn, the first complete ink cycle advanced 6.28885 radians in 14.936 seconds; the repaired cycle advanced 6.30543 radians in 15.011 seconds. |
-| Mug contact | Adding the mug preserved the new drawing. Turning the mechanism reached actual crank contact; its clearance margin was −0.213602 cm after the required separation. |
-| Same-drawing repair | The blocked request `fnv1a-5a34a9e4` stayed exact. The crank changed from 4.003602 to 3.766783 cm; maximum error was 0.251659 cm and sampled margin became +0.023217 cm. |
-| Fit dial | Actual rotations changed 3 → 2 → 3 mm. Each meaningful edit invalidated result freshness. |
-| Mug rim | Actual drags changed radius 4.5 → 5.0 → 4.5 cm while retaining the mug centre and height. |
-| Mount and Undo | A real drag changed spacing from 16 to 17 cm. The on-object Undo restored the exact prior input. Fresh synthesis then checked the completed control edits. |
-| Surface placement | A real upward WorldQuery hit was followed by a real SIK Place action, one commit and unfolding of the workbench. No fallback pose was used; the input stayed exact. |
-| Direct reach | A separate IK test required direct routing to the crank, returned no diagnostics and restored both original hand-tracking parents. A mount edit and Undo restored the exact starting hash. |
+| Draw and solve | The new closed drawing committed as `fnv1a-7dda7bc7`; the solver returned a machine for that input. |
+| Crank and persistent match | The first recorded full cycle advanced 6.30082 radians in 14.957 seconds. All 360 displayed segments were inspected and matched. Mint persists after the pen passes. |
+| Lean in | The actual camera approached and returned. At least two length plates and the fitting detail remained readable for 8.262 seconds. |
+| Add the mug | The hand added the stand-in to the drawn design. A rod physically entered it by 0.04269 cm; the collision was not merely a safety-buffer warning. |
+| Repair the same drawing | The blocked and repaired requests were exactly equal, hash `fnv1a-c35a3906`. The new machine completed another full cycle, 6.29504 radians in 14.939 seconds, with all 360 displayed segments matched. |
+| Edit and undo | On this same drawing, the fit dial changed 3 → 2 → 3 mm, the mug radius changed 4.5 → 5 → 4.5 cm, and the mounts changed 16 → 17 cm. The held 17 cm value stayed exposed; Undo restored the prior input. |
+| Place the workbench | A genuine upward WorldQuery hit and visible SIK confirmation produced exactly one placement commit. The dashed footprint was 30 × 24 cm. |
+| Save and share | The final revision-6 design was checked again, saved and exported. Its exact native QR decoded from four recorded frames. Opening that link in the companion revalidated its signature, input and 720 sampled poses. |
 
-The [recorded interaction receipt](evidence/native-workbench-recorded.json) retains exact new-drawing repair values, equality checks and actual surface placement. The [gesture receipt](evidence/native-workbench-gestures.json) also retains direct-reach and control checks. It separates the new-drawing repair from the control demonstration that begins with the bundled drawing. Those inputs are not presented as one unchanged mechanism.
+The final handoff hash is `fnv1a-ec80dc0a`. Its maximum fit error is **0.296973 cm**, within the 0.30 cm limit; its sampled clearance margin is **0.025001 cm**. These final values follow the deliberate control edits and are not substituted for the earlier repair result.
 
-The drawing/repair test scheduled 22 ratchet ticks, one contact cue and three clear cues through three configured voices, with `failed=false`. These counts establish successful scheduling. The film's cue reconstruction uses its own recorded event clock.
+The main native interval is 90.5 seconds at normal speed. Dense sampled image review found the touched drawing, outboard crank, mug and resulting motion visible. The selected first mint payoff has at most 18.75% recorded projected loop coverage. This is a selected-view result, not a claim about every phase or every frame. The actual additive Center image shows the earned mint drawing. Film encoding and sound checks are documented separately from native acceptance.
 
-## Spatial presentation
+## Host Preview frame times
 
-Native front, side and Center views were inspected after correcting UIKit's initialization order. Buttons retain a dark fill and bright rim; rods use unlit colour. At a far view, controls and detail disappear, leaving one status mark. Near views expose a few safe rod-length plates and the computed fitting gap. Live mount and mug readouts replace the general instruction during editing.
+A five-second busy-state window from the same product revision, with the crank playing and near labels visible, recorded 222 host UpdateEvent intervals: median **22.226 ms**, p95 **24.469 ms**, maximum **63.842 ms**. This was collected during diagnostic logging and screen recording. It is not physical SPECS FPS, GPU timing or script self-time.
 
-The final [hint check](evidence/native-hints.json) separately verified a visible static pose beyond the old timeout, hiding on field-of-view exit, reappearing on re-entry and dismissal after a genuine SIK crank gesture. The input stayed unchanged. The public clip clock, rather than the SDK’s ambiguous playing flag, established the stationary pose. Temporary probes were removed and the saved product started cleanly; an unrelated host authentication transport warning is retained in the receipt.
+## Practical limits
 
-Dimensions remain centimetres. The mug's body, handle and rim lie inside the cylinder used by the checker. The result does not include every decorative component; see [Scope](../README.md#scope).
+Placement is a surface hit, not object recognition. The mug is a manually sized stand-in. Physical Spectacles tracking, comfort, performance and phone scanning have not been tested. The present handoff is a Preview QR/link; sending directly to a paired phone is future work.
 
-Placement tests execute the actual placement class against mocked native boundaries: camera-gaze direction, in-view controls, invalid and stale-hit rejection, and one-shot commits. They cover editor and non-editor source branches. The separate real Preview Place run verifies the visible surface interaction; neither test establishes physical-device tracking. Reproduction steps and the deliberate Preview test setup are in [reproducibility](reproducibility.md).
-
-## Companion and earlier checks
-
-The deployed [companion](https://motion-foundry-nine.vercel.app) retains the verified Loop and Petal route families. Earlier desktop/mobile browser checks covered drawing, error inspection, obstacle repair, no-fit recovery, stale-result guards, Undo, downloads and signature/geometry revalidation. Delayed genuine responses exercised timeout, cancellation and overlapping Save behavior. Full records remain in the [historical verification archive](archive/verification-through-2026-11-08.md).
-
-Earlier film and QR measurements describe their recorded geometry. They remain in the [earlier film record](archive/film-r002.md); they do not substitute for a current signed handoff or a new film's frame checks.
+Fit and contact checks sample the modeled geometry. They do not establish fabrication feasibility, loads, bearings or between-sample clearance. A failed bounded search does not prove that no solution exists. Earlier [verification](archive/verification-before-r004.md) and [film records](archive/film-r002.md) remain historical evidence for their own source revisions.

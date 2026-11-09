@@ -1,11 +1,13 @@
 import {LoopInput,LoopParameters,LoopVerification,evaluateCouplerPoint} from "./LoopDomain";
 import {Vec2} from "./MotionDomain";
 import {capsuleMesh,WorkbenchMesh,dialAngleFromFit,mugStandInMeshes} from "./WorkbenchGeometry";
-import {WORKBENCH_PROFILE,WORKBENCH_KEEP_OUT,kinematicInkSegment} from "./WorkbenchProfile";
+import {WORKBENCH_PROFILE,WORKBENCH_KEEP_OUT} from "./WorkbenchProfile";
 import {OrderedTraceMatch,dashedStroke,WORKBENCH_PRESENTATION} from "./WorkbenchPresentation";
+import {PersistentOrderedTrace,TraceState,IncrementalTraceTube} from "./WorkbenchTrace";
+import {createNativeTraceTube} from "./WorkbenchTraceMesh";
 import {applyWorkbenchText} from "./WorkbenchStyle";
 
-type Frame={draft?:Vec2[];drawing:boolean;closed:boolean;fresh:boolean;showFit:boolean;showContact:boolean;reveal:boolean;solving:boolean;hover:string;editing:string;isEditor:boolean};
+type Frame={draft?:Vec2[];draftVersion:number;drawing:boolean;closed:boolean;fresh:boolean;showFit:boolean;showContact:boolean;reveal:boolean;solving:boolean;hover:string;editing:string;isEditor:boolean};
 type Obstacle=LoopInput["obstacles"][number];
 
 /** XY mechanism coordinates rotate onto the measured table. One Lens unit is one centimetre. */
@@ -18,7 +20,7 @@ export class LoopAssembly {
   readonly keepOutSizeHandle:SceneObject;
   readonly fitHandle:SceneObject;
   readonly bounds={...WORKBENCH_PROFILE.bounds};
-  readonly fitCenter:Vec2={x:21,y:-4.4};
+  readonly fitCenter:Vec2={x:21,y:-6.5};
   displayZ=5.1;
   crankHeight=6.7;
   currentPoint:Vec2={x:0,y:0};
@@ -41,44 +43,53 @@ export class LoopAssembly {
   private keepOutVisual:RenderMeshVisual;
   private keepOutCollider:ColliderComponent;
   private marker:SceneObject;
-  private inkPoints:Vec2[]=[];
-  private inkDirty=false;
-  private lastInkFrame=0;
+  private trace=new PersistentOrderedTrace(360);
+  private traceState:TraceState=this.trace.state();
+  private inkTube:IncrementalTraceTube;
+  private matchTube:IncrementalTraceTube;
+  private failureTube:IncrementalTraceTube;
+  private failure:RenderMeshVisual;
+  private inputVersion=-1;
+  private candidateKey="";
+  private parameterSource:LoopParameters|null=null;
+  private drawingVersion=-1;
+  private previousDrawing=false;
   private lastGeometry="";
-  private lastDrawing="";
   private lastObstacle="";
   private lastFit="";
   private lastWitness="";
   private metal:Material;
-  private amber:Material;
   private white:Material;
   private faint:Material;
+  private pale:Material;
   private contact:Material;
   private accent:Material;
   private bright:Material;
   private drawingNib:SceneObject;
   private closeRing:SceneObject;
   private fitLimitRing:SceneObject;
-  private wet:RenderMeshVisual;
   private matched:RenderMeshVisual;
   private pending:SceneObject[]=[];
+  private knobMaterial:Material;
+  private knobOpacity=-1;
+  private rodOpacity=-1;
+  private linkColors:number[][]=[];
+  private linkLengths:number[]=[];
   private mug:SceneObject;
   private mugParts:RenderMeshVisual[]=[];
   private glow:{[key:string]:SceneObject}={};
-  private visited:{point:Vec2;phase:number;time:number}[]=[];
   private matchMap:OrderedTraceMatch|null=null;
-  private matchKey="";
   private radiusKey="";
 
-  constructor(parent:SceneObject,metal:Material,porcelain:Material,mint:Material,sky:Material,coral:Material){
+  constructor(parent:SceneObject,mint:Material){
     // Board centre (8,5) maps to the authored table-frame origin. Local Z becomes world up.
     this.root=this.object(parent,"Tabletop linkage",new vec3(-8,.12,5));
     this.root.getTransform().setLocalRotation(quat.fromEulerAngles(-Math.PI/2,0,0));
     // Mint is the existing unlit asset. Bright rods/ink must not depend on room lighting.
     this.metal=this.tint(mint,.21,.24,.25);
-    this.amber=this.tint(mint,1,.65,.13);
     this.white=this.tint(mint,1,1,1);
     this.faint=this.tint(mint,.22,.24,.25);
+    this.pale=this.tint(mint,.78,.84,.86);
     this.contact=this.tint(mint,1,.61,.09);
     this.accent=this.tint(mint,.91,.24,1);
     this.bright=this.tint(mint,.2,1,.63);
@@ -92,16 +103,17 @@ export class LoopAssembly {
     this.boardTarget=this.object(this.root,"Workbench drawing surface",new vec3(8,5,.08));
     this.boxCollider(this.boardTarget,new vec3(30,24,.25));
 
-    const colors=[[.37,.9,1],[.66,.64,1],[1,.63,.77],[.22,.25,.25],[.68,.91,1],[.68,.91,1]];
+    const colors=[[.37,.9,1],[.66,.64,1],[1,.63,.77],[.55,.61,.61],[.68,.91,1],[.68,.91,1]];this.linkColors=colors;
     const names=["crank","coupler","rocker","ground","attachment-B","attachment-C"];
     for(let i=0;i<names.length;i++){
       const c=colors[i],material=this.tint(mint,c[0],c[1],c[2]);this.linkMaterials.push(material);
       this.links.push(this.visual(this.root,"Verified "+names[i]+" bar",capsuleMesh(1,.45,.7),material));
+      const shimmer=this.visual(this.links[i].getSceneObject(),"Pending shimmer on previous actual rod",capsuleMesh(.75,.035,.025),this.pale).getSceneObject();shimmer.enabled=false;this.pending.push(shimmer);
     }
     for(let i=0;i<4;i++){
       const root=this.object(this.root,"Through axle "+"ABCD"[i],vec3.zero());
       this.axles.push(root);this.axleVisuals.push(this.visual(root,"Axle shaft",capsuleMesh(0,.22,1),this.metal));
-      this.visual(root,"Axle cap",capsuleMesh(0,.40,.16),this.white).getSceneObject().getTransform().setLocalPosition(new vec3(0,0,.5));
+      this.visual(root,"Axle cap",capsuleMesh(0,.40,.16),this.pale).getSceneObject().getTransform().setLocalPosition(new vec3(0,0,.5));
     }
     for(let i=0;i<2;i++){
       const clamp=this.object(this.root,i?"Workbench movable mount":"Workbench fixed mount",vec3.zero());
@@ -111,25 +123,27 @@ export class LoopAssembly {
       this.clamps.push(clamp);
     }
     this.mountHandle=this.clamps[1];this.boxCollider(this.mountHandle,new vec3(4.5,4.5,2));
-    this.glow.mount=this.visual(this.mountHandle,"Mount hover outline",this.ring(2.05,.16,.72),this.white).getSceneObject();
-    this.knobPost=this.visual(this.root,"Decorative crank post",capsuleMesh(0,.28,1),this.metal).getSceneObject();
+    this.glow.mount=this.visual(this.mountHandle,"Mount hover outline",this.ring(2.05,.16,.72),this.pale).getSceneObject();
+    this.knobPost=this.visual(this.root,"Decorative crank post",capsuleMesh(0,.12,1),this.metal).getSceneObject();
     this.crankHandle=this.object(this.root,"Workbench crank knob",vec3.zero());
-    this.visual(this.crankHandle,"Graspable crank grip",this.sphere(2.1,12,24),this.tint(mint,.34,.82,1));
-    this.visual(this.crankHandle,"Grip inset",capsuleMesh(0,.58,.16),this.white).getSceneObject().getTransform().setLocalPosition(new vec3(0,0,1.96));
-    this.glow.crank=this.visual(this.crankHandle,"Crank hover halo",this.ring(2.18,.18,0),this.white).getSceneObject();
+    this.knobMaterial=this.tint(mint,.72,.84,.9);this.knobMaterial.mainPass.blendMode=BlendMode.Normal;this.knobMaterial.mainPass.depthWrite=false;
+    this.visual(this.crankHandle,"1.6 centimetre crank knob",this.sphere(.8,10,20),this.knobMaterial);
+    this.glow.crank=this.visual(this.crankHandle,"Crank hover halo",this.ring(.95,.12,0),this.pale).getSceneObject();
     const sphere=Shape.createSphereShape();sphere.radius=2.1;
     (this.crankHandle.createComponent("Physics.ColliderComponent") as ColliderComponent).shape=sphere;
 
     this.nib=this.object(this.root,"Decorative tracing nib",vec3.zero());
-    this.visual(this.nib,"Pen tip",this.cone(.36,.8,20),this.accent);
-    this.nibStem=this.visual(this.root,"Decorative pen stem",capsuleMesh(0,.18,1),this.metal).getSceneObject();
-    this.marker=this.visual(this.root,"Coupler attachment cap",capsuleMesh(0,.48,.24),this.white).getSceneObject();
-    this.ink=this.path("Ink drawn by actual coupler",[],WORKBENCH_PRESENTATION.inkRadiusCm,.30,this.accent);
-    this.desired=this.path("Requested dashed loop",[],WORKBENCH_PRESENTATION.drawingRadiusCm,.16,this.white);
-    this.wet=this.path("Bright wet ink at actual pen",[],.25,.31,this.white);
-    this.matched=this.path("Ordered matched ink segments",[],.225,.315,this.bright);
+    this.visual(this.nib,"Pen tip",this.cone(.3,.5,20),this.white);
+    this.nibStem=this.visual(this.root,"Decorative pen stem",capsuleMesh(0,.08,1),this.metal).getSceneObject();
+    this.marker=this.visual(this.root,"Coupler attachment cap",capsuleMesh(0,.22,.14),this.pale).getSceneObject();
+    const ink=createNativeTraceTube(.22,6,4096),match=createNativeTraceTube(.10,6,1200),failure=createNativeTraceTube(.06,6,720);
+    this.inkTube=ink.tube;this.matchTube=match.tube;this.failureTube=failure.tube;
+    this.ink=this.visual(this.root,"Ink drawn only by actual coupler",ink.mesh,this.accent);
+    this.desired=this.path("Requested dashed drawing",[],WORKBENCH_PRESENTATION.drawingRadiusCm,.55,this.white);
+    this.matched=this.visual(this.root,"Persistently matched ordered drawing",match.mesh,this.bright);
+    this.failure=this.visual(this.root,"Inspected drawing segments beyond the limit",failure.mesh,this.contact);
     this.drawingNib=this.object(this.root,"Pinch drawing nib",vec3.zero());
-    this.visual(this.drawingNib,"Drawing fingertip dot",this.sphere(.65,8,16),this.accent);
+    this.visual(this.drawingNib,"Drawing fingertip dot",this.sphere(.3,8,16),this.white);
     this.closeRing=this.visual(this.root,"Snap close target",this.ring(WORKBENCH_PRESENTATION.closeDistanceCm,.12,.19),this.white).getSceneObject();
     this.fitLimitRing=this.visual(this.root,"Chosen fit distance",this.ring(.3,.045,.24),this.white).getSceneObject();
 
@@ -139,17 +153,17 @@ export class LoopAssembly {
     this.keepOutSizeHandle=this.object(this.root,"Workbench mug size handle",vec3.zero());
     this.visual(this.keepOutSizeHandle,"Pinchable mug rim handle",this.sphere(.95,8,16),this.white);
     this.boxCollider(this.keepOutSizeHandle,new vec3(4.5,4.5,3));
-    this.glow.obstacleSize=this.visual(this.keepOutSizeHandle,"Mug size hover halo",this.ring(1.15,.15,0),this.white).getSceneObject();
+    this.glow.obstacleSize=this.visual(this.keepOutSizeHandle,"Mug size hover halo",this.ring(1.15,.15,0),this.pale).getSceneObject();
     this.mug=this.object(this.keepOutHandle,"Preview mug stand-in",vec3.zero());
     for(const name of ["Mug bowl","Mug handle","Mug rim"]){
       this.mugParts.push(this.visual(this.mug,name,this.mesh([],[]),name==="Mug bowl"?this.tint(mint,.22,.25,.25):this.white));
     }
-    this.glow.obstacle=this.visual(this.keepOutHandle,"Mug move hover halo",this.ring(1,.16,0),this.white).getSceneObject();
+    this.glow.obstacle=this.visual(this.keepOutHandle,"Mug move hover halo",this.ring(1,.16,0),this.pale).getSceneObject();
     this.collisionMark=this.visual(this.root,"Computed contact ring",this.ring(.65,.075,.1),this.contact).getSceneObject();
     this.collisionMark.enabled=false;
     this.fitTarget=this.visual(this.root,"Desired error ring",this.ring(.36,.065,0),this.white).getSceneObject();
-    this.fitActual=this.visual(this.root,"Actual error ring",this.ring(.25,.075,0),this.contact).getSceneObject();
-    this.fitLine=this.path("Computed error segment",[],.038,.22,this.contact);
+    this.fitActual=this.visual(this.root,"Actual error ring",this.ring(.25,.075,0),this.white).getSceneObject();
+    this.fitLine=this.path("Computed error segment",[],.038,.22,this.white);
     for(const o of [this.fitTarget,this.fitActual,this.fitLine.getSceneObject()])o.enabled=false;
 
     this.fitHandle=this.object(this.root,"Workbench fit dial",new vec3(this.fitCenter.x,this.fitCenter.y,.65));
@@ -157,7 +171,7 @@ export class LoopAssembly {
     this.visual(this.fitHandle,"Fit dial face",capsuleMesh(0,1.5,.12),this.faint).getSceneObject().getTransform().setLocalPosition(new vec3(0,0,.39));
     this.fitPointer=this.path("Fit dial pointer",[[{x:0,y:0},{x:1.2,y:0}]],.08,.50,this.white,this.fitHandle).getSceneObject();
     this.boxCollider(this.fitHandle,new vec3(4.5,4.5,1.7));
-    this.glow.fit=this.visual(this.fitHandle,"Fit dial hover halo",this.ring(1.9,.14,.48),this.white).getSceneObject();
+    this.glow.fit=this.visual(this.fitHandle,"Fit dial hover halo",this.ring(1.9,.14,.48),this.pale).getSceneObject();
     for(let mm=1;mm<=5;mm++){
       const angle=dialAngleFromFit(mm/10),a={x:1.45*Math.cos(angle),y:1.45*Math.sin(angle)},b={x:1.8*Math.cos(angle),y:1.8*Math.sin(angle)};
       this.path("Fit dial "+mm+" mm tick",[[a,b]],.10,.53,this.white,this.fitHandle);
@@ -165,37 +179,49 @@ export class LoopAssembly {
       const text=o.createComponent("Component.Text") as Text;applyWorkbenchText(text,"detail");text.text=String(mm);
       text.horizontalAlignment=HorizontalAlignment.Center;text.verticalAlignment=VerticalAlignment.Center;text.layoutRect=Rect.create(-.7,.7,-.6,.6);
     }
-    for(const x of [0,16]){
-      const halo=this.visual(this.root,"Pending search ring",this.ring(.85,.12,.9),this.white).getSceneObject();halo.getTransform().setLocalPosition(new vec3(x,0,0));this.pending.push(halo);
-    }
   }
 
   private tint(source:Material,r:number,g:number,b:number){const m=source.clone();m.mainPass.baseColor=new vec4(r,g,b,1);return m;}
   public worldPoint(p:Vec2,z=0){return this.root.getTransform().getWorldTransform().multiplyPoint(new vec3(p.x,p.y,z));}
   public boundedPoint(point:{x:number;y:number}):Vec2{return{x:Math.round(Math.max(this.bounds.minX,Math.min(this.bounds.maxX,point.x))*1000)/1000,y:Math.round(Math.max(this.bounds.minY,Math.min(this.bounds.maxY,point.y))*1000)/1000};}
-  public resetInk(p:LoopParameters,phase:number){this.inkPoints=kinematicInkSegment(p,phase,phase).slice(0,1);this.visited=this.inkPoints.map(point=>({point,phase,time:getTime()}));this.inkDirty=true;}
-  public advanceInk(p:LoopParameters,from:number,to:number){
-    if(Math.abs(to-from)<1e-6)return;
-    const points=kinematicInkSegment(p,from,to);this.inkPoints.push(...points.slice(1));
-    this.visited.push(...points.slice(1).map((point,i)=>({point,phase:from+(to-from)*(i+1)/(points.length-1),time:getTime()})));
-    // Bounded history contains only visited poses, including when the hand reverses direction.
-    if(this.inkPoints.length>1441){const excess=this.inkPoints.length-1441;this.inkPoints.splice(0,excess);this.visited.splice(0,excess);}
-    this.inkDirty=true;
+  /** Called only when the input version or selected candidate changes. */
+  public configure(input:LoopInput,p:LoopParameters,id:string,version:number,phase:number){
+    if(this.inputVersion===version&&this.candidateKey===id&&this.parameterSource===p)return;
+    this.inputVersion=version;this.candidateKey=id;this.parameterSource=p;
+    this.trace.configure(input,p,id);this.matchMap=new OrderedTraceMatch(input,p);this.resetInk(p,phase);
+    this.lastGeometry="";this.drawingVersion=-1;
   }
-  public inkPointCount(){return this.inkPoints.length;}
+  public resetInk(_p:LoopParameters,phase:number){
+    this.trace.restart(phase);this.traceState=this.trace.state();
+    this.inkTube.reset();this.matchTube.reset();this.failureTube.reset();
+  }
+  public advanceInk(_p:LoopParameters,_from:number,to:number){
+    const result=this.trace.advance(to);if(result.breakInk)this.inkTube.breakStroke();
+    this.inkTube.append(result.ink.map(p=>({...p,z:.30})));
+    if(result.changed.length){
+      this.traceState=this.trace.state();
+      for(const index of result.changed){const cell=this.traceState.cells[index];
+        if(cell.matched){this.matchTube.breakStroke();this.matchTube.append(cell.path.map(p=>({...p,z:.58})));}
+        else{const witness=this.traceState.failureTicks.find(w=>w.index===index);if(!witness)continue;
+          const dx=witness.actual.x-witness.desired.x,dy=witness.actual.y-witness.desired.y,n=Math.hypot(dx,dy)||1;
+          this.failureTube.breakStroke();this.failureTube.append([{x:witness.desired.x-dy/n*.2,y:witness.desired.y+dx/n*.2,z:.67},{x:witness.desired.x+dy/n*.2,y:witness.desired.y-dx/n*.2,z:.67}]);
+        }
+      }
+    }
+  }
+  public inkPointCount(){return this.inkTube.segmentCount+Number(this.inkTube.segmentCount>0);}
   public currentMatch(phase:number){return this.matchMap?.at(phase)||null;}
+  public matchProgress(){return{ready:this.traceState.ready,complete:this.traceState.complete,inspected:this.traceState.inspected,matched:this.traceState.matched,total:this.traceState.total,inkCapacityReached:this.inkTube.full};}
 
   public update(p:LoopParameters,input:LoopInput,phase:number,frame:Frame,audit:LoopVerification){
     const pose=evaluateCouplerPoint(p,phase);if(!pose)return;
-    const matchKey=JSON.stringify([p,input.stroke,input.tolerances.samples]);
-    if(matchKey!==this.matchKey){this.matchKey=matchKey;try{this.matchMap=new OrderedTraceMatch(input,p);}catch{this.matchMap=null;}}
     const layers=input.linkLayers||{ground:.6,crank:1.8,rocker:3,coupler:4.2},depth=input.linkDepthCm||.7;
     this.displayZ=Math.max(layers.crank,layers.coupler,layers.rocker,layers.ground)+depth/2+.4;
     this.crankHeight=this.displayZ+1.8;
-    const geometry=JSON.stringify([p,input.linkRadiusCm,depth,layers]);
+    const geometry=String(this.inputVersion)+":"+this.candidateKey;
     if(geometry!==this.lastGeometry){
       this.lastGeometry=geometry;
-      const lengths=[p.crankCm,p.couplerCm,p.rockerCm,p.groundCm,Math.hypot(p.attachmentAlongCm,p.attachmentAcrossCm),Math.hypot(p.couplerCm-p.attachmentAlongCm,p.attachmentAcrossCm)];
+      const lengths=[p.crankCm,p.couplerCm,p.rockerCm,p.groundCm,Math.hypot(p.attachmentAlongCm,p.attachmentAcrossCm),Math.hypot(p.couplerCm-p.attachmentAlongCm,p.attachmentAcrossCm)];this.linkLengths=lengths;
       this.links.forEach((visual,i)=>visual.mesh=this.meshData(capsuleMesh(lengths[i],input.linkRadiusCm,depth)));
     }
     const segments:[[Vec2,Vec2],number][]=[[[pose.A,pose.B],layers.crank],[[pose.B,pose.C],layers.coupler],[[pose.D,pose.C],layers.rocker],[[pose.A,pose.D],layers.ground],[[pose.B,pose.point],layers.coupler],[[pose.C,pose.point],layers.coupler]];
@@ -227,42 +253,25 @@ export class LoopAssembly {
     this.fitHandle.enabled=!frame.drawing;
     this.fitPointer.getTransform().setLocalRotation(quat.fromEulerAngles(0,0,dialAngleFromFit(input.tolerances.fitCm)));
     for(const key of Object.keys(this.glow))this.glow[key].enabled=frame.hover===key||frame.editing===key;
+    const knobOpacity=frame.hover==="crank"?1:.6;
+    if(this.knobOpacity!==knobOpacity){this.knobOpacity=knobOpacity;this.knobMaterial.mainPass.baseColor=new vec4(.72,.84,.9,knobOpacity);}
+    const rodOpacity=frame.solving?.3:1;
+    if(this.rodOpacity!==rodOpacity){this.rodOpacity=rodOpacity;this.linkMaterials.forEach((material,i)=>{const c=this.linkColors[i];material.mainPass.blendMode=rodOpacity<1?BlendMode.Normal:BlendMode.Disabled;material.mainPass.depthWrite=rodOpacity===1;material.mainPass.baseColor=new vec4(c[0],c[1],c[2],rodOpacity);});}
     this.pending.forEach((object,i)=>{
       object.enabled=frame.solving;
-      const size=.9+.18*Math.sin(getTime()*5+i*Math.PI);object.getTransform().setLocalScale(new vec3(size,size,1));
-      object.getTransform().setLocalPosition(new vec3(i?input.fixedMounts.groundCm:0,0,.1));
+      if(frame.solving)object.getTransform().setLocalPosition(new vec3(Math.sin(getTime()*1.2+i*.4)*Math.max(0,(this.linkLengths[i]-.8)/2),0,depth/2+.03));
     });
-
-    const drawing=frame.draft||input.stroke,key=JSON.stringify([drawing,frame.closed,frame.drawing]);
-    if(key!==this.lastDrawing){
-      this.lastDrawing=key;
-      const paths=frame.drawing?[drawing]:dashedStroke(drawing,frame.closed);
-      this.desired.mesh=this.tube(paths,WORKBENCH_PRESENTATION.drawingRadiusCm,.13);
-      this.desired.mainMaterial=this.white;
+    const drawing=frame.draft||input.stroke,drawingVersion=frame.drawing?frame.draftVersion:this.inputVersion;
+    if(drawingVersion!==this.drawingVersion||frame.drawing!==this.previousDrawing){
+      this.drawingVersion=drawingVersion;this.previousDrawing=frame.drawing;
+      this.desired.mesh=this.tube(frame.drawing?[drawing]:dashedStroke(drawing,frame.closed),WORKBENCH_PRESENTATION.drawingRadiusCm,.55);
     }
     const last=drawing[drawing.length-1];
     this.drawingNib.enabled=frame.drawing&&!!last;
     if(last)this.drawingNib.getTransform().setLocalPosition(new vec3(last.x,last.y,.8));
     this.closeRing.enabled=frame.drawing&&drawing.length>5;
     if(drawing.length)this.closeRing.getTransform().setLocalPosition(new vec3(drawing[0].x,drawing[0].y,0));
-    this.ink.getSceneObject().enabled=!frame.drawing;
-    this.wet.getSceneObject().enabled=this.matched.getSceneObject().enabled=!frame.drawing;
-    if(getTime()-this.lastInkFrame>.06){
-      if(this.inkDirty)this.ink.mesh=this.tube([this.inkPoints],WORKBENCH_PRESENTATION.inkRadiusCm,.30);
-      const recent=this.visited.filter(point=>getTime()-point.time<.7);
-      this.wet.mesh=this.tube([recent.slice(-4).map(p=>p.point)],.245,.315);
-      const paths:Vec2[][]=[];let current:Vec2[]=[];
-      for(let i=0;i<recent.length;i++){
-        const point=recent[i],match=frame.fresh?this.matchMap?.at(point.phase):null;
-        // Both endpoints AND their physical middle pose must fit before this short segment is green.
-        const previous=i?recent[i-1]:null,mid=previous?this.matchMap?.at((point.phase+previous.phase)/2):null;
-        if(match&&match.errorCm<=input.tolerances.fitCm&&(!mid||mid.errorCm<=input.tolerances.fitCm)){current.push(point.point);}
-        else if(current.length){paths.push(current);current=[];}
-      }
-      if(current.length)paths.push(current);
-      this.matched.mesh=this.tube(paths,.225,.32);
-      this.inkDirty=false;this.lastInkFrame=getTime();
-    }
+    this.ink.getSceneObject().enabled=this.matched.getSceneObject().enabled=this.failure.getSceneObject().enabled=!frame.drawing;
     this.updateObstacle(input.obstacles[0],frame.isEditor,frame.drawing);
     const match=this.matchMap?.at(phase);
     this.fitLimitRing.enabled=frame.editing==="fit"&&!!match;
@@ -270,7 +279,7 @@ export class LoopAssembly {
       this.fitLimitRing.getTransform().setLocalPosition(new vec3(match.desired.x,match.desired.y,0));
       const radiusKey=String(input.tolerances.fitCm);if(radiusKey!==this.radiusKey){this.radiusKey=radiusKey;(this.fitLimitRing.getComponent("Component.RenderMeshVisual") as RenderMeshVisual).mesh=this.ring(input.tolerances.fitCm,.045,.23);}
     }
-    const collision=frame.showContact?audit.collisionWitness:undefined;
+    const collision=frame.showContact&&!frame.solving?audit.collisionWitness:undefined;
     this.collisionMark.enabled=!!collision;
     if(collision)this.collisionMark.getTransform().setLocalPosition(new vec3(collision.location.x,collision.location.y,this.layerFor(collision.geometry,layers)+depth/2+.10));
     const witnessKey=collision?collision.geometry+collision.obstacleId:"";
@@ -283,9 +292,9 @@ export class LoopAssembly {
     const fit=frame.showFit?audit.fitWitness:undefined;
     this.fitTarget.enabled=this.fitActual.enabled=this.fitLine.getSceneObject().enabled=!!fit;
     if(fit){
-      this.fitTarget.getTransform().setLocalPosition(new vec3(fit.desired.x,fit.desired.y,.24));
-      this.fitActual.getTransform().setLocalPosition(new vec3(fit.actual.x,fit.actual.y,.25));
-      const fitKey=JSON.stringify(fit);if(fitKey!==this.lastFit){this.lastFit=fitKey;this.fitLine.mesh=this.paths([[fit.desired,fit.actual]],.038,.23);}
+      this.fitTarget.getTransform().setLocalPosition(new vec3(fit.desired.x,fit.desired.y,.65));
+      this.fitActual.getTransform().setLocalPosition(new vec3(fit.actual.x,fit.actual.y,.65));
+      const fitKey=this.inputVersion+":"+this.candidateKey;if(fitKey!==this.lastFit){this.lastFit=fitKey;this.fitLine.mesh=this.paths([[fit.desired,fit.actual]],.038,.63);const material=fit.errorCm<=input.tolerances.fitCm?this.bright:this.white;this.fitLine.mainMaterial=material;(this.fitActual.getComponent("Component.RenderMeshVisual") as RenderMeshVisual).mainMaterial=material;}
     }
   }
 

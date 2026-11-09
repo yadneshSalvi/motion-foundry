@@ -2,7 +2,7 @@ import {Button} from "SpectaclesUIKit.lspkg/Scripts/Components/Button/Button";
 import {RoundedRectangleVisual,RoundedRectangleVisualState} from "SpectaclesUIKit.lspkg/Scripts/Visuals/RoundedRectangle/RoundedRectangleVisual";
 
 /** One role scale: measured cap-height is a native Center-view acceptance gate. */
-export const WORKBENCH_TYPE={button:{size:58,weight:600},label:{size:48,weight:600},detail:{size:48,weight:500},glyph:{size:120,weight:700}};
+export const WORKBENCH_TYPE={button:{size:58,weight:600},label:{size:53,weight:600},detail:{size:53,weight:500},glyph:{size:120,weight:700}};
 export function applyWorkbenchText(text:Text,role:keyof typeof WORKBENCH_TYPE){
   text.size=WORKBENCH_TYPE[role].size;
   (text as Text&{weight?:number}).weight=WORKBENCH_TYPE[role].weight;
@@ -13,9 +13,9 @@ export function applyWorkbenchText(text:Text,role:keyof typeof WORKBENCH_TYPE){
 export function styleWorkbenchButton(button:Button,size:vec3){
   button.setVariant({theme:"SnapOS2",shape:"Rectangle",style:"PrimaryNeutral"});
   button.size=size;button.playAudio=true;
-  const state=(hover=false,pressed=false):RoundedRectangleVisualState=>({
-    baseType:"Color",baseColor:new vec4(.025,.04,.055,.78),hasBorder:true,
-    borderType:"Color",borderSize:hover?.28:.24,borderColor:pressed?new vec4(.55,1,.85,.95):new vec4(.82,.94,1,hover?1:.82),
+  const state=(hover=false,pressed=false,inactive=false):RoundedRectangleVisualState=>({
+    baseType:"Color",baseColor:new vec4(.025*(hover?1.1:1),.04*(hover?1.1:1),.055*(hover?1.1:1),.78),hasBorder:true,
+    borderType:"Color",borderSize:hover?.28:.24,borderColor:new vec4(.82,.9,.94,inactive?.82*.3:hover?1:.82),
     shouldScale:true,localScale:new vec3(hover?1.04:1,hover?1.04:1,1),
     shouldPosition:true,localPosition:new vec3(0,0,pressed?-.35:0),
   });
@@ -24,7 +24,7 @@ export function styleWorkbenchButton(button:Button,size:vec3){
   const face=global.scene.createSceneObject("Workbench button face");face.setParent(button.sceneObject);
   button.visual=new RoundedRectangleVisual({sceneObject:face,transparent:true,
     depthSettings:{depthTest:true,depthWrite:true},
-    style:{default:state(),hovered:state(true),triggered:state(true,true),inactive:state()}});
+    style:{default:state(),hovered:state(true),triggered:state(true,true),inactive:state(false,false,true)}});
   button.initialize();button.colliderFitElement=false;button.colliderSize=new vec3(size.x,size.y+.5,1.5);
   const visual=button.visual as RoundedRectangleVisual;visual.cornerRadius=.45;visual.animateDuration=.12;
   return face;
@@ -34,7 +34,7 @@ export function styleWorkbenchButton(button:Button,size:vec3){
 export function setWorkbenchOpacity(button:Button,opacity:number){
   if(!button.initialized)return;
   const visual=button.visual as RoundedRectangleVisual;
-  visual.transparencyEnabled=true;visual.opacity=opacity;
+  if(Math.abs(visual.opacity-opacity)>.001){visual.transparencyEnabled=true;visual.opacity=opacity;}
 }
 
 /** Noninteractive SDK-rounded plate, so an annotation never steals a pinch. */

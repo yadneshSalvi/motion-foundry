@@ -26,7 +26,7 @@ CLAD's interaction, UI, audio and LEAF guidance informed the native implementati
 | --- | --- |
 | Put information on the thing | The fit dial shows its current millimetres; contact belongs to the rod; lengths sit beside the links. |
 | Show detail when needed | Far view has one status mark; the working view has a small dock; the near view exposes fit and dimensions. |
-| Keep choices few and graspable | At most three dock targets, including navigation. A 4.2 cm grip, 4.5 cm mount target, visible rim handle and first-use hand hints make the object actions discoverable. |
+| Keep choices few and graspable | At most three dock targets, including navigation. A 1.6 cm visible crank knob with a 4.2 cm invisible interaction target, a 4.5 cm mount target, visible rim handle and first-use hand hints make the object actions discoverable. |
 | Stay where the person is looking | The board remains on its surface. Placement controls follow near the user, then return to the bench edge; saved-design tags stay beside the assembly. |
 
 ## The complete action
@@ -34,12 +34,12 @@ CLAD's interaction, UI, audio and LEAF guidance informed the native implementati
 1. Place the board, or use Preview's saved tabletop position. The first-use hand demonstrates the crank.
 2. Draw with a pinch on the board. A visible nib follows the input. Returning within 1.5 cm of the starting ring snaps a sufficiently long loop closed; an open stroke remains editable.
 3. Turn the fit dial from 1 to 5 mm, and choose **Make it**. The previous machine and a clearly pending pulse remain while the real search runs. New rods appear only after a returned result passes independent checks.
-4. Turn or flick the crank. Saturated ink grows from actual linkage poses over the thin dashed drawing. Recent parts within the selected fit limit turn green.
+4. Turn or flick the crank. Saturated ink grows from actual linkage poses over the thin dashed drawing. Matching portions accumulate in mint and remain after release; a complete earned traversal makes the match payoff legible.
 5. Lean closer to inspect fitting gaps and actual rod lengths. Labels choose clear positions around the hardware.
 6. Move and size the mug ring. If a rod meets it, contact is shown on that rod. A fresh search keeps the same drawing, mounts, fit limit and obstacle while finding different geometry.
 7. Undo a direct edit, try another checked mechanism, or save the selected one. A failed or cancelled search keeps the previous geometry and prevents a stale export.
 
-Menus are two levels deep at most. **Place** is on the first More page, each secondary page has Back, and a short-lived Undo chip appears by an edited object. Longer recovery remains available in Tools.
+Menus are two levels deep at most. **Place** is on the first More page, each secondary page has Back, and a named Undo chip remains by the edited object until Undo or a new accepted solve. Recovery is also available in Tools.
 
 ## Geometry and state
 
@@ -56,6 +56,6 @@ A completed nonzero edit creates one history entry. A no-motion grab creates non
 - The fit dial, movable mount and obstacle rim respond directly and show their actual values.
 - Repair preserves the freshly drawn loop and every constraint; the obstacle is not silently moved or replaced.
 - The working, side, near and Center views keep controls, ink and useful labels readable.
-- Save's signed design rechecks and preserves the exact drawing, selected mechanism and constraints.
+- Save keeps the design locally; Send to phone creates a signed link that rechecks and preserves the exact drawing, selected mechanism and constraints.
 
 [Verification](verification.md) records the measured outcomes. [Scope](../README.md#scope) defines the Preview, handoff and mechanical limits.

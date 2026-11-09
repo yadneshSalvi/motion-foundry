@@ -1,17 +1,17 @@
 {
-  "schema": "motion-foundry-gallery/v1",
+  "schema": "motion-foundry-gallery/v2",
   "captured_date": "2026-11-09",
   "environment": "Lens Studio Preview, Sunlit Room",
   "images": [
     {
       "file": "media/native-workbench-hero.png",
-      "sha256": "9e40e2e39a4159ea3cf63738295307ab532a5c32e200f1ee7274e5ef43b1fdf5",
-      "source_sha256": "794b3cbc9fa1189676c87c3a824bc3a63ae4fb21e0ba48138ebb1e2bf07b4fef",
-      "source_frame": 2104,
-      "source_seconds": 70.13333333333334,
+      "sha256": "4805c0e19feaf7cb5dbd04bf6365f2350cbeef1eb8e68eff9ead8cb54f8c4538",
+      "source_sha256": "26abeef7ab2fc9ac3a1b2585c016cfdafbdfda133138304baac9aeb8bc84de3a",
+      "source_frame": 1470,
+      "source_seconds": 49.0,
       "fixed_crop": [
-        390,
-        386,
+        392,
+        474,
         1920,
         1080
       ],
@@ -19,66 +19,61 @@
         1920,
         1080
       ],
-      "description": "Fresh captured drawing and the returned mechanism",
-      "processing": "Exact accepted native crop; no resizing, repainting, background replacement or compositing"
+      "description": "Earned mint match after a complete actual crank traversal",
+      "processing": "Sequentially decoded actual frame; exact pixel crop; no resizing, repainting, replaced room or compositing"
     },
     {
       "file": "media/native-workbench-draw.png",
-      "sha256": "20ec4ca70fddf91cfe27370fa7a8b76b28278d3174b197cdb3073d8b2f842abd",
-      "source_sha256": "794b3cbc9fa1189676c87c3a824bc3a63ae4fb21e0ba48138ebb1e2bf07b4fef",
-      "source_frame": 990,
-      "source_seconds": 33.0,
+      "sha256": "395f469ec349a6084d02c3648b360dd93f01f1113feaae57c32045296ccf6dec",
+      "source_sha256": "26abeef7ab2fc9ac3a1b2585c016cfdafbdfda133138304baac9aeb8bc84de3a",
+      "source_frame": 650,
+      "source_seconds": 21.666666666666668,
       "fixed_crop": [
-        390,
-        386,
-        1920,
-        1080
+        264,
+        330,
+        2176,
+        1224
       ],
       "output_dimensions": [
-        1920,
-        1080
+        2176,
+        1224
       ],
-      "description": "Actual scripted SIK pinch and drawing nib",
-      "processing": "Exact accepted native crop; no resizing, repainting, background replacement or compositing"
+      "description": "Actual visible SIK pinch with the earned white stroke exposed below it",
+      "processing": "Sequentially decoded actual frame; exact pixel crop; no resizing, repainting, replaced room or compositing"
     },
     {
       "file": "media/native-workbench-repair.png",
-      "sha256": "d5d0bb83a719f23d41a8424f6e1316841ff9daab01069ac75fa094e8d9d8ec47",
-      "source_sha256": "794b3cbc9fa1189676c87c3a824bc3a63ae4fb21e0ba48138ebb1e2bf07b4fef",
-      "source_frame": 3114,
-      "source_seconds": 103.8,
+      "sha256": "943660fa8f3525cf38932f3dcfde420ee6b6735b7bf2ffbc5d7b7ef793fd1c5a",
+      "source_sha256": "26abeef7ab2fc9ac3a1b2585c016cfdafbdfda133138304baac9aeb8bc84de3a",
+      "source_frame": 3070,
+      "source_seconds": 102.33333333333333,
       "fixed_crop": [
-        390,
-        386,
-        1920,
-        1080
+        264,
+        330,
+        2176,
+        1224
       ],
       "output_dimensions": [
-        1920,
-        1080
+        2176,
+        1224
       ],
-      "description": "Full repaired cycle with the same drawing and mug",
-      "processing": "Exact accepted native crop; no resizing, repainting, background replacement or compositing"
+      "description": "Same drawing and declared mug after the full verified repair cycle",
+      "processing": "Sequentially decoded actual frame; exact pixel crop; no resizing, repainting, replaced room or compositing"
     },
     {
       "file": "media/native-workbench-center.png",
-      "sha256": "05b747f8c0757272cc4a829b8481ab73096f43624841c82b51a0dc21f5c00dfd",
-      "source_sha256": "794b3cbc9fa1189676c87c3a824bc3a63ae4fb21e0ba48138ebb1e2bf07b4fef",
-      "source_frame": 6030,
-      "source_seconds": 201.0,
-      "fixed_crop": [
-        390,
-        386,
-        1920,
-        1080
-      ],
+      "sha256": "4f7eb441f3c07c07d76aecb4eac88be68e4308efcc99ac9a21dfccc01b4bdeef",
+      "source_sha256": "4f7eb441f3c07c07d76aecb4eac88be68e4308efcc99ac9a21dfccc01b4bdeef",
+      "source_type": "actual same-input Center screenshot before reset",
       "output_dimensions": [
-        1920,
-        1080
+        3486,
+        1590
       ],
-      "description": "Actual additive Center simulation",
-      "processing": "Exact accepted native crop; no resizing, repainting, background replacement or compositing"
+      "description": "Persistent mint in actual additive Center simulation; mug partly outside the optical field",
+      "processing": "Original screenshot bytes, no edits"
     }
   ],
-  "scope": "Scripted visible SIK hands and an actual native room simulation. No physical Spectacles or phone camera capture. Mug is a manually sized stand-in."
+  "hero_visibility_scope": "The selected 1470 frame lies in independently inspected 1450\u20131495 payoff; all eight bracketing projection samples at most 18.75% drawing occlusion, corroborated by pixels. This is not a whole-cycle visibility bound.",
+  "scope": "Scripted visible SIK input, manually sized mug stand-in, actual native room simulation. No physical Spectacles or phone-camera capture.",
+  "previous_gallery": "evidence/archive/native-workbench-gallery-r003.json"
 }

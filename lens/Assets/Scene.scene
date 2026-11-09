@@ -5,8 +5,6 @@
     - !<own> 0005641c-028d-459a-0000-000000014b4d
     - !<own> f5d74682-203a-4970-81ea-9fa7b88c96bb
     - !<own> 2b51dc1d-9456-439f-be8e-4e211aa966c8
-    - !<own> 7a8780d1-3efe-4123-8845-a0495d087d92
-    - !<own> 86df9ba4-12af-442f-aba1-6426e7b56063
   layers: !<Layers/267ee9a7-aff2-4f9d-9a49-f71214747d03>
     userLayers:
       - id: 1
@@ -982,22 +980,6 @@
     []
   Components:
     - !<own> 5f153ad7-2baa-4fd9-a298-0dcfad86da3b
-- !<ScriptComponent/4d7a7c64-7c7c-4d30-bd4f-964d64e32c6f>
-  PrefabRemaps:
-    []
-  Name: MessagingBridge
-  Enabled: true
-  ScriptAsset: !<reference> 2507ffec-3cf0-4f26-9d28-8d9828beb035
-  ScriptInputsDefault:
-    {}
-  ScriptTypesDefault:
-    {}
-  ScriptInputs:
-    "":
-      {}
-  ScriptTypes:
-    "":
-      {}
 - !<SceneObject/52ecefe4-5642-445a-ad16-52ce818076bc>
   PrefabRemaps:
     []
@@ -1358,41 +1340,6 @@
     []
   Components:
     - !<own> c8e031d3-a8a1-468a-a419-427f8556de4c
-- !<RenderMeshVisual/7983c265-d817-406e-a5bb-63119d6ac528>
-  PrefabRemaps:
-    []
-  Name: Render Mesh Visual
-  Enabled: true
-  RenderOrder: 0
-  StretchMode: Stretch
-  VerticalAlignment: Center
-  HorizontalAlignment: Center
-  MeshShadowMode: None
-  ShadowColor: {x: 1.000000, y: 1.000000, z: 1.000000, w: 1.000000}
-  ShadowDensity: 1.000000
-  Materials:
-    - !<reference> 3c8d5042-b065-4e29-ac79-5888a61a27f0
-  Mesh: !<reference> a4720f21-e7d7-47cc-bac4-17ff915b9cb1
-  Skin: !<reference> 00000000-0000-0000-0000-000000000000
-  BlendShapesEnabled: true
-  BlendNormals: false
-  BlendShapes:
-    {}
-- !<SceneObject/7a8780d1-3efe-4123-8845-a0495d087d92>
-  PrefabRemaps:
-    []
-  Name: Provided keep-out cylinder
-  Enabled: true
-  Layers: 1
-  LocalTransform: !<TransformEntity>
-    Position: {x: -54.335701, y: -56.000000, z: -311.664307}
-    Rotation: {x: 0.000000, y: 45.000000, z: 0.000000}
-    Scale: {x: 9.006016, y: 4.000000, z: 9.006016}
-    HasSegmentScaleCompensation: false
-  Children:
-    []
-  Components:
-    - !<own> 7983c265-d817-406e-a5bb-63119d6ac528
 - !<SceneObject/7aa85bd8-d423-42cd-b190-473711e94929>
   PrefabRemaps:
     []
@@ -1547,21 +1494,6 @@
     - !<own> 6c1f70d7-86d0-4972-b203-29780f8798e6
   Components:
     []
-- !<SceneObject/86df9ba4-12af-442f-aba1-6426e7b56063>
-  PrefabRemaps:
-    []
-  Name: LEAF Plugin Bridge
-  Enabled: true
-  Layers: 1
-  LocalTransform: !<TransformEntity>
-    Position: {x: 0.000000, y: 0.000000, z: 0.000000}
-    Rotation: {x: 0.000000, y: 0.000000, z: 0.000000}
-    Scale: {x: 1.000000, y: 1.000000, z: 1.000000}
-    HasSegmentScaleCompensation: false
-  Children:
-    []
-  Components:
-    - !<own> 4d7a7c64-7c7c-4d30-bd4f-964d64e32c6f
 - !<SceneObject/879ce45b-bd5e-40ff-a3fe-d821523427e4>
   PrefabRemaps:
     []
@@ -2423,7 +2355,6 @@
       crankTick: !<reference.AudioTrackAsset> e7ad077f-1c7a-4170-8f91-05bb5896cea9
       contactCue: !<reference.AudioTrackAsset> a07b5ad7-450a-4625-97e2-5146710ff43b
       clearCue: !<reference.AudioTrackAsset> 1771699b-7b24-47a8-b2dd-e8ad63aba5f1
-      measuredKeepOutProp: !<reference.SceneObject> 7a8780d1-3efe-4123-8845-a0495d087d92
       placeOnSurface: false
   ScriptTypes:
     "":

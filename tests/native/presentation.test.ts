@@ -62,7 +62,7 @@ describe('direct-control presentation policy',()=>{
     expect(Number.isFinite(crankReleaseStep(NaN,1,2).advance)).toBe(true);
   });
   it('requires placement on the device while explicitly retaining the Preview saved spot',()=>{
-    expect(placementPolicy(false)).toMatchObject({beginPlacement:true,showStandIn:false,startupLabel:'',branch:'device-surface-placement'});
+    expect(placementPolicy(false)).toMatchObject({beginPlacement:true,showStandIn:false,branch:'device-surface-placement'});
     expect(placementPolicy(true)).toMatchObject({beginPlacement:false,showStandIn:true,branch:'preview-saved-spot'});
     expect(placementPolicy(true,true).beginPlacement).toBe(true);
   });

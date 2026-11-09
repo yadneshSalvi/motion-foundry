@@ -1,0 +1,170 @@
+{
+  "schema": "motion-foundry/r004-native-summary@1",
+  "date": "2026-11-09",
+  "context": "Lens Studio 5.23.2, SPECS 27 Interactive Preview, Sunlit Room, simulated SIK hands",
+  "sourceCapture": {
+    "name": "mf-session015/session015.mp4",
+    "sha256": "26abeef7ab2fc9ac3a1b2585c016cfdafbdfda133138304baac9aeb8bc84de3a",
+    "protectedFrames": [
+      402,
+      3117
+    ],
+    "durationSeconds": 90.5,
+    "rate": 1
+  },
+  "main": {
+    "drawnInputHash": "fnv1a-7dda7bc7",
+    "blockedRepairedInputHash": "fnv1a-c35a3906",
+    "inputPayloadsExactlyEqual": true,
+    "physicalMarginCm": -0.04268957782438926,
+    "nearReadableMs": 8262,
+    "firstCycle": {
+      "durationMs": 14957,
+      "startPhase": 8.38857709122033,
+      "endPhase": 14.68939601722728,
+      "advanceRad": 6.300818926006949,
+      "inkPoints": 2111,
+      "matchProgress": {
+        "ready": true,
+        "complete": true,
+        "inspected": 360,
+        "matched": 360,
+        "total": 360,
+        "inkCapacityReached": false
+      }
+    },
+    "repairedCycle": {
+      "durationMs": 14939,
+      "startPhase": 4.574726410104691,
+      "endPhase": 10.869764215103263,
+      "advanceRad": 6.2950378049985725,
+      "inkPoints": 1392,
+      "matchProgress": {
+        "ready": true,
+        "complete": true,
+        "inspected": 360,
+        "matched": 360,
+        "total": 360,
+        "inkCapacityReached": false
+      }
+    }
+  },
+  "finalSameSession": {
+    "revision": 6,
+    "inputHash": "fnv1a-ec80dc0a",
+    "verifiedForCurrentRevision": true,
+    "verification": {
+      "valid": true,
+      "failures": [],
+      "maxFitErrorCm": 0.29697319883695106,
+      "rmsFitErrorCm": 0.1493742039308086,
+      "maxClosureErrorCm": 8.881784197001252e-15,
+      "minClearanceCm": 0.025000820795976736,
+      "sampleCount": 720,
+      "scope": "sampled",
+      "limitations": [
+        "Clearance checked only at reported phase samples; collisions between samples are not excluded.",
+        "Adjacent pivot neighborhoods (3 link radii plus clearance) are exempt. Capsule endpoints model joint radii; inter-layer axles are not modeled.",
+        "No load, bearing, fabrication or physical manufacturability validation.",
+        "Fit compares ordered closed arc-length correspondence, with the first drawn point anchored to startingPhaseRad. Crank speed remains uniform during playback.",
+        "Attachment triangle rods B\u2192point and C\u2192point are checked against obstacles and other links with the same declared layer and pivot exemptions. Contacts within the rigid attachment/coupler triangle, inter-layer axles and pen hardware are excluded."
+      ],
+      "inputHash": "fnv1a-ec80dc0a",
+      "verifierVersion": "coupler-loop-1.0",
+      "fitWitness": {
+        "phaseRad": 4.565940220102116,
+        "desired": {
+          "x": 1.381,
+          "y": 4.541
+        },
+        "actual": {
+          "x": 1.4186828512870973,
+          "y": 4.835572713512854
+        },
+        "errorCm": 0.29697319883695106,
+        "sampleIndex": 0
+      }
+    },
+    "matchProgress": {
+      "ready": true,
+      "complete": true,
+      "inspected": 360,
+      "matched": 360,
+      "total": 360,
+      "inkCapacityReached": true
+    },
+    "audio": {
+      "tick": 16,
+      "contact": 1,
+      "clear": 4,
+      "failed": false,
+      "voiceCount": 3,
+      "configured": {
+        "tick": true,
+        "contact": true,
+        "clear": true
+      }
+    }
+  },
+  "placement": {
+    "source": "WorldQuery table placement",
+    "commits": 1,
+    "hit": {
+      "x": -30.03801918029785,
+      "y": -142.06436157226562,
+      "z": -473.9184265136719
+    },
+    "normal": {
+      "x": -1.8478054641946073e-08,
+      "y": 1,
+      "z": -4.097666650437759e-09
+    },
+    "footprintCm": {
+      "width": 30,
+      "depth": 24
+    }
+  },
+  "share": {
+    "exactNativeUrlLength": 1671,
+    "urlSha256": "e0c6d3df3d56778e3c213fbab385d8c5a82364477cf7a6b3ba5fb5ef614cc2ea",
+    "nativeDecodeTimesSeconds": [
+      165,
+      172,
+      178,
+      182
+    ],
+    "companionBrowser": "Revision6, exact input hash, signature and720sampledposes revalidated; JSON/SVG available",
+    "physicalPhoneScan": false
+  },
+  "shipping": {
+    "sceneSha256": "449f0d21449ff11d52adfb5841099fcc9864b6b5d3d8cc1fa41ca8ccb6eacf59",
+    "reopenedPreview": "Preview55",
+    "typeScriptCompile": "pass",
+    "runtimeStartup": "pass",
+    "activeTestRegistry": false,
+    "activeMessagingBridge": false,
+    "privateMeasurementHelpers": false
+  },
+  "limits": [
+    "Selected first mint payoff has recorded projected coverage at most18.75%; no all-phase20%claim.",
+    "No physical Spectacles tracking, comfort or FPS test.",
+    "Numerical verification is sampled and does not validate fabrication."
+  ],
+  "hostPreviewIntervals": {
+    "context": "product012/test013;nearandplaying;5.0226seconds",
+    "samples": 222,
+    "medianMs": 22.226458,
+    "p95Ms": 24.469,
+    "maxMs": 63.841917
+  },
+  "hostPreviewIntervalScope": "Host UpdateEvent intervals during diagnostic logging and screen capture; not physical SPECS performance, GPU timing or script self-time.",
+  "sourceChecks": {
+    "unitTests": 99,
+    "unitTestFiles": 14,
+    "sceneTests": 3,
+    "mirrors": 38,
+    "typechecks": "web and native pass",
+    "productionBuild": "pass",
+    "petalExamples": 4
+  }
+}

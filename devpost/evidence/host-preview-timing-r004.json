@@ -1,0 +1,40 @@
+{
+  "schema": "motion-foundry/host-preview-timing@1",
+  "recorded_date": "2026-11-09",
+  "scope": "Lens Studio desktop Preview UpdateEvent intervals during a real near-view inspection with the mechanism playing. Diagnostics, logging and silent screen capture were active.",
+  "revision_scope": {
+    "product": "round4 product012",
+    "test_driver": "round4 source013",
+    "source_video_sha256": "26add0ebea0b5f69e13f35883837ae62b5eeaee713785ee440429a0aaa427695",
+    "input_hash": "fnv1a-3f604c82",
+    "native_import_record_sha256": "e5b304df8ba36af362e91c96d86a997e627041afd0a1f851209128d865d00c7a",
+    "source_freeze_sha256": "43f9cdbfb63c35ef1c9465bbb42a41cc71ec88b37e5bacf89dff29f75a23a1b7",
+    "sampler_source_sha256": "c7f7e2fa02b0dbbd8aa599764298b4a0e26085339f232a62e44731a89112b511"
+  },
+  "measurement": {
+    "duration_seconds": 5.0225989159953315,
+    "samples": 222,
+    "median_ms": 22.226458007935435,
+    "p95_ms": 24.468999996315688,
+    "maximum_ms": 63.84191699908115,
+    "intervals_over_33ms": 2,
+    "lens_start_seconds": 50.121627874992555,
+    "lens_end_seconds": 55.14422679098789,
+    "window_end_unix_ms": 1794244431142
+  },
+  "method": "Positive finite getDeltaTime()*1000 samples summarized over approximately five Lens seconds. Quantiles are the original sorted index floor(p*(n-1)) summaries; raw per-frame values are not retained in this curated receipt.",
+  "state_witnesses": {
+    "count": 20,
+    "minimumVisibleRodPlates": 2,
+    "fitPlateVisibleWitnesses": 16,
+    "phaseAdvanceRadians": 2.03205661763608
+  },
+  "private_review_sha256": "cefc3aa52f5ddd488747bf13087dc4bd0f0e35c3e5293dfa45abb3a0dfdd828b",
+  "limits": [
+    "This is host UpdateEvent timing, not render/GPU time, CPU self-time, encoded frame cadence or a physical-glasses frame rate.",
+    "These measurements describe this recorded revision and workload only. No steady30/60fps or future revision performance guarantee is claimed.",
+    "Twenty state witnesses establish the near/playing context. They do not inspect every host frame.",
+    "The maximum interval is retained. No individual function is blamed for it.",
+    "The old sampler label says source006; source013 is established by the exact native import and recorded run."
+  ]
+}

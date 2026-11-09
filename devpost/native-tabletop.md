@@ -4,7 +4,7 @@ Motion Foundry turns a drawn path into a linkage on the table. The maker draws w
 
 ## Physical controls
 
-The 30 × 24 cm board sits on a horizontal surface. Mount spacing starts at 16 cm. A physical dial sets allowed error from 1 to 5 mm; the starting value is 3 mm. The movable mount, crank and mug rim each have their own SIK handle and first-use gesture hint. A 4.2 cm visible grip matches its collider, and the movable mount has a 4.5 × 4.5 cm target.
+The 30 × 24 cm board sits on a horizontal surface. Mount spacing starts at 16 cm. A physical dial sets allowed error from 1 to 5 mm; the starting value is 3 mm. The movable mount, crank and mug rim each have their own SIK handle and first-use gesture hint. The visible crank knob is 1.6 cm across, with a separate invisible 4.2 cm interaction target. The movable mount has a 4.5 × 4.5 cm target. These interaction targets are not additional collision-checked hardware.
 
 The contextual dock offers at most three targets, including navigation and Undo. **More → Place** is available on the first More page; Tools contains only less frequent actions. Holding a handle closes the menu. A meaningful edit produces an on-object Undo chip. A grab and release without movement does not create another change.
 
@@ -18,12 +18,12 @@ The same newly drawn curve survives the contact-and-repair workflow. Contact app
 
 ## Spatial hierarchy
 
-The rods have distinct bright colours, depth separation, clamps and through-axles. Actual crank poses drive the pen and ink; ordered comparisons turn matching portions green. Near views add the largest fitting gap and a few legible rod lengths. Other rods can be inspected from another angle. Far views reduce the display to one status mark. Labels face the wearer in yaw while remaining attached to their objects.
+The rods have distinct bright colours, depth separation, clamps and through-axles. Actual crank poses drive the pen and ink; ordered comparisons accumulate a persistent mint match through the actual traversal. Near views add the largest fitting gap and a few legible rod lengths. Other rods can be inspected from another angle. Far views reduce the display to one status mark. Camera-facing labels choose projected clear space beside their objects, with short leaders. The dock, hardware, edit target and other plates participate in the placement exclusions.
 
 Preview opens on the saved Sunlit Room table pose. Place starts a WorldQuery session, accepts a fresh upward-facing horizontal hit and fixes the owner pose once. Non-editor startup requires placement and hides the mug stand-in. The test instructions distinguish that source path from actual device validation.
 
 ## Saving and reproduction
 
-Save opens a signed design on a side tag, leaving the linkage visible. The companion rechecks its signature and geometry and offers exact JSON and a dimensioned SVG. Paired-phone delivery is a future interface direction; the current handoff is the QR/link.
+Save keeps the design locally. Send to phone opens its signed Preview QR/link in a visible position clear of the controls. The companion rechecks its signature and geometry and offers exact JSON and a dimensioned SVG. Paired-phone delivery is a future interface direction.
 
 The [native reproduction guide](reproducibility.md) covers the project, scene pose, controls and intentional LEAF setup. [Technical reference](technical-reference.md) records thickness, layers, fitting and sharing. [Scope](../README.md#scope) contains mechanical and Preview limits. Petal remains in the companion, domain and retained source, while the native opening stays focused on Loop.

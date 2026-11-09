@@ -25,29 +25,54 @@ const code=transformNative(nativeSource.replace(/^import .*;$/gm,'')
 function fixture(pitch=40,yaw=0,isEditor=true){
   const rad=Math.PI/180,gaze=new V3(Math.sin(yaw*rad)*Math.cos(pitch*rad),-Math.sin(pitch*rad),-Math.cos(yaw*rad)*Math.cos(pitch*rad));
   const eye=new V3(-30,-101.1,-424.2),queries:{start:V3;end:V3;reply:(result:unknown)=>void}[]=[],positions:V3[]=[];
-  let now=1,placed=0;
+  let now=1,placed=0,filter:unknown;
   const transform={setWorldPosition:(v:V3)=>positions.push(v),setWorldRotation:()=>{},setLocalScale:()=>{}};
-  const cursor={enabled:false,createComponent:()=>({}),getTransform:()=>({setWorldPosition:()=>{}}),destroy:()=>{}};
+  const cursor={enabled:false,createComponent:()=>({}),getTransform:()=>({setWorldPosition:()=>{},setWorldRotation:()=>{}}),destroy:()=>{}};
   const session={start:()=>{},stop:()=>{},hitTest:(start:V3,end:V3,reply:(result:unknown)=>void)=>queries.push({start,end,reply})};
   const camera={getWorldPosition:()=>eye,getTransform:()=>({forward:gaze.uniformScale(-1)})};
-  class Mesh {appendVerticesInterleaved(){}appendIndices(){}updateMesh(){}getMesh(){return{};}}
+  const meshes:{vertices:number[];indices:number[]}[]=[];
+  class Mesh {
+    vertices:number[]=[];indices:number[]=[];
+    constructor(){meshes.push(this);}
+    appendVerticesInterleaved(values:number[]){this.vertices.push(...values);}
+    appendIndices(values:number[]){this.indices.push(...values);}
+    updateMesh(){}getMesh(){return{};}
+  }
   const exports:Record<string,any>={};
   runInNewContext(code,{exports,require:(name:string)=>{
-    if(name==='LensStudio:WorldQueryModule')return{createHitTestSession:()=>session};
+    if(name==='LensStudio:WorldQueryModule')return{createHitTestSessionWithOptions:(options:{filter:boolean})=>{filter=options.filter;return session;}};
     throw Error('Unexpected native import: '+name);
   },SIK:{InteractionManager:{getInteractorsByType:()=>[]}},InteractorInputType:{All:0},
-  WorldCameraFinderProvider:{getInstance:()=>camera},vec3:V3,MeshBuilder:Mesh,MeshTopology:{Triangles:0},MeshIndexType:{UInt16:0},
+  WorldCameraFinderProvider:{getInstance:()=>camera},vec3:V3,vec4:class {constructor(..._v:unknown[]){}},MeshBuilder:Mesh,MeshTopology:{Triangles:0},MeshIndexType:{UInt16:0},
+  HitTestSessionOptions:{create:()=>({filter:true})},
   global:{scene:{createSceneObject:()=>cursor}},getTime:()=>now,print:()=>{},
+  vector3Data:(v:V3)=>({x:v.x,y:v.y,z:v.z}),
   quat:{fromEulerAngles:()=>({})}});
   const placement=new exports.WorkbenchPlacement({createEvent:()=>({bind:()=>{}})},
-    {getTransform:()=>transform},{},()=>{},()=>{placed++;},isEditor);
-  return{placement,gaze,eye,queries,positions,cursor,setTime:(v:number)=>{now=v;},get placed(){return placed;}};
+    {getTransform:()=>transform},{clone:()=>({mainPass:{}})},()=>{},()=>{placed++;},isEditor);
+  return{placement,gaze,eye,queries,positions,cursor,meshes,setTime:(v:number)=>{now=v;},get placed(){return placed;},get filter(){return filter;}};
 }
 
 describe('actual-gaze surface placement',()=>{
+  it('winds every actual footprint and reticle triangle toward the viewer above the table',()=>{
+    const {meshes}=fixture(),{vertices,indices}=meshes[0];
+    expect(indices.length).toBeGreaterThan(300);
+    const point=(index:number)=>vertices.slice(index*8,index*8+3);
+    for(let i=0;i<indices.length;i+=3){
+      const a=point(indices[i]),b=point(indices[i+1]),c=point(indices[i+2]);
+      const ab=b.map((v,k)=>v-a[k]),ac=c.map((v,k)=>v-a[k]);
+      const normalY=ab[2]*ac[0]-ab[0]*ac[2];
+      expect(normalY).toBeGreaterThan(0);
+      expect(a[1]).toBe(0);expect(b[1]).toBe(0);expect(c[1]).toBe(0);
+    }
+    const xs=vertices.filter((_,i)=>i%8===0),zs=vertices.filter((_,i)=>i%8===2);
+    expect(Math.max(...xs)-Math.min(...xs)).toBeCloseTo(30.12,10);
+    expect(Math.max(...zs)-Math.min(...zs)).toBeCloseTo(24.12,10);
+  });
   it('queries camera pitch and yaw, with nearby controls below the gaze',()=>{
     for(const pitch of [35,40,45])for(const yaw of [-60,0,70]){
       const f=fixture(pitch,yaw);f.placement.begin();f.placement.tick();
+      expect(f.filter).toBe(false);
       expect(f.queries).toHaveLength(1);
       const ray=f.queries[0].end.sub(f.queries[0].start);
       expect(ray.distance(f.gaze.uniformScale(220))).toBeLessThan(1e-10);
@@ -61,6 +86,7 @@ describe('actual-gaze surface placement',()=>{
   });
   it('refuses absent, nonhorizontal, distant and stale hits on the device',()=>{
     for(const result of [null,{normal:new V3(0,.5,0),position:new V3(0,-140,-470)},
+      {normal:new V3(0,.7552,0),position:new V3(-30,-144.9086,-477.0062)},
       {normal:new V3(0,1,0),position:new V3(0,-140,-800)}]){
       const f=fixture(40,0,false);f.placement.begin();f.placement.tick();f.queries[0].reply(result);
       expect(f.placement.commitHit()).toBe(false);expect(f.positions).toHaveLength(0);
@@ -78,6 +104,25 @@ describe('actual-gaze surface placement',()=>{
     old.reply(hit);expect(f.placement.hasHit()).toBe(false);expect(f.placement.commitHit()).toBe(false);
     f.queries[1].reply(hit);expect(f.placement.hasHit()).toBe(true);expect(f.placement.commitHit()).toBe(true);
     expect(f.positions[0].distance(actual.add(new V3(0,.5,0)))).toBeLessThan(1e-10);
+    expect(f.placement.footprint()).toHaveLength(4);
+    const footprint=f.placement.footprint() as V3[];
+    const distances=footprint.slice(1).map(q=>q.distance(footprint[0])).sort((a,b)=>a-b);
+    expect(distances[0]).toBeCloseTo(24,10);expect(distances[1]).toBeCloseTo(30,10);
+    const control=f.placement.controlsPoint();expect(control.y).toBeCloseTo(actual.y+2,10);
+    expect(Math.hypot(control.x-actual.x,control.z-actual.z)).toBeCloseTo(19,10);
     expect(f.placed).toBe(1);expect(f.placement.commitHit()).toBe(false);expect(f.positions).toHaveLength(1);
+  });
+  it('records actual rejection and timeout reasons without logging every identical no-hit',()=>{
+    const f=fixture();f.placement.begin();f.placement.tick();f.queries[0].reply(null);
+    f.setTime(1.3);f.placement.tick();f.queries[1].reply(null);
+    let diagnostics=f.placement.snapshot().queryDiagnostics;
+    expect(diagnostics.queryCount).toBe(2);expect(diagnostics.counts['rejected:no-hit']).toBe(2);
+    expect(diagnostics.records.filter((r:any)=>r.reason==='no-hit')).toHaveLength(1);
+    const record=diagnostics.records.find((r:any)=>r.reason==='no-hit');
+    expect(record.ray.from).toEqual({x:f.eye.x,y:f.eye.y,z:f.eye.z});expect(record.target).toBeNull();
+    f.setTime(1.6);f.placement.tick();f.setTime(2.5);f.placement.tick();
+    diagnostics=f.placement.snapshot().queryDiagnostics;expect(diagnostics.counts['query:timeout']).toBe(1);
+    f.queries[2].reply({normal:new V3(0,1,0),position:f.eye.add(f.gaze.uniformScale(65))});
+    expect(f.placement.hasHit()).toBe(false);expect(f.placement.snapshot().queryDiagnostics.counts['query:stale-callback']).toBe(1);
   });
 });

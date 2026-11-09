@@ -17,7 +17,6 @@ export const WORKBENCH_PRESENTATION={
   hysteresisCm:10,
   fadeSeconds:.3,
   menuIdleSeconds:6,
-  undoSeconds:5,
   autoSpeedRad:.42,
   maxFlickRad:3.6,
   frictionPerSecond:2.8,
@@ -40,7 +39,6 @@ export function fadeTowards(value:number,target:number,dt:number):number{
 /** Desktop fallback is intentionally distinct from a device's required placement flow. */
 export function placementPolicy(isEditor:boolean,previewAskForSurface=false){
   return{isEditor,beginPlacement:!isEditor||previewAskForSurface,showStandIn:isEditor,
-    startupLabel:isEditor?"Preview · simulated room":"",
     branch:isEditor?"preview-saved-spot":"device-surface-placement"};
 }
 

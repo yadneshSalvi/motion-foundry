@@ -12,7 +12,7 @@ Glasses put the sketch at true scale on the bench where I would build it. I can 
 
 A nib follows the drawing pinch, and the loop snaps closed when its ends meet. A physical dial sets the allowed error. **Make it** searches rod lengths and pen position while keeping the drawing, mounts and obstacle fixed. The returned mechanism is checked with separate geometry before it appears.
 
-The crank drives the real linkage. Bold ink grows from the moving pen over the thin dashed sketch; the sketch never drives the animation. A mug stand-in makes obstruction tangible. Its rim handle sets a manually sized keep-out, and contact lights the particular rod. A fresh solve can replace that machine without changing the sketch. Undo restores a direct edit; Save carries the exact selected design to the companion for another check and JSON/SVG downloads.
+The crank drives the real linkage. Bold ink grows from the moving pen over the thin dashed sketch; the sketch never drives the animation. Matching parts stay mint after the hand releases, so the result can be read. A mug stand-in makes obstruction tangible. Its rim handle sets a manually sized keep-out, and contact lights the particular rod. A fresh solve can replace that machine without changing the sketch. A named Undo stays beside a direct edit. Save keeps the design locally; Send to phone shows its exact signed Preview link, whose companion checks the design again and offers JSON/SVG downloads.
 
 ## Designing for glasses
 

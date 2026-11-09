@@ -14,6 +14,9 @@ export class WorkbenchHints {
   private completed=new Set<HintKind>();
   private encounter:HintKind|null=null;
   private playedInEncounter=false;
+  private encounteredAt=0;
+  private plays:Partial<Record<HintKind,number>>={};
+  private poseTimes:Partial<Record<HintKind,number>>={};
   private startAt=getTime()+1.8;
   private camera=WorldCameraFinderProvider.getInstance();
   constructor(owner:BaseScriptComponent,parent:SceneObject){
@@ -36,18 +39,25 @@ export class WorkbenchHints {
     // Animate once per continuous encounter, then keep the official pose
     // visible. Only actual success dismisses the gesture permanently.
     if(!inView||kind!==this.encounter){
-      this.hide();this.encounter=inView?kind:null;this.playedInEncounter=false;
+      this.hide();this.encounter=inView?kind:null;this.playedInEncounter=false;this.encounteredAt=getTime();
     }
     if(!kind||!inView)return;
     const visiblePoint=point.add(this.camera.getWorldPosition().sub(point).normalize().uniformScale(2.5)).add(new vec3(0,1.5,0));
     if(this.kind){this.anchor.getTransform().setWorldPosition(visiblePoint);return;}
-    if(this.completed.has(kind)||this.playedInEncounter||getTime()<this.startAt)return;
+    if(this.completed.has(kind)||this.playedInEncounter||getTime()<this.startAt||getTime()-this.encounteredAt<.5)return;
     this.playedInEncounter=true;this.kind=kind;
     const t=this.anchor.getTransform();t.setWorldPosition(visiblePoint);t.setWorldRotation(rotation.multiply(quat.fromEulerAngles(-Math.PI/3,0,0)));
     this.anchor.enabled=true;
     const animation=kind==="crank"||kind==="fit"?HandAnimationsLibrary.Right.PinchRotateZ:HandAnimationsLibrary.Right.PinchMoveX;
     this.clipName=animation;
-    this.hint.playHintAnimation(HandMode.Right,animation,1,1);
+    const count=this.plays[kind]||0;
+    if(count<3){this.hint.playHintAnimation(HandMode.Right,animation,1,1);this.plays[kind]=count+1;}
+    else{
+      // Initial animation plus at most two replays. Further encounters keep a
+      // static official pose and text available until the actual action succeeds.
+      const clip=this.player.getClip(animation),time=this.poseTimes[kind]??Math.max(clip.begin,clip.end-.05);
+      this.player.setClipEnabled(animation,true);this.player.playClipAt(animation,time);this.player.forceUpdate(0);this.player.pauseClip(animation);
+    }
     // The package's exposed end-event registration otherwise fades the mesh
     // before success. Use the public player API to retain a one-shot end pose;
     // package code, materials, animation assets and input remain untouched.
@@ -56,9 +66,11 @@ export class WorkbenchHints {
   }
   public complete(kind:HintKind){this.completed.add(kind);if(this.kind===kind)this.hide();}
   public needs(kind:HintKind){return!this.completed.has(kind);}
-  public snapshot(){return{package:"3D Hints",version:"2.0.0",active:this.anchor.isEnabledInHierarchy?this.kind:null,encounter:this.encounter,playedInEncounter:this.playedInEncounter,holding:!!this.clipName&&!this.player.getClipIsPlaying(this.clipName),completed:Array.from(this.completed)};}
+  public snapshot(){return{package:"3D Hints",version:"2.0.0",active:this.anchor.isEnabledInHierarchy?this.kind:null,encounter:this.encounter,playedInEncounter:this.playedInEncounter,animationPlays:{...this.plays},maxPlaysPerGesture:3,hoverDelaySeconds:.5,completed:Array.from(this.completed)};}
   private hide(){
-    this.anchor.enabled=false;this.kind=null;
+    this.anchor.enabled=false;
+    if(this.kind&&this.clipName)this.poseTimes[this.kind]=Math.max(this.poseTimes[this.kind]||0,this.player.getClipCurrentTime(this.clipName));
+    this.kind=null;
     if(this.clipName){this.player.stopClip(this.clipName);this.player.setClipEnabled(this.clipName,false);this.clipName=null;}
   }
   private find(root:SceneObject,name:string):SceneObject|null{
